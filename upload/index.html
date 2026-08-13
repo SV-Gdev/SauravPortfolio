@@ -1,0 +1,1656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saurav Sharma | Game Developer Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #12121a;
+            --bg-card: #1a1a24;
+            --text-primary: #ffffff;
+            --text-secondary: #b0b0c0;
+            --accent-primary: #00d4ff;
+            --accent-secondary: #8b5cf6;
+            --accent-gradient: linear-gradient(135deg, #00d4ff 0%, #8b5cf6 100%);
+            --border-color: #2a2a3a;
+            --shadow-glow: 0 0 30px rgba(0, 212, 255, 0.15);
+            --shadow-card: 0 10px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(10, 10, 15, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-color);
+            padding: 1rem 0;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.02em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-primary);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-gradient);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .admin-login-btn {
+            padding: 0.5rem 1.2rem;
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .admin-login-btn:hover {
+            border-color: var(--accent-secondary);
+            color: var(--accent-secondary);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8rem 2rem 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.08) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: float 15s ease-in-out infinite;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.08) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: float 12s ease-in-out infinite reverse;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(30px, -30px); }
+        }
+
+        .hero-content {
+            max-width: 900px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            background: rgba(0, 212, 255, 0.1);
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            border-radius: 50px;
+            font-size: 0.9rem;
+            color: var(--accent-primary);
+            margin-bottom: 2rem;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 7vw, 5.5rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.03em;
+        }
+
+        .hero h1 span {
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.35rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            font-weight: 400;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            justify-content: center;
+            margin-bottom: 3rem;
+        }
+
+        .tech-tag {
+            padding: 0.5rem 1.2rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .tech-tag:hover {
+            border-color: var(--accent-primary);
+            color: var(--accent-primary);
+            transform: translateY(-2px);
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            padding: 1rem 2.5rem;
+            background: var(--accent-gradient);
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0, 212, 255, 0.3);
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(0, 212, 255, 0.4);
+        }
+
+        .btn-secondary {
+            padding: 1rem 2.5rem;
+            background: transparent;
+            color: var(--text-primary);
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            border: 2px solid var(--border-color);
+            cursor: pointer;
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--accent-primary);
+            color: var(--accent-primary);
+            transform: translateY(-3px);
+        }
+
+        /* Sections Common */
+        section {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+        }
+
+        .section-subtitle {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
+        }
+
+        /* Featured Project */
+        #featured-project {
+            background: var(--bg-secondary);
+            border-radius: 24px;
+            padding: 5rem 3rem;
+            margin: 4rem auto;
+            max-width: 1200px;
+            box-shadow: var(--shadow-card);
+            border: 1px solid var(--border-color);
+        }
+
+        .featured-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .featured-icon {
+            font-size: 2.5rem;
+        }
+
+        .featured-label {
+            font-size: 0.9rem;
+            color: var(--accent-primary);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .featured-title {
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .featured-description {
+            font-size: 1.15rem;
+            color: var(--text-secondary);
+            margin-bottom: 2.5rem;
+            max-width: 800px;
+            line-height: 1.8;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .feature-item {
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .feature-item:hover {
+            border-color: var(--accent-primary);
+            background: rgba(0, 212, 255, 0.05);
+            transform: translateX(5px);
+        }
+
+        .feature-item strong {
+            color: var(--accent-primary);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-meta {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .meta-label {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .meta-value {
+            color: var(--text-primary);
+            font-weight: 600;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+        }
+
+        /* Projects Grid */
+        #projects {
+            padding-top: 6rem;
+        }
+
+        .projects-grid {
+            display: grid;
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .project-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            box-shadow: var(--shadow-card);
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent-primary);
+            box-shadow: var(--shadow-glow), var(--shadow-card);
+        }
+
+        .project-image-wrapper {
+            position: relative;
+            width: 100%;
+            height: 450px;
+            overflow: hidden;
+            background: var(--bg-secondary);
+        }
+
+        .project-image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .project-card:hover .project-image-wrapper img {
+            transform: scale(1.05);
+        }
+
+        .project-role-badge {
+            position: absolute;
+            top: 1.5rem;
+            left: 1.5rem;
+            padding: 0.6rem 1.2rem;
+            background: rgba(139, 92, 246, 0.9);
+            backdrop-filter: blur(10px);
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: white;
+            z-index: 10;
+        }
+
+        .project-content {
+            padding: 2.5rem;
+        }
+
+        .project-header {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+
+        .project-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-category {
+            display: inline-block;
+            padding: 0.4rem 1rem;
+            background: rgba(0, 212, 255, 0.1);
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: var(--accent-primary);
+            font-weight: 600;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .project-description {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .project-tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            margin-bottom: 2rem;
+        }
+
+        .tech-tag-small {
+            padding: 0.4rem 0.9rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .project-actions {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-project {
+            padding: 0.8rem 1.8rem;
+            background: transparent;
+            color: var(--text-primary);
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-color);
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-project:hover {
+            border-color: var(--accent-primary);
+            color: var(--accent-primary);
+            background: rgba(0, 212, 255, 0.05);
+        }
+
+        .btn-project.primary {
+            background: var(--accent-gradient);
+            border: none;
+            color: white;
+        }
+
+        .btn-project.primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 212, 255, 0.3);
+        }
+
+        /* Video Container (for gameplay videos) */
+        .video-container {
+            margin-top: 2rem;
+            padding: 2rem;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+        }
+
+        .video-container video,
+        .video-container iframe {
+            width: 100%;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+
+        .video-description {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.03);
+            border-left: 3px solid var(--accent-primary);
+            border-radius: 4px;
+        }
+
+        /* Game Build Player */
+        .game-build-container {
+            margin-top: 2rem;
+            padding: 2rem;
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+        }
+
+        .build-player {
+            width: 100%;
+            height: 600px;
+            border: none;
+            border-radius: 8px;
+            background: #000;
+        }
+
+        .download-fallback {
+            text-align: center;
+            padding: 3rem;
+        }
+
+        .download-fallback p {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        /* Research Section */
+        #research {
+            background: var(--bg-secondary);
+            border-radius: 24px;
+            padding: 5rem 3rem;
+            margin: 4rem auto;
+            border: 1px solid var(--border-color);
+        }
+
+        .research-paper {
+            background: var(--bg-card);
+            padding: 3rem;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+        }
+
+        .paper-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--accent-primary);
+        }
+
+        .paper-abstract {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            line-height: 1.9;
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: rgba(0, 0, 0, 0.2);
+            border-left: 4px solid var(--accent-secondary);
+            border-radius: 6px;
+        }
+
+        .paper-meta {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        /* About Section */
+        #about {
+            padding-top: 6rem;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin-top: 3rem;
+        }
+
+        .about-bio h3 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--accent-primary);
+        }
+
+        .about-bio p {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .skills-section h3 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--accent-primary);
+        }
+
+        .skill-category {
+            margin-bottom: 2.5rem;
+        }
+
+        .skill-category h4 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .skill-list {
+            list-style: none;
+        }
+
+        .skill-list li {
+            padding: 0.6rem 0;
+            color: var(--text-secondary);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .skill-list li::before {
+            content: '▹';
+            color: var(--accent-primary);
+            font-weight: bold;
+        }
+
+        .resume-download {
+            margin-top: 3rem;
+            padding: 2.5rem;
+            background: var(--bg-card);
+            border: 2px dashed var(--border-color);
+            border-radius: 16px;
+            text-align: center;
+        }
+
+        .resume-download h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Contact Section */
+        #contact {
+            padding-bottom: 8rem;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .contact-card {
+            padding: 2.5rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .contact-card:hover {
+            border-color: var(--accent-primary);
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .contact-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-card h3 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .contact-link {
+            color: var(--accent-primary);
+            word-break: break-all;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            display: block;
+        }
+
+        /* Admin Panel Modal */
+        .admin-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 9999;
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(10px);
+            overflow-y: auto;
+        }
+
+        .admin-modal.active {
+            display: block;
+        }
+
+        .admin-content {
+            max-width: 1000px;
+            margin: 3rem auto;
+            padding: 3rem;
+            background: var(--bg-secondary);
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+        }
+
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .admin-header h2 {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--accent-secondary);
+        }
+
+        .close-admin {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 2rem;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .close-admin:hover {
+            color: var(--text-primary);
+        }
+
+        .admin-login-form {
+            max-width: 450px;
+            margin: 3rem auto;
+            padding: 3rem;
+            background: var(--bg-card);
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.9rem 1.2rem;
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-size: 1rem;
+            font-family: inherit;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--accent-primary);
+        }
+
+        .admin-section {
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: var(--bg-card);
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+        }
+
+        .admin-section h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--accent-primary);
+        }
+
+        .upload-area {
+            border: 2px dashed var(--border-color);
+            border-radius: 12px;
+            padding: 3rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 1.5rem;
+        }
+
+        .upload-area:hover {
+            border-color: var(--accent-primary);
+            background: rgba(0, 212, 255, 0.03);
+        }
+
+        .upload-area p {
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+
+            #featured-project {
+                padding: 3rem 1.5rem;
+            }
+
+            .project-image-wrapper {
+                height: 300px;
+            }
+
+            section {
+                padding: 4rem 1.5rem;
+            }
+        }
+
+        /* Smooth Scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Selection Color */
+        ::selection {
+            background: var(--accent-primary);
+            color: var(--bg-primary);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">SV.dev</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#featured-project">Featured</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#research">Research</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <button class="admin-login-btn" onclick="openAdminPanel()">⚙ ADMIN</button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <div class="hero-badge">🎮 Game Developer | Unity & Unreal Engine</div>
+            <h1>Hi, I'm <span>Saurav Sharma</span></h1>
+            <p class="hero-subtitle">
+                Aspiring game developer with 1.5+ years of experience in Unity and 7 months in Unreal Engine. 
+                Building immersive experiences through interactable UI, intelligent AI, and polished gameplay systems.
+            </p>
+            
+            <div class="tech-stack">
+                <span class="tech-tag">Unity</span>
+                <span class="tech-tag">Unreal Engine</span>
+                <span class="tech-tag">C#</span>
+                <span class="tech-tag">C/C++</span>
+                <span class="tech-tag">Python</span>
+                <span class="tech-tag">SQL</span>
+            </div>
+
+            <div class="cta-buttons">
+                <a href="#projects" class="btn-primary">View My Projects</a>
+                <a href="#contact" class="btn-secondary">Get In Touch</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Project -->
+    <section id="featured-project">
+        <div class="featured-header">
+            <span class="featured-icon">🎮</span>
+            <div>
+                <div class="featured-label">Flagship Project</div>
+                <h2 class="featured-title">Shooter Game — Third-Person Action Experience</h2>
+            </div>
+        </div>
+
+        <p class="featured-description">
+            A fully-featured third-person action shooter showcasing advanced game development skills. 
+            This project demonstrates expertise in enemy AI programming, inventory management systems, 
+            and persistent save/load functionality — all built from the ground up in Unity.
+        </p>
+
+        <div class="features-grid">
+            <div class="feature-item">
+                <strong>🎯 Intelligent Enemy AI</strong>
+                Pathfinding, combat behavior trees, and dynamic difficulty scaling
+            </div>
+            <div class="feature-item">
+                <strong>📦 Inventory System</strong>
+                Complete item management with stacking, usage, and persistence
+            </div>
+            <div class="feature-item">
+                <strong>💾 Save/Load System</strong>
+                Persistent player progress with JSON serialization
+            </div>
+            <div class="feature-item">
+                <strong>🔫 Combat Mechanics</strong>
+                Weapon switching, ammo management, and hit detection
+            </div>
+            <div class="feature-item">
+                <strong>🎥 Camera System</strong>
+                Smooth third-person camera with collision and zoom
+            </div>
+            <div class="feature-item">
+                <strong>🎮 Player Controller</strong>
+                Responsive movement, jumping, and interaction systems
+            </div>
+        </div>
+
+        <!-- Gameplay Videos Container (Admin can add multiple videos here) -->
+        <div class="video-container">
+            <h4 style="color: var(--accent-primary); margin-bottom: 1rem;">📺 Gameplay Showcase</h4>
+            <div style="background: rgba(0,0,0,0.5); padding: 4rem; border-radius: 8px; text-align: center; color: var(--text-secondary);">
+                <p style="font-size: 1.1rem; margin-bottom: 0.5rem;">🎬 Gameplay videos will appear here</p>
+                <p style="font-size: 0.9rem;">Upload videos via admin panel to showcase this project</p>
+            </div>
+            <div class="video-description">
+                <strong>Video Description:</strong> Admin-uploaded gameplay footage demonstrating core mechanics, 
+                enemy AI behavior, inventory system, and combat flow. Each video includes detailed captions 
+                explaining showcased features.
+            </div>
+        </div>
+
+        <!-- Game Build Player (WebGL embed or download fallback) -->
+        <div class="game-build-container">
+            <h4 style="color: var(--accent-primary); margin-bottom: 1rem;">🕹️ Play In Browser</h4>
+            <iframe class="build-player" src="about:blank" title="Game Build Player"></iframe>
+            <p style="color: var(--text-secondary); text-align: center; margin-top: 1rem; font-size: 0.9rem;">
+                WebGL build will load here • Upload build via admin panel
+            </p>
+        </div>
+
+        <div class="project-meta">
+            <div class="meta-item">
+                <span class="meta-label">Technology:</span>
+                <span class="meta-value">Unity • C#</span>
+            </div>
+            <div class="meta-item">
+                <span class="meta-label">Repository:</span>
+                <a href="https://github.com/mitthubadmash/Final-Assignment" class="meta-value" style="color: var(--accent-primary);">GitHub →</a>
+            </div>
+            <div class="meta-item">
+                <span class="meta-label">Category:</span>
+                <span class="meta-value">Action Shooter</span>
+            </div>
+        </div>
+
+        <div class="cta-buttons" style="margin-top: 2rem;">
+            <a href="#" class="btn-primary">▶ Play Demo</a>
+            <a href="https://github.com/mitthubadmash/Final-Assignment" class="btn-secondary">View Source Code</a>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <h2 class="section-title">Game Development Portfolio</h2>
+        <p class="section-subtitle">A collection of projects showcasing game development, teamwork, and technical skills</p>
+
+        <div class="projects-grid">
+
+            <!-- Project 1: Knuckle2 Group Project -->
+            <article class="project-card">
+                <div class="project-image-wrapper">
+                    <img src="https://qc4n.bigmodel.cn/9af01nKwI_cropped.png?UCloudPublicKey=TOKEN_3f4277c6-f8d6-41a9-968b-dbfa0994d483&Expires=1818168382&Signature=JVdLeCJ%2Fxq2S83vR8Q8ce%2B3SatE%3D" alt="Knuckle2 Action Adventure Game Screenshot">
+                    <div class="project-role-badge">My Role: UI Systems, Combat, Timeline Sequencing</div>
+                </div>
+                <div class="project-content">
+                    <div class="project-header">
+                        <div>
+                            <h3 class="project-title">🎯 Knuckle2 — Action/Adventure</h3>
+                            <span class="project-category">TEAM PROJECT</span>
+                        </div>
+                    </div>
+                    <p class="project-description">
+                        A team-built action-adventure game featuring cinematic cutscenes, branching dialogue system, 
+                        dynamic combat mechanics, full settings/resolution menu, main menu interface, timeline-based 
+                        cutscene sequencing, and an innovative Rock-Paper-Scissors mini-game system. Collaborated 
+                        closely with designers and artists in an agile development environment.
+                    </p>
+                    <div class="project-tech-tags">
+                        <span class="tech-tag-small">Unity</span>
+                        <span class="tech-tag-small">C#</span>
+                        <span class="tech-tag-small">Timeline Cinematics</span>
+                        <span class="tech-tag-small">UI Systems</span>
+                        <span class="tech-tag-small">Dialogue System</span>
+                    </div>
+                    
+                    <!-- Video container for this project -->
+                    <div class="video-container">
+                        <h4 style="color: var(--accent-primary); margin-bottom: 1rem; font-size: 1rem;">📺 Project Videos</h4>
+                        <div style="background: rgba(0,0,0,0.5); padding: 2rem; border-radius: 8px; text-align: center; color: var(--text-secondary);">
+                            <p>🎬 Upload gameplay videos via admin panel</p>
+                        </div>
+                    </div>
+
+                    <!-- Game build for this project -->
+                    <div class="game-build-container">
+                        <h4 style="color: var(--accent-primary); margin-bottom: 1rem; font-size: 1rem;">🕹️ Playable Build</h4>
+                        <div class="download-fallback">
+                            <p>Build not yet uploaded</p>
+                            <button class="btn-project primary">Notify When Available</button>
+                        </div>
+                    </div>
+
+                    <div class="project-actions">
+                        <a href="https://github.com/CCCDEADPOOLXD/Knuckle2" class="btn-project primary">View on GitHub</a>
+                        <a href="#" class="btn-project">Watch Videos</a>
+                        <a href="#" class="btn-project">Project Details</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Project 2: Mario Recreation -->
+            <article class="project-card">
+                <div class="project-image-wrapper">
+                    <img src="https://qc4n.bigmodel.cn/015946HNU_cropped.png?UCloudPublicKey=TOKEN_3f4277c6-f8d6-41a9-968b-dbfa0994d483&Expires=1818168377&Signature=znT8muEBE6%2BJXHU556PckSqUSK4%3D" alt="Mario Recreation Platformer Game">
+                </div>
+                <div class="project-content">
+                    <div class="project-header">
+                        <div>
+                            <h3 class="project-title">🍄 Mario Recreation — Platformer</h3>
+                            <span class="project-category">LEARNING PROJECT</span>
+                        </div>
+                    </div>
+                    <p class="project-description">
+                        A faithful recreation of classic Mario-style platformer mechanics focusing on precise movement physics, 
+                        collision detection, tile-based level design, enemy interactions, and power-up systems. This learning 
+                        project demonstrates foundational game development principles and 2D physics implementation.
+                    </p>
+                    <div class="project-tech-tags">
+                        <span class="tech-tag-small">Unity</span>
+                        <span class="tech-tag-small">C#</span>
+                        <span class="tech-tag-small">2D Physics</span>
+                        <span class="tech-tag-small">Tile-Based Design</span>
+                        <span class="tech-tag-small">Pixel Art</span>
+                    </div>
+
+                    <div class="project-actions">
+                        <a href="#" class="btn-project">View Screenshots</a>
+                        <a href="#" class="btn-project">Coming Soon</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Other Projects Section Header -->
+            <div style="margin-top: 4rem; padding-top: 3rem; border-top: 2px solid var(--border-color);">
+                <h3 style="font-size: 2rem; font-weight: 700; color: var(--accent-secondary); margin-bottom: 0.5rem;">
+                    🏥 Other Projects
+                </h3>
+                <p style="color: var(--text-secondary); margin-bottom: 2rem;">
+                    Software engineering and backend development projects
+                </p>
+            </div>
+
+            <!-- Project 3: Healthcare Software (Other Projects) -->
+            <article class="project-card">
+                <div class="project-content" style="padding-top: 3rem;">
+                    <div class="project-header">
+                        <div>
+                            <h3 class="project-title">🏥 Orion Backend — Healthcare Software</h3>
+                            <span class="project-category">SOFTWARE ENGINEERING</span>
+                        </div>
+                    </div>
+                    <p class="project-description">
+                        Engineering coursework project focused on healthcare backend software development. Built robust data 
+                        management systems for medical applications, implementing secure database architecture and RESTful API 
+                        endpoints for healthcare data handling.
+                    </p>
+                    <div class="project-tech-tags">
+                        <span class="tech-tag-small">Python</span>
+                        <span class="tech-tag-small">SQL</span>
+                        <span class="tech-tag-small">Backend Architecture</span>
+                        <span class="tech-tag-small">Database Design</span>
+                    </div>
+                    <div class="project-actions">
+                        <a href="https://github.com/AARAV-git/orion-backend" class="btn-project primary">View on GitHub</a>
+                        <a href="#" class="btn-project">Documentation</a>
+                    </div>
+                </div>
+            </article>
+
+        </div>
+    </section>
+
+    <!-- Research Section -->
+    <section id="research">
+        <div class="featured-header">
+            <span class="featured-icon">📄</span>
+            <div>
+                <div class="featured-label">Academic Research</div>
+                <h2 class="section-title" style="margin-bottom: 0.5rem;">Research Publication</h2>
+            </div>
+        </div>
+
+        <div class="research-paper">
+            <h3 class="paper-title">[Paper Title Placeholder]</h3>
+            
+            <div class="paper-abstract">
+                <strong style="color: var(--accent-primary); display: block; margin-bottom: 0.8rem;">Abstract:</strong>
+                [One-paragraph research abstract describing the paper's focus, methodology, findings, and contributions 
+                to the field. This section will be updated with actual research content once the paper is finalized 
+                and ready for publication. The abstract will provide readers with a comprehensive overview of the 
+                research objectives, approach, key findings, and significance of the work.]
+            </div>
+
+            <div class="paper-meta">
+                <div class="meta-item">
+                    <span class="meta-label">Publication Status:</span>
+                    <span class="meta-value">[Journal/Conference Name] — [Year]</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Research Topics:</span>
+                    <span class="meta-value">[Keywords]</span>
+                </div>
+            </div>
+
+            <div class="project-actions">
+                <a href="#" class="btn-project primary">📥 Download PDF</a>
+                <a href="#" class="btn-project">Read Online</a>
+                <a href="#" class="btn-project">Citation</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <h2 class="section-title">About Me & Resume</h2>
+        <p class="section-subtitle">Skills, experience, and professional background</p>
+
+        <div class="about-grid">
+            <div class="about-bio">
+                <h3>👤 Who I Am</h3>
+                <p>
+                    I'm <strong style="color: var(--accent-primary);">Saurav Sharma</strong>, an aspiring game developer 
+                    passionate about creating immersive interactive experiences. With hands-on experience in both 
+                    <strong>Unity (1.5+ years)</strong> and <strong>Unreal Engine (7 months)</strong>, I specialize in 
+                    building polished gameplay systems that players love.
+                </p>
+                <p>
+                    I thrive in collaborative environments, working closely with designers and artists to bring creative 
+                    visions to life. As a hackathon participant, I'm accustomed to rapid prototyping and iterative 
+                    development under tight deadlines.
+                </p>
+                <p>
+                    My focus areas include <strong>player controllers</strong> with responsive movement, 
+                    <strong>intelligent enemy AI</strong> with complex behaviors, <strong>interactable UI systems</strong>, 
+                    and <strong>persistent save/load functionality</strong>.
+                </p>
+                
+                <div style="margin-top: 2rem; padding: 1.5rem; background: rgba(139, 92, 246, 0.1); border-left: 4px solid var(--accent-secondary); border-radius: 6px;">
+                    <strong style="color: var(--accent-secondary);">🎯 Currently Open To:</strong>
+                    <p style="margin-top: 0.5rem; color: var(--text-secondary); font-size: 0.95rem;">
+                        Game development opportunities, team collaborations, indie projects, and internship positions
+                    </p>
+                </div>
+            </div>
+
+            <div class="skills-section">
+                <h3>💼 Technical Skills</h3>
+                
+                <div class="skill-category">
+                    <h4>🎮 Game Development</h4>
+                    <ul class="skill-list">
+                        <li>Unity Engine (Advanced)</li>
+                        <li>Unreal Engine (Intermediate)</li>
+                        <li>C# Programming (Proficient)</li>
+                        <li>C/C++ (Intermediate)</li>
+                        <li>Game Physics & Collision Systems</li>
+                        <li>AI Behavior Trees & State Machines</li>
+                        <li>UI/UX Design for Games</li>
+                        <li>Version Control (Git)</li>
+                    </ul>
+                </div>
+
+                <div class="skill-category">
+                    <h4>💻 Software Engineering</h4>
+                    <ul class="skill-list">
+                        <li>Python (Proficient)</li>
+                        <li>SQL Databases</li>
+                        <li>Backend Development</li>
+                        <li>Software Architecture</li>
+                    </ul>
+                </div>
+
+                <div class="skill-category">
+                    <h4>🛠️ Tools & Workflow</h4>
+                    <ul class="skill-list">
+                        <li>Agile/Scrum Methodology</li>
+                        <li>Collaborative Team Development</li>
+                        <li>Rapid Prototyping</li>
+                        <li>Debugging & Optimization</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="resume-download">
+            <h3>📥 Download Full Resume</h3>
+            <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">
+                Complete resume with detailed project descriptions, education history, achievements, and contact information
+            </p>
+            <a href="#" class="btn-primary">Download PDF Resume</a>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2 class="section-title">Get In Touch</h2>
+        <p class="section-subtitle">
+            Interested in collaborating on a game project, discussing opportunities, or just want to connect?
+        </p>
+
+        <div class="contact-grid">
+            <a href="https://github.com/SV-Gdev" class="contact-card" target="_blank">
+                <div class="contact-icon">💼</div>
+                <h3>GitHub</h3>
+                <p>Check out my code repositories, ongoing projects, and contributions</p>
+                <span class="contact-link">https://github.com/SV-Gdev</span>
+            </a>
+
+            <a href="https://www.linkedin.com/in/saurav-sharma-569097429" class="contact-card" target="_blank">
+                <div class="contact-icon">🔗</div>
+                <h3>LinkedIn</h3>
+                <p>Professional network, career updates, and recommendations</p>
+                <span class="contact-link">linkedin.com/in/saurav-sharma-569097429</span>
+            </a>
+
+            <div class="contact-card">
+                <div class="contact-icon">📧</div>
+                <h3>Email</h3>
+                <p>Direct contact for collaborations, job inquiries, and project discussions</p>
+                <span class="contact-link">[your.email@example.com]</span>
+            </div>
+        </div>
+
+        <div style="margin-top: 4rem; text-align: center; padding: 3rem; background: var(--bg-card); border-radius: 20px; border: 1px solid var(--border-color);">
+            <h3 style="font-size: 2rem; font-weight: 700; margin-bottom: 1rem; background: var(--accent-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                Let's Build Something Amazing Together! ✨
+            </h3>
+            <p style="color: var(--text-secondary); font-size: 1.1rem; max-width: 700px; margin: 0 auto 2rem;">
+                Whether you're looking for a game developer for your team, want to discuss a project idea, 
+                or just want to chat about game development — don't hesitate to reach out.
+            </p>
+            <a href="mailto:[your.email@example.com]" class="btn-primary">Send Me a Message</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2024 Saurav Sharma | Game Developer Portfolio</p>
+        <p style="margin-top: 0.5rem; font-size: 0.85rem;">
+            Built with passion for game development • Unity • Unreal Engine
+        </p>
+    </footer>
+
+    <!-- Admin Panel Modal -->
+    <div class="admin-modal" id="adminModal">
+        <div class="admin-content">
+            <div class="admin-header">
+                <h2>🔒 Admin Dashboard</h2>
+                <button class="close-admin" onclick="closeAdminPanel()">&times;</button>
+            </div>
+
+            <!-- Login Form (shown when not authenticated) -->
+            <div class="admin-login-form" id="adminLoginForm">
+                <h3 style="text-align: center; margin-bottom: 0.5rem; color: var(--accent-primary);">Administrator Login</h3>
+                <p style="text-align: center; color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 2rem;">
+                    Secure access for site owner only
+                </p>
+                <div class="form-group">
+                    <label for="adminUsername">Username</label>
+                    <input type="text" id="adminUsername" placeholder="Enter admin username">
+                </div>
+                <div class="form-group">
+                    <label for="adminPassword">Password</label>
+                    <input type="password" id="adminPassword" placeholder="Enter admin password">
+                </div>
+                <button class="btn-primary" style="width: 100%;" onclick="adminLogin()">
+                    Login to Dashboard
+                </button>
+                <p id="loginError" style="color: #ff4444; text-align: center; margin-top: 1rem; display: none;">
+                    Invalid credentials. Please try again.
+                </p>
+            </div>
+
+            <!-- Admin Dashboard Content (shown after authentication) -->
+            <div id="adminDashboard" style="display: none;">
+                
+                <!-- Video Management Section -->
+                <div class="admin-section">
+                    <h3>🎥 Video Management</h3>
+                    
+                    <div style="margin-bottom: 2rem;">
+                        <h4 style="font-size: 1.1rem; margin-bottom: 1rem; color: var(--text-primary);">Upload New Video</h4>
+                        <div class="form-group">
+                            <label for="videoProject">Select Project</label>
+                            <select id="videoProject">
+                                <option value="">Choose a project...</option>
+                                <option value="shooter">Shooter Game (Flagship)</option>
+                                <option value="knuckle2">Knuckle2 (Group Project)</option>
+                                <option value="mario">Mario Recreation</option>
+                            </select>
+                        </div>
+                        <div class="upload-area" onclick="document.getElementById('videoFileInput').click()">
+                            <p style="font-size: 1.2rem; margin-bottom: 0.5rem;">📁 Click to upload video file</p>
+                            <p style="font-size: 0.9rem;">Supports MP4, WebM • Max 500MB</p>
+                            <input type="file" id="videoFileInput" accept="video/*" style="display: none;" onchange="handleVideoUpload(event)">
+                        </div>
+                        <div class="form-group">
+                            <label for="videoDescription">Video Description (displays below video on public page)</label>
+                            <textarea id="videoDescription" rows="3" placeholder="Enter description of this gameplay footage..."></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="videoOrder">Display Order</label>
+                            <input type="number" id="videoOrder" placeholder="1" min="1">
+                        </div>
+                        <button class="btn-primary" onclick="uploadVideo()">Upload Video</button>
+                    </div>
+
+                    <div style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid var(--border-color);">
+                        <h4 style="font-size: 1.1rem; margin-bottom: 1rem; color: var(--text-primary);">Uploaded Videos</h4>
+                        <div style="background: rgba(0,0,0,0.3); padding: 2rem; border-radius: 8px; text-align: center; color: var(--text-secondary);">
+                            <p>No videos uploaded yet</p>
+                            <p style="font-size: 0.9rem; margin-top: 0.5rem;">Videos will appear here after upload</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Game Build Management Section -->
+                <div class="admin-section">
+                    <h3>🎮 Game Build Management</h3>
+                    
+                    <div style="margin-bottom: 2rem;">
+                        <h4 style="font-size: 1.1rem; margin-bottom: 1rem; color: var(--text-primary);">Upload Game Build</h4>
+                        <div class="form-group">
+                            <label for="buildProject">Select Project</label>
+                            <select id="buildProject">
+                                <option value="">Choose a project...</option>
+                                <option value="shooter">Shooter Game (Flagship)</option>
+                                <option value="knuckle2">Knuckle2 (Group Project)</option>
+                                <option value="mario">Mario Recreation</option>
+                            </select>
+                        </div>
+                        <div class="upload-area" onclick="document.getElementById('buildFileInput').click()">
+                            <p style="font-size: 1.2rem; margin-bottom: 0.5rem;">📦 Click to upload build folder (ZIP)</p>
+                            <p style="font-size: 0.9rem;">Unity WebGL build (with index.html) OR standalone executable (.exe)</p>
+                            <input type="file" id="buildFileInput" accept=".zip,.exe" style="display: none;" onchange="handleBuildUpload(event)">
+                        </div>
+                        <div class="form-group">
+                            <label for="buildVersion">Version Number</label>
+                            <input type="text" id="buildVersion" placeholder="e.g., v1.0.0, v1.1.0-beta">
+                        </div>
+                        <div class="form-group">
+                            <label for="buildType">Build Type</label>
+                            <select id="buildType">
+                                <option value="webgl">WebGL (Browser Playable via iframe)</option>
+                                <option value="standalone">Standalone (Downloadable ZIP/EXE)</option>
+                            </select>
+                        </div>
+                        <button class="btn-primary" onclick="uploadBuild()">Upload Build</button>
+                    </div>
+
+                    <div style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid var(--border-color);">
+                        <h4 style="font-size: 1.1rem; margin-bottom: 1rem; color: var(--text-primary);">Current Builds</h4>
+                        <div style="background: rgba(0,0,0,0.3); padding: 2rem; border-radius: 8px; text-align: center; color: var(--text-secondary);">
+                            <p>No builds uploaded yet</p>
+                            <p style="font-size: 0.9rem; margin-top: 0.5rem;">Upload a build to enable browser play or download</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Site Settings Section -->
+                <div class="admin-section">
+                    <h3>⚙️ Site Settings</h3>
+                    
+                    <div class="form-group">
+                        <label for="featuredProject">Featured Project</label>
+                        <select id="featuredProject">
+                            <option value="shooter" selected>Shooter Game</option>
+                            <option value="knuckle2">Knuckle2</option>
+                            <option value="mario">Mario Recreation</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="coverImageUpload">Project Cover Images</label>
+                        <div class="upload-area" onclick="document.getElementById('coverImageInput').click()" style="padding: 1.5rem;">
+                            <p style="font-size: 1rem;">🖼️ Upload cover image for selected project</p>
+                            <input type="file" id="coverImageInput" accept="image/*" style="display: none;">
+                        </div>
+                    </div>
+
+                    <button class="btn-primary" onclick="saveSettings()">Save Settings</button>
+                </div>
+
+                <div style="margin-top: 2rem; padding: 1.5rem; background: rgba(139, 92, 246, 0.1); border-radius: 8px; text-align: center;">
+                    <p style="color: var(--text-secondary); font-size: 0.9rem;">
+                        <strong style="color: var(--accent-secondary);">Note:</strong> All uploads are stored securely. 
+                        Visitors can only view content — never upload, edit, or delete.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Admin Panel Functions
+        let isAdminAuthenticated = false;
+
+        function openAdminPanel() {
+            document.getElementById('adminModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+            
+            if (!isAdminAuthenticated) {
+                document.getElementById('adminLoginForm').style.display = 'block';
+                document.getElementById('adminDashboard').style.display = 'none';
+            } else {
+                document.getElementById('adminLoginForm').style.display = 'none';
+                document.getElementById('adminDashboard').style.display = 'block';
+            }
+        }
+
+        function closeAdminPanel() {
+            document.getElementById('adminModal').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        function adminLogin() {
+            const username = document.getElementById('adminUsername').value;
+            const password = document.getElementById('adminPassword').value;
+            
+            // Simple authentication (in production, use proper backend auth)
+            if (username === 'admin' && password === 'password') {
+                isAdminAuthenticated = true;
+                document.getElementById('adminLoginForm').style.display = 'none';
+                document.getElementById('adminDashboard').style.display = 'block';
+                document.getElementById('loginError').style.display = 'none';
+            } else {
+                document.getElementById('loginError').style.display = 'block';
+            }
+        }
+
+        function handleVideoUpload(event) {
+            const file = event.target.files[0];
+            if (file) {
+                // In production, upload to server
+                console.log('Video selected:', file.name);
+                alert('Video "' + file.name + '" selected for upload.\n\nIn production, this would upload to your server/storage.');
+            }
+        }
+
+        function handleBuildUpload(event) {
+            const file = event.target.files[0];
+            if (file) {
+                // In production, upload to server
+                console.log('Build selected:', file.name);
+                alert('Build file "' + file.name + '" selected for upload.\n\nIn production, this would:\n- Extract WebGL builds for iframe hosting\n- Store executables for download');
+            }
+        }
+
+        function uploadVideo() {
+            const project = document.getElementById('videoProject').value;
+            const description = document.getElementById('videoDescription').value;
+            
+            if (!project || !description) {
+                alert('Please select a project and enter a video description.');
+                return;
+            }
+            
+            alert('Video upload initiated!\n\nProject: ' + project + '\nDescription: ' + description + '\n\nIn production, this would upload the video file and associate it with the selected project.');
+        }
+
+        function uploadBuild() {
+            const project = document.getElementById('buildProject').value;
+            const version = document.getElementById('buildVersion').value;
+            const buildType = document.getElementById('buildType').value;
+            
+            if (!project || !version) {
+                alert('Please select a project and enter a version number.');
+                return;
+            }
+            
+            alert('Build upload initiated!\n\nProject: ' + project + '\nVersion: ' + version + '\nType: ' + buildType + '\n\nIn production, this would:\n- Host WebGL builds for browser play\n- Provide download links for executables');
+        }
+
+        function saveSettings() {
+            alert('Settings saved successfully!\n\nIn production, this would update site configuration.');
+        }
+
+        // Close modal on escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeAdminPanel();
+            }
+        });
+
+        // Close modal when clicking outside
+        document.getElementById('adminModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeAdminPanel();
+            }
+        });
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>

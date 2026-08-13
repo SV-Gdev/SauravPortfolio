@@ -1,0 +1,1656 @@
+     1→<!DOCTYPE html>
+     2→<html lang="en">
+     3→<head>
+     4→    <meta charset="UTF-8">
+     5→    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     6→    <title>Saurav Sharma | Game Developer Portfolio</title>
+     7→    <link rel="preconnect" href="https://fonts.googleapis.com">
+     8→    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+     9→    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    10→    
+    11→    <style>
+    12→        * {
+    13→            margin: 0;
+    14→            padding: 0;
+    15→            box-sizing: border-box;
+    16→        }
+    17→
+    18→        :root {
+    19→            --bg-primary: #0a0a0f;
+    20→            --bg-secondary: #12121a;
+    21→            --bg-card: #1a1a24;
+    22→            --text-primary: #ffffff;
+    23→            --text-secondary: #b0b0c0;
+    24→            --accent-primary: #00d4ff;
+    25→            --accent-secondary: #8b5cf6;
+    26→            --accent-gradient: linear-gradient(135deg, #00d4ff 0%, #8b5cf6 100%);
+    27→            --border-color: #2a2a3a;
+    28→            --shadow-glow: 0 0 30px rgba(0, 212, 255, 0.15);
+    29→            --shadow-card: 0 10px 40px rgba(0, 0, 0, 0.4);
+    30→        }
+    31→
+    32→        body {
+    33→            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    34→            background-color: var(--bg-primary);
+    35→            color: var(--text-primary);
+    36→            line-height: 1.7;
+    37→            overflow-x: hidden;
+    38→        }
+    39→
+    40→        /* Navigation */
+    41→        nav {
+    42→            position: fixed;
+    43→            top: 0;
+    44→            left: 0;
+    45→            right: 0;
+    46→            z-index: 1000;
+    47→            background: rgba(10, 10, 15, 0.95);
+    48→            backdrop-filter: blur(20px);
+    49→            border-bottom: 1px solid var(--border-color);
+    50→            padding: 1rem 0;
+    51→        }
+    52→
+    53→        .nav-container {
+    54→            max-width: 1200px;
+    55→            margin: 0 auto;
+    56→            padding: 0 2rem;
+    57→            display: flex;
+    58→            justify-content: space-between;
+    59→            align-items: center;
+    60→        }
+    61→
+    62→        .logo {
+    63→            font-size: 1.5rem;
+    64→            font-weight: 800;
+    65→            background: var(--accent-gradient);
+    66→            -webkit-background-clip: text;
+    67→            -webkit-text-fill-color: transparent;
+    68→            background-clip: text;
+    69→            letter-spacing: -0.02em;
+    70→        }
+    71→
+    72→        .nav-links {
+    73→            display: flex;
+    74→            gap: 2.5rem;
+    75→            list-style: none;
+    76→        }
+    77→
+    78→        .nav-links a {
+    79→            color: var(--text-secondary);
+    80→            text-decoration: none;
+    81→            font-weight: 500;
+    82→            font-size: 0.95rem;
+    83→            transition: all 0.3s ease;
+    84→            position: relative;
+    85→        }
+    86→
+    87→        .nav-links a:hover {
+    88→            color: var(--accent-primary);
+    89→        }
+    90→
+    91→        .nav-links a::after {
+    92→            content: '';
+    93→            position: absolute;
+    94→            bottom: -5px;
+    95→            left: 0;
+    96→            width: 0;
+    97→            height: 2px;
+    98→            background: var(--accent-gradient);
+    99→            transition: width 0.3s ease;
+   100→        }
+   101→
+   102→        .nav-links a:hover::after {
+   103→            width: 100%;
+   104→        }
+   105→
+   106→        .admin-login-btn {
+   107→            padding: 0.5rem 1.2rem;
+   108→            background: transparent;
+   109→            border: 1px solid var(--border-color);
+   110→            color: var(--text-secondary);
+   111→            border-radius: 6px;
+   112→            cursor: pointer;
+   113→            font-size: 0.85rem;
+   114→            transition: all 0.3s ease;
+   115→            font-family: 'JetBrains Mono', monospace;
+   116→        }
+   117→
+   118→        .admin-login-btn:hover {
+   119→            border-color: var(--accent-secondary);
+   120→            color: var(--accent-secondary);
+   121→        }
+   122→
+   123→        /* Hero Section */
+   124→        .hero {
+   125→            min-height: 100vh;
+   126→            display: flex;
+   127→            align-items: center;
+   128→            justify-content: center;
+   129→            padding: 8rem 2rem 4rem;
+   130→            position: relative;
+   131→            overflow: hidden;
+   132→        }
+   133→
+   134→        .hero::before {
+   135→            content: '';
+   136→            position: absolute;
+   137→            top: -50%;
+   138→            right: -20%;
+   139→            width: 800px;
+   140→            height: 800px;
+   141→            background: radial-gradient(circle, rgba(0, 212, 255, 0.08) 0%, transparent 70%);
+   142→            border-radius: 50%;
+   143→            animation: float 15s ease-in-out infinite;
+   144→        }
+   145→
+   146→        .hero::after {
+   147→            content: '';
+   148→            position: absolute;
+   149→            bottom: -30%;
+   150→            left: -10%;
+   151→            width: 600px;
+   152→            height: 600px;
+   153→            background: radial-gradient(circle, rgba(139, 92, 246, 0.08) 0%, transparent 70%);
+   154→            border-radius: 50%;
+   155→            animation: float 12s ease-in-out infinite reverse;
+   156→        }
+   157→
+   158→        @keyframes float {
+   159→            0%, 100% { transform: translate(0, 0); }
+   160→            50% { transform: translate(30px, -30px); }
+   161→        }
+   162→
+   163→        .hero-content {
+   164→            max-width: 900px;
+   165→            text-align: center;
+   166→            position: relative;
+   167→            z-index: 1;
+   168→        }
+   169→
+   170→        .hero-badge {
+   171→            display: inline-block;
+   172→            padding: 0.5rem 1.5rem;
+   173→            background: rgba(0, 212, 255, 0.1);
+   174→            border: 1px solid rgba(0, 212, 255, 0.3);
+   175→            border-radius: 50px;
+   176→            font-size: 0.9rem;
+   177→            color: var(--accent-primary);
+   178→            margin-bottom: 2rem;
+   179→            font-weight: 500;
+   180→            letter-spacing: 0.05em;
+   181→        }
+   182→
+   183→        .hero h1 {
+   184→            font-size: clamp(3rem, 7vw, 5.5rem);
+   185→            font-weight: 800;
+   186→            line-height: 1.1;
+   187→            margin-bottom: 1.5rem;
+   188→            letter-spacing: -0.03em;
+   189→        }
+   190→
+   191→        .hero h1 span {
+   192→            background: var(--accent-gradient);
+   193→            -webkit-background-clip: text;
+   194→            -webkit-text-fill-color: transparent;
+   195→            background-clip: text;
+   196→        }
+   197→
+   198→        .hero-subtitle {
+   199→            font-size: 1.35rem;
+   200→            color: var(--text-secondary);
+   201→            margin-bottom: 2rem;
+   202→            font-weight: 400;
+   203→            max-width: 700px;
+   204→            margin-left: auto;
+   205→            margin-right: auto;
+   206→        }
+   207→
+   208→        .tech-stack {
+   209→            display: flex;
+   210→            flex-wrap: wrap;
+   211→            gap: 0.75rem;
+   212→            justify-content: center;
+   213→            margin-bottom: 3rem;
+   214→        }
+   215→
+   216→        .tech-tag {
+   217→            padding: 0.5rem 1.2rem;
+   218→            background: var(--bg-card);
+   219→            border: 1px solid var(--border-color);
+   220→            border-radius: 8px;
+   221→            font-size: 0.9rem;
+   222→            color: var(--text-secondary);
+   223→            font-family: 'JetBrains Mono', monospace;
+   224→            font-weight: 500;
+   225→            transition: all 0.3s ease;
+   226→        }
+   227→
+   228→        .tech-tag:hover {
+   229→            border-color: var(--accent-primary);
+   230→            color: var(--accent-primary);
+   231→            transform: translateY(-2px);
+   232→        }
+   233→
+   234→        .cta-buttons {
+   235→            display: flex;
+   236→            gap: 1rem;
+   237→            justify-content: center;
+   238→            flex-wrap: wrap;
+   239→        }
+   240→
+   241→        .btn-primary {
+   242→            padding: 1rem 2.5rem;
+   243→            background: var(--accent-gradient);
+   244→            color: white;
+   245→            text-decoration: none;
+   246→            border-radius: 10px;
+   247→            font-weight: 600;
+   248→            font-size: 1rem;
+   249→            transition: all 0.3s ease;
+   250→            box-shadow: 0 4px 20px rgba(0, 212, 255, 0.3);
+   251→            border: none;
+   252→            cursor: pointer;
+   253→        }
+   254→
+   255→        .btn-primary:hover {
+   256→            transform: translateY(-3px);
+   257→            box-shadow: 0 8px 30px rgba(0, 212, 255, 0.4);
+   258→        }
+   259→
+   260→        .btn-secondary {
+   261→            padding: 1rem 2.5rem;
+   262→            background: transparent;
+   263→            color: var(--text-primary);
+   264→            text-decoration: none;
+   265→            border-radius: 10px;
+   266→            font-weight: 600;
+   267→            font-size: 1rem;
+   268→            transition: all 0.3s ease;
+   269→            border: 2px solid var(--border-color);
+   270→            cursor: pointer;
+   271→        }
+   272→
+   273→        .btn-secondary:hover {
+   274→            border-color: var(--accent-primary);
+   275→            color: var(--accent-primary);
+   276→            transform: translateY(-3px);
+   277→        }
+   278→
+   279→        /* Sections Common */
+   280→        section {
+   281→            padding: 6rem 2rem;
+   282→            max-width: 1200px;
+   283→            margin: 0 auto;
+   284→        }
+   285→
+   286→        .section-title {
+   287→            font-size: 2.5rem;
+   288→            font-weight: 800;
+   289→            margin-bottom: 1rem;
+   290→            letter-spacing: -0.02em;
+   291→        }
+   292→
+   293→        .section-subtitle {
+   294→            color: var(--text-secondary);
+   295→            font-size: 1.1rem;
+   296→            margin-bottom: 3rem;
+   297→        }
+   298→
+   299→        /* Featured Project */
+   300→        #featured-project {
+   301→            background: var(--bg-secondary);
+   302→            border-radius: 24px;
+   303→            padding: 5rem 3rem;
+   304→            margin: 4rem auto;
+   305→            max-width: 1200px;
+   306→            box-shadow: var(--shadow-card);
+   307→            border: 1px solid var(--border-color);
+   308→        }
+   309→
+   310→        .featured-header {
+   311→            display: flex;
+   312→            align-items: center;
+   313→            gap: 1rem;
+   314→            margin-bottom: 2rem;
+   315→        }
+   316→
+   317→        .featured-icon {
+   318→            font-size: 2.5rem;
+   319→        }
+   320→
+   321→        .featured-label {
+   322→            font-size: 0.9rem;
+   323→            color: var(--accent-primary);
+   324→            font-weight: 600;
+   325→            text-transform: uppercase;
+   326→            letter-spacing: 0.1em;
+   327→        }
+   328→
+   329→        .featured-title {
+   330→            font-size: 2.8rem;
+   331→            font-weight: 800;
+   332→            margin-bottom: 1.5rem;
+   333→            background: var(--accent-gradient);
+   334→            -webkit-background-clip: text;
+   335→            -webkit-text-fill-color: transparent;
+   336→            background-clip: text;
+   337→        }
+   338→
+   339→        .featured-description {
+   340→            font-size: 1.15rem;
+   341→            color: var(--text-secondary);
+   342→            margin-bottom: 2.5rem;
+   343→            max-width: 800px;
+   344→            line-height: 1.8;
+   345→        }
+   346→
+   347→        .features-grid {
+   348→            display: grid;
+   349→            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+   350→            gap: 1.5rem;
+   351→            margin-bottom: 2.5rem;
+   352→        }
+   353→
+   354→        .feature-item {
+   355→            padding: 1.5rem;
+   356→            background: rgba(255, 255, 255, 0.03);
+   357→            border: 1px solid var(--border-color);
+   358→            border-radius: 12px;
+   359→            transition: all 0.3s ease;
+   360→        }
+   361→
+   362→        .feature-item:hover {
+   363→            border-color: var(--accent-primary);
+   364→            background: rgba(0, 212, 255, 0.05);
+   365→            transform: translateX(5px);
+   366→        }
+   367→
+   368→        .feature-item strong {
+   369→            color: var(--accent-primary);
+   370→            display: block;
+   371→            margin-bottom: 0.5rem;
+   372→        }
+   373→
+   374→        .project-meta {
+   375→            display: flex;
+   376→            gap: 2rem;
+   377→            flex-wrap: wrap;
+   378→            margin-top: 2rem;
+   379→            padding-top: 2rem;
+   380→            border-top: 1px solid var(--border-color);
+   381→        }
+   382→
+   383→        .meta-item {
+   384→            display: flex;
+   385→            align-items: center;
+   386→            gap: 0.5rem;
+   387→        }
+   388→
+   389→        .meta-label {
+   390→            color: var(--text-secondary);
+   391→            font-size: 0.9rem;
+   392→        }
+   393→
+   394→        .meta-value {
+   395→            color: var(--text-primary);
+   396→            font-weight: 600;
+   397→            font-family: 'JetBrains Mono', monospace;
+   398→            font-size: 0.9rem;
+   399→        }
+   400→
+   401→        /* Projects Grid */
+   402→        #projects {
+   403→            padding-top: 6rem;
+   404→        }
+   405→
+   406→        .projects-grid {
+   407→            display: grid;
+   408→            gap: 3rem;
+   409→            margin-top: 3rem;
+   410→        }
+   411→
+   412→        .project-card {
+   413→            background: var(--bg-card);
+   414→            border: 1px solid var(--border-color);
+   415→            border-radius: 20px;
+   416→            overflow: hidden;
+   417→            transition: all 0.4s ease;
+   418→            box-shadow: var(--shadow-card);
+   419→        }
+   420→
+   421→        .project-card:hover {
+   422→            transform: translateY(-8px);
+   423→            border-color: var(--accent-primary);
+   424→            box-shadow: var(--shadow-glow), var(--shadow-card);
+   425→        }
+   426→
+   427→        .project-image-wrapper {
+   428→            position: relative;
+   429→            width: 100%;
+   430→            height: 450px;
+   431→            overflow: hidden;
+   432→            background: var(--bg-secondary);
+   433→        }
+   434→
+   435→        .project-image-wrapper img {
+   436→            width: 100%;
+   437→            height: 100%;
+   438→            object-fit: cover;
+   439→            transition: transform 0.5s ease;
+   440→        }
+   441→
+   442→        .project-card:hover .project-image-wrapper img {
+   443→            transform: scale(1.05);
+   444→        }
+   445→
+   446→        .project-role-badge {
+   447→            position: absolute;
+   448→            top: 1.5rem;
+   449→            left: 1.5rem;
+   450→            padding: 0.6rem 1.2rem;
+   451→            background: rgba(139, 92, 246, 0.9);
+   452→            backdrop-filter: blur(10px);
+   453→            border-radius: 8px;
+   454→            font-size: 0.85rem;
+   455→            font-weight: 600;
+   456→            color: white;
+   457→            z-index: 10;
+   458→        }
+   459→
+   460→        .project-content {
+   461→            padding: 2.5rem;
+   462→        }
+   463→
+   464→        .project-header {
+   465→            display: flex;
+   466→            align-items: flex-start;
+   467→            justify-content: space-between;
+   468→            margin-bottom: 1rem;
+   469→        }
+   470→
+   471→        .project-title {
+   472→            font-size: 1.8rem;
+   473→            font-weight: 700;
+   474→            margin-bottom: 0.5rem;
+   475→        }
+   476→
+   477→        .project-category {
+   478→            display: inline-block;
+   479→            padding: 0.4rem 1rem;
+   480→            background: rgba(0, 212, 255, 0.1);
+   481→            border: 1px solid rgba(0, 212, 255, 0.3);
+   482→            border-radius: 20px;
+   483→            font-size: 0.8rem;
+   484→            color: var(--accent-primary);
+   485→            font-weight: 600;
+   486→            font-family: 'JetBrains Mono', monospace;
+   487→        }
+   488→
+   489→        .project-description {
+   490→            color: var(--text-secondary);
+   491→            font-size: 1.05rem;
+   492→            line-height: 1.8;
+   493→            margin-bottom: 2rem;
+   494→        }
+   495→
+   496→        .project-tech-tags {
+   497→            display: flex;
+   498→            flex-wrap: wrap;
+   499→            gap: 0.6rem;
+   500→            margin-bottom: 2rem;
+   501→        }
+   502→
+   503→        .tech-tag-small {
+   504→            padding: 0.4rem 0.9rem;
+   505→            background: rgba(255, 255, 255, 0.05);
+   506→            border: 1px solid var(--border-color);
+   507→            border-radius: 6px;
+   508→            font-size: 0.85rem;
+   509→            color: var(--text-secondary);
+   510→            font-family: 'JetBrains Mono', monospace;
+   511→        }
+   512→
+   513→        .project-actions {
+   514→            display: flex;
+   515→            gap: 1rem;
+   516→            flex-wrap: wrap;
+   517→        }
+   518→
+   519→        .btn-project {
+   520→            padding: 0.8rem 1.8rem;
+   521→            background: transparent;
+   522→            color: var(--text-primary);
+   523→            text-decoration: none;
+   524→            border-radius: 8px;
+   525→            font-weight: 600;
+   526→            font-size: 0.95rem;
+   527→            transition: all 0.3s ease;
+   528→            border: 1px solid var(--border-color);
+   529→            cursor: pointer;
+   530→            display: inline-flex;
+   531→            align-items: center;
+   532→            gap: 0.5rem;
+   533→        }
+   534→
+   535→        .btn-project:hover {
+   536→            border-color: var(--accent-primary);
+   537→            color: var(--accent-primary);
+   538→            background: rgba(0, 212, 255, 0.05);
+   539→        }
+   540→
+   541→        .btn-project.primary {
+   542→            background: var(--accent-gradient);
+   543→            border: none;
+   544→            color: white;
+   545→        }
+   546→
+   547→        .btn-project.primary:hover {
+   548→            transform: translateY(-2px);
+   549→            box-shadow: 0 4px 15px rgba(0, 212, 255, 0.3);
+   550→        }
+   551→
+   552→        /* Video Container (for gameplay videos) */
+   553→        .video-container {
+   554→            margin-top: 2rem;
+   555→            padding: 2rem;
+   556→            background: rgba(0, 0, 0, 0.3);
+   557→            border-radius: 12px;
+   558→            border: 1px solid var(--border-color);
+   559→        }
+   560→
+   561→        .video-container video,
+   562→        .video-container iframe {
+   563→            width: 100%;
+   564→            border-radius: 8px;
+   565→            margin-bottom: 1rem;
+   566→        }
+   567→
+   568→        .video-description {
+   569→            color: var(--text-secondary);
+   570→            font-size: 0.95rem;
+   571→            line-height: 1.6;
+   572→            padding: 1rem;
+   573→            background: rgba(255, 255, 255, 0.03);
+   574→            border-left: 3px solid var(--accent-primary);
+   575→            border-radius: 4px;
+   576→        }
+   577→
+   578→        /* Game Build Player */
+   579→        .game-build-container {
+   580→            margin-top: 2rem;
+   581→            padding: 2rem;
+   582→            background: rgba(0, 0, 0, 0.4);
+   583→            border-radius: 12px;
+   584→            border: 1px solid var(--border-color);
+   585→        }
+   586→
+   587→        .build-player {
+   588→            width: 100%;
+   589→            height: 600px;
+   590→            border: none;
+   591→            border-radius: 8px;
+   592→            background: #000;
+   593→        }
+   594→
+   595→        .download-fallback {
+   596→            text-align: center;
+   597→            padding: 3rem;
+   598→        }
+   599→
+   600→        .download-fallback p {
+   601→            color: var(--text-secondary);
+   602→            margin-bottom: 1.5rem;
+   603→        }
+   604→
+   605→        /* Research Section */
+   606→        #research {
+   607→            background: var(--bg-secondary);
+   608→            border-radius: 24px;
+   609→            padding: 5rem 3rem;
+   610→            margin: 4rem auto;
+   611→            border: 1px solid var(--border-color);
+   612→        }
+   613→
+   614→        .research-paper {
+   615→            background: var(--bg-card);
+   616→            padding: 3rem;
+   617→            border-radius: 16px;
+   618→            border: 1px solid var(--border-color);
+   619→        }
+   620→
+   621→        .paper-title {
+   622→            font-size: 2rem;
+   623→            font-weight: 700;
+   624→            margin-bottom: 1.5rem;
+   625→            color: var(--accent-primary);
+   626→        }
+   627→
+   628→        .paper-abstract {
+   629→            color: var(--text-secondary);
+   630→            font-size: 1.05rem;
+   631→            line-height: 1.9;
+   632→            margin-bottom: 2rem;
+   633→            padding: 1.5rem;
+   634→            background: rgba(0, 0, 0, 0.2);
+   635→            border-left: 4px solid var(--accent-secondary);
+   636→            border-radius: 6px;
+   637→        }
+   638→
+   639→        .paper-meta {
+   640→            display: grid;
+   641→            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+   642→            gap: 1.5rem;
+   643→            margin-bottom: 2rem;
+   644→        }
+   645→
+   646→        /* About Section */
+   647→        #about {
+   648→            padding-top: 6rem;
+   649→        }
+   650→
+   651→        .about-grid {
+   652→            display: grid;
+   653→            grid-template-columns: 1fr 1fr;
+   654→            gap: 4rem;
+   655→            margin-top: 3rem;
+   656→        }
+   657→
+   658→        .about-bio h3 {
+   659→            font-size: 1.8rem;
+   660→            font-weight: 700;
+   661→            margin-bottom: 1.5rem;
+   662→            color: var(--accent-primary);
+   663→        }
+   664→
+   665→        .about-bio p {
+   666→            color: var(--text-secondary);
+   667→            font-size: 1.05rem;
+   668→            line-height: 1.8;
+   669→            margin-bottom: 1.5rem;
+   670→        }
+   671→
+   672→        .skills-section h3 {
+   673→            font-size: 1.8rem;
+   674→            font-weight: 700;
+   675→            margin-bottom: 1.5rem;
+   676→            color: var(--accent-primary);
+   677→        }
+   678→
+   679→        .skill-category {
+   680→            margin-bottom: 2.5rem;
+   681→        }
+   682→
+   683→        .skill-category h4 {
+   684→            font-size: 1.2rem;
+   685→            font-weight: 600;
+   686→            margin-bottom: 1rem;
+   687→            color: var(--text-primary);
+   688→        }
+   689→
+   690→        .skill-list {
+   691→            list-style: none;
+   692→        }
+   693→
+   694→        .skill-list li {
+   695→            padding: 0.6rem 0;
+   696→            color: var(--text-secondary);
+   697→            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+   698→            display: flex;
+   699→            align-items: center;
+   700→            gap: 0.8rem;
+   701→        }
+   702→
+   703→        .skill-list li::before {
+   704→            content: '▹';
+   705→            color: var(--accent-primary);
+   706→            font-weight: bold;
+   707→        }
+   708→
+   709→        .resume-download {
+   710→            margin-top: 3rem;
+   711→            padding: 2.5rem;
+   712→            background: var(--bg-card);
+   713→            border: 2px dashed var(--border-color);
+   714→            border-radius: 16px;
+   715→            text-align: center;
+   716→        }
+   717→
+   718→        .resume-download h3 {
+   719→            font-size: 1.5rem;
+   720→            margin-bottom: 1rem;
+   721→        }
+   722→
+   723→        /* Contact Section */
+   724→        #contact {
+   725→            padding-bottom: 8rem;
+   726→        }
+   727→
+   728→        .contact-grid {
+   729→            display: grid;
+   730→            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+   731→            gap: 2rem;
+   732→            margin-top: 3rem;
+   733→        }
+   734→
+   735→        .contact-card {
+   736→            padding: 2.5rem;
+   737→            background: var(--bg-card);
+   738→            border: 1px solid var(--border-color);
+   739→            border-radius: 16px;
+   740→            transition: all 0.3s ease;
+   741→            text-decoration: none;
+   742→            color: inherit;
+   743→            display: block;
+   744→        }
+   745→
+   746→        .contact-card:hover {
+   747→            border-color: var(--accent-primary);
+   748→            transform: translateY(-5px);
+   749→            box-shadow: var(--shadow-glow);
+   750→        }
+   751→
+   752→        .contact-icon {
+   753→            font-size: 2.5rem;
+   754→            margin-bottom: 1rem;
+   755→        }
+   756→
+   757→        .contact-card h3 {
+   758→            font-size: 1.4rem;
+   759→            font-weight: 700;
+   760→            margin-bottom: 0.5rem;
+   761→        }
+   762→
+   763→        .contact-card p {
+   764→            color: var(--text-secondary);
+   765→            font-size: 0.95rem;
+   766→            line-height: 1.6;
+   767→        }
+   768→
+   769→        .contact-link {
+   770→            color: var(--accent-primary);
+   771→            word-break: break-all;
+   772→            font-family: 'JetBrains Mono', monospace;
+   773→            font-size: 0.9rem;
+   774→            margin-top: 0.5rem;
+   775→            display: block;
+   776→        }
+   777→
+   778→        /* Admin Panel Modal */
+   779→        .admin-modal {
+   780→            display: none;
+   781→            position: fixed;
+   782→            top: 0;
+   783→            left: 0;
+   784→            right: 0;
+   785→            bottom: 0;
+   786→            z-index: 9999;
+   787→            background: rgba(0, 0, 0, 0.9);
+   788→            backdrop-filter: blur(10px);
+   789→            overflow-y: auto;
+   790→        }
+   791→
+   792→        .admin-modal.active {
+   793→            display: block;
+   794→        }
+   795→
+   796→        .admin-content {
+   797→            max-width: 1000px;
+   798→            margin: 3rem auto;
+   799→            padding: 3rem;
+   800→            background: var(--bg-secondary);
+   801→            border-radius: 20px;
+   802→            border: 1px solid var(--border-color);
+   803→        }
+   804→
+   805→        .admin-header {
+   806→            display: flex;
+   807→            justify-content: space-between;
+   808→            align-items: center;
+   809→            margin-bottom: 2rem;
+   810→            padding-bottom: 2rem;
+   811→            border-bottom: 2px solid var(--border-color);
+   812→        }
+   813→
+   814→        .admin-header h2 {
+   815→            font-size: 2rem;
+   816→            font-weight: 800;
+   817→            color: var(--accent-secondary);
+   818→        }
+   819→
+   820→        .close-admin {
+   821→            background: none;
+   822→            border: none;
+   823→            color: var(--text-secondary);
+   824→            font-size: 2rem;
+   825→            cursor: pointer;
+   826→            transition: color 0.3s ease;
+   827→        }
+   828→
+   829→        .close-admin:hover {
+   830→            color: var(--text-primary);
+   831→        }
+   832→
+   833→        .admin-login-form {
+   834→            max-width: 450px;
+   835→            margin: 3rem auto;
+   836→            padding: 3rem;
+   837→            background: var(--bg-card);
+   838→            border-radius: 16px;
+   839→            border: 1px solid var(--border-color);
+   840→        }
+   841→
+   842→        .form-group {
+   843→            margin-bottom: 1.5rem;
+   844→        }
+   845→
+   846→        .form-group label {
+   847→            display: block;
+   848→            margin-bottom: 0.5rem;
+   849→            color: var(--text-secondary);
+   850→            font-weight: 500;
+   851→            font-size: 0.95rem;
+   852→        }
+   853→
+   854→        .form-group input,
+   855→        .form-group textarea,
+   856→        .form-group select {
+   857→            width: 100%;
+   858→            padding: 0.9rem 1.2rem;
+   859→            background: var(--bg-primary);
+   860→            border: 1px solid var(--border-color);
+   861→            border-radius: 8px;
+   862→            color: var(--text-primary);
+   863→            font-size: 1rem;
+   864→            font-family: inherit;
+   865→            transition: border-color 0.3s ease;
+   866→        }
+   867→
+   868→        .form-group input:focus,
+   869→        .form-group textarea:focus,
+   870→        .form-group select:focus {
+   871→            outline: none;
+   872→            border-color: var(--accent-primary);
+   873→        }
+   874→
+   875→        .admin-section {
+   876→            margin-bottom: 3rem;
+   877→            padding: 2rem;
+   878→            background: var(--bg-card);
+   879→            border-radius: 12px;
+   880→            border: 1px solid var(--border-color);
+   881→        }
+   882→
+   883→        .admin-section h3 {
+   884→            font-size: 1.5rem;
+   885→            font-weight: 700;
+   886→            margin-bottom: 1.5rem;
+   887→            color: var(--accent-primary);
+   888→        }
+   889→
+   890→        .upload-area {
+   891→            border: 2px dashed var(--border-color);
+   892→            border-radius: 12px;
+   893→            padding: 3rem;
+   894→            text-align: center;
+   895→            cursor: pointer;
+   896→            transition: all 0.3s ease;
+   897→            margin-bottom: 1.5rem;
+   898→        }
+   899→
+   900→        .upload-area:hover {
+   901→            border-color: var(--accent-primary);
+   902→            background: rgba(0, 212, 255, 0.03);
+   903→        }
+   904→
+   905→        .upload-area p {
+   906→            color: var(--text-secondary);
+   907→            margin-bottom: 0.5rem;
+   908→        }
+   909→
+   910→        /* Footer */
+   911→        footer {
+   912→            text-align: center;
+   913→            padding: 3rem 2rem;
+   914→            border-top: 1px solid var(--border-color);
+   915→            color: var(--text-secondary);
+   916→            font-size: 0.9rem;
+   917→        }
+   918→
+   919→        /* Responsive Design */
+   920→        @media (max-width: 768px) {
+   921→            .nav-links {
+   922→                display: none;
+   923→            }
+   924→
+   925→            .hero h1 {
+   926→                font-size: 2.5rem;
+   927→            }
+   928→
+   929→            .about-grid {
+   930→                grid-template-columns: 1fr;
+   931→            }
+   932→
+   933→            #featured-project {
+   934→                padding: 3rem 1.5rem;
+   935→            }
+   936→
+   937→            .project-image-wrapper {
+   938→                height: 300px;
+   939→            }
+   940→
+   941→            section {
+   942→                padding: 4rem 1.5rem;
+   943→            }
+   944→        }
+   945→
+   946→        /* Smooth Scroll */
+   947→        html {
+   948→            scroll-behavior: smooth;
+   949→        }
+   950→
+   951→        /* Selection Color */
+   952→        ::selection {
+   953→            background: var(--accent-primary);
+   954→            color: var(--bg-primary);
+   955→        }
+   956→    </style>
+   957→</head>
+   958→<body>
+   959→
+   960→    <!-- Navigation -->
+   961→    <nav>
+   962→        <div class="nav-container">
+   963→            <div class="logo">SV.dev</div>
+   964→            <ul class="nav-links">
+   965→                <li><a href="#home">Home</a></li>
+   966→                <li><a href="#featured-project">Featured</a></li>
+   967→                <li><a href="#projects">Projects</a></li>
+   968→                <li><a href="#research">Research</a></li>
+   969→                <li><a href="#about">About</a></li>
+   970→                <li><a href="#contact">Contact</a></li>
+   971→            </ul>
+   972→            <button class="admin-login-btn" onclick="openAdminPanel()">⚙ ADMIN</button>
+   973→        </div>
+   974→    </nav>
+   975→
+   976→    <!-- Hero Section -->
+   977→    <section class="hero" id="home">
+   978→        <div class="hero-content">
+   979→            <div class="hero-badge">🎮 Game Developer | Unity & Unreal Engine</div>
+   980→            <h1>Hi, I'm <span>Saurav Sharma</span></h1>
+   981→            <p class="hero-subtitle">
+   982→                Aspiring game developer with 1.5+ years of experience in Unity and 7 months in Unreal Engine. 
+   983→                Building immersive experiences through interactable UI, intelligent AI, and polished gameplay systems.
+   984→            </p>
+   985→            
+   986→            <div class="tech-stack">
+   987→                <span class="tech-tag">Unity</span>
+   988→                <span class="tech-tag">Unreal Engine</span>
+   989→                <span class="tech-tag">C#</span>
+   990→                <span class="tech-tag">C/C++</span>
+   991→                <span class="tech-tag">Python</span>
+   992→                <span class="tech-tag">SQL</span>
+   993→            </div>
+   994→
+   995→            <div class="cta-buttons">
+   996→                <a href="#projects" class="btn-primary">View My Projects</a>
+   997→                <a href="#contact" class="btn-secondary">Get In Touch</a>
+   998→            </div>
+   999→        </div>
+  1000→    </section>
+  1001→
+  1002→    <!-- Featured Project -->
+  1003→    <section id="featured-project">
+  1004→        <div class="featured-header">
+  1005→            <span class="featured-icon">🎮</span>
+  1006→            <div>
+  1007→                <div class="featured-label">Flagship Project</div>
+  1008→                <h2 class="featured-title">Shooter Game — Third-Person Action Experience</h2>
+  1009→            </div>
+  1010→        </div>
+  1011→
+  1012→        <p class="featured-description">
+  1013→            A fully-featured third-person action shooter showcasing advanced game development skills. 
+  1014→            This project demonstrates expertise in enemy AI programming, inventory management systems, 
+  1015→            and persistent save/load functionality — all built from the ground up in Unity.
+  1016→        </p>
+  1017→
+  1018→        <div class="features-grid">
+  1019→            <div class="feature-item">
+  1020→                <strong>🎯 Intelligent Enemy AI</strong>
+  1021→                Pathfinding, combat behavior trees, and dynamic difficulty scaling
+  1022→            </div>
+  1023→            <div class="feature-item">
+  1024→                <strong>📦 Inventory System</strong>
+  1025→                Complete item management with stacking, usage, and persistence
+  1026→            </div>
+  1027→            <div class="feature-item">
+  1028→                <strong>💾 Save/Load System</strong>
+  1029→                Persistent player progress with JSON serialization
+  1030→            </div>
+  1031→            <div class="feature-item">
+  1032→                <strong>🔫 Combat Mechanics</strong>
+  1033→                Weapon switching, ammo management, and hit detection
+  1034→            </div>
+  1035→            <div class="feature-item">
+  1036→                <strong>🎥 Camera System</strong>
+  1037→                Smooth third-person camera with collision and zoom
+  1038→            </div>
+  1039→            <div class="feature-item">
+  1040→                <strong>🎮 Player Controller</strong>
+  1041→                Responsive movement, jumping, and interaction systems
+  1042→            </div>
+  1043→        </div>
+  1044→
+  1045→        <!-- Gameplay Videos Container (Admin can add multiple videos here) -->
+  1046→        <div class="video-container">
+  1047→            <h4 style="color: var(--accent-primary); margin-bottom: 1rem;">📺 Gameplay Showcase</h4>
+  1048→            <div style="background: rgba(0,0,0,0.5); padding: 4rem; border-radius: 8px; text-align: center; color: var(--text-secondary);">
+  1049→                <p style="font-size: 1.1rem; margin-bottom: 0.5rem;">🎬 Gameplay videos will appear here</p>
+  1050→                <p style="font-size: 0.9rem;">Upload videos via admin panel to showcase this project</p>
+  1051→            </div>
+  1052→            <div class="video-description">
+  1053→                <strong>Video Description:</strong> Admin-uploaded gameplay footage demonstrating core mechanics, 
+  1054→                enemy AI behavior, inventory system, and combat flow. Each video includes detailed captions 
+  1055→                explaining showcased features.
+  1056→            </div>
+  1057→        </div>
+  1058→
+  1059→        <!-- Game Build Player (WebGL embed or download fallback) -->
+  1060→        <div class="game-build-container">
+  1061→            <h4 style="color: var(--accent-primary); margin-bottom: 1rem;">🕹️ Play In Browser</h4>
+  1062→            <iframe class="build-player" src="about:blank" title="Game Build Player"></iframe>
+  1063→            <p style="color: var(--text-secondary); text-align: center; margin-top: 1rem; font-size: 0.9rem;">
+  1064→                WebGL build will load here • Upload build via admin panel
+  1065→            </p>
+  1066→        </div>
+  1067→
+  1068→        <div class="project-meta">
+  1069→            <div class="meta-item">
+  1070→                <span class="meta-label">Technology:</span>
+  1071→                <span class="meta-value">Unity • C#</span>
+  1072→            </div>
+  1073→            <div class="meta-item">
+  1074→                <span class="meta-label">Repository:</span>
+  1075→                <a href="https://github.com/mitthubadmash/Final-Assignment" class="meta-value" style="color: var(--accent-primary);">GitHub →</a>
+  1076→            </div>
+  1077→            <div class="meta-item">
+  1078→                <span class="meta-label">Category:</span>
+  1079→                <span class="meta-value">Action Shooter</span>
+  1080→            </div>
+  1081→        </div>
+  1082→
+  1083→        <div class="cta-buttons" style="margin-top: 2rem;">
+  1084→            <a href="#" class="btn-primary">▶ Play Demo</a>
+  1085→            <a href="https://github.com/mitthubadmash/Final-Assignment" class="btn-secondary">View Source Code</a>
+  1086→        </div>
+  1087→    </section>
+  1088→
+  1089→    <!-- Projects Section -->
+  1090→    <section id="projects">
+  1091→        <h2 class="section-title">Game Development Portfolio</h2>
+  1092→        <p class="section-subtitle">A collection of projects showcasing game development, teamwork, and technical skills</p>
+  1093→
+  1094→        <div class="projects-grid">
+  1095→
+  1096→            <!-- Project 1: Knuckle2 Group Project -->
+  1097→            <article class="project-card">
+  1098→                <div class="project-image-wrapper">
+  1099→                    <img src="https://qc4n.bigmodel.cn/9af01nKwI_cropped.png?UCloudPublicKey=TOKEN_3f4277c6-f8d6-41a9-968b-dbfa0994d483&Expires=1818168382&Signature=JVdLeCJ%2Fxq2S83vR8Q8ce%2B3SatE%3D" alt="Knuckle2 Action Adventure Game Screenshot">
+  1100→                    <div class="project-role-badge">My Role: UI Systems, Combat, Timeline Sequencing</div>
+  1101→                </div>
+  1102→                <div class="project-content">
+  1103→                    <div class="project-header">
+  1104→                        <div>
+  1105→                            <h3 class="project-title">🎯 Knuckle2 — Action/Adventure</h3>
+  1106→                            <span class="project-category">TEAM PROJECT</span>
+  1107→                        </div>
+  1108→                    </div>
+  1109→                    <p class="project-description">
+  1110→                        A team-built action-adventure game featuring cinematic cutscenes, branching dialogue system, 
+  1111→                        dynamic combat mechanics, full settings/resolution menu, main menu interface, timeline-based 
+  1112→                        cutscene sequencing, and an innovative Rock-Paper-Scissors mini-game system. Collaborated 
+  1113→                        closely with designers and artists in an agile development environment.
+  1114→                    </p>
+  1115→                    <div class="project-tech-tags">
+  1116→                        <span class="tech-tag-small">Unity</span>
+  1117→                        <span class="tech-tag-small">C#</span>
+  1118→                        <span class="tech-tag-small">Timeline Cinematics</span>
+  1119→                        <span class="tech-tag-small">UI Systems</span>
+  1120→                        <span class="tech-tag-small">Dialogue System</span>
+  1121→                    </div>
+  1122→                    
+  1123→                    <!-- Video container for this project -->
+  1124→                    <div class="video-container">
+  1125→                        <h4 style="color: var(--accent-primary); margin-bottom: 1rem; font-size: 1rem;">📺 Project Videos</h4>
+  1126→                        <div style="background: rgba(0,0,0,0.5); padding: 2rem; border-radius: 8px; text-align: center; color: var(--text-secondary);">
+  1127→                            <p>🎬 Upload gameplay videos via admin panel</p>
+  1128→                        </div>
+  1129→                    </div>
+  1130→
+  1131→                    <!-- Game build for this project -->
+  1132→                    <div class="game-build-container">
+  1133→                        <h4 style="color: var(--accent-primary); margin-bottom: 1rem; font-size: 1rem;">🕹️ Playable Build</h4>
+  1134→                        <div class="download-fallback">
+  1135→                            <p>Build not yet uploaded</p>
+  1136→                            <button class="btn-project primary">Notify When Available</button>
+  1137→                        </div>
+  1138→                    </div>
+  1139→
+  1140→                    <div class="project-actions">
+  1141→                        <a href="https://github.com/CCCDEADPOOLXD/Knuckle2" class="btn-project primary">View on GitHub</a>
+  1142→                        <a href="#" class="btn-project">Watch Videos</a>
+  1143→                        <a href="#" class="btn-project">Project Details</a>
+  1144→                    </div>
+  1145→                </div>
+  1146→            </article>
+  1147→
+  1148→            <!-- Project 2: Mario Recreation -->
+  1149→            <article class="project-card">
+  1150→                <div class="project-image-wrapper">
+  1151→                    <img src="https://qc4n.bigmodel.cn/015946HNU_cropped.png?UCloudPublicKey=TOKEN_3f4277c6-f8d6-41a9-968b-dbfa0994d483&Expires=1818168377&Signature=znT8muEBE6%2BJXHU556PckSqUSK4%3D" alt="Mario Recreation Platformer Game">
+  1152→                </div>
+  1153→                <div class="project-content">
+  1154→                    <div class="project-header">
+  1155→                        <div>
+  1156→                            <h3 class="project-title">🍄 Mario Recreation — Platformer</h3>
+  1157→                            <span class="project-category">LEARNING PROJECT</span>
+  1158→                        </div>
+  1159→                    </div>
+  1160→                    <p class="project-description">
+  1161→                        A faithful recreation of classic Mario-style platformer mechanics focusing on precise movement physics, 
+  1162→                        collision detection, tile-based level design, enemy interactions, and power-up systems. This learning 
+  1163→                        project demonstrates foundational game development principles and 2D physics implementation.
+  1164→                    </p>
+  1165→                    <div class="project-tech-tags">
+  1166→                        <span class="tech-tag-small">Unity</span>
+  1167→                        <span class="tech-tag-small">C#</span>
+  1168→                        <span class="tech-tag-small">2D Physics</span>
+  1169→                        <span class="tech-tag-small">Tile-Based Design</span>
+  1170→                        <span class="tech-tag-small">Pixel Art</span>
+  1171→                    </div>
+  1172→
+  1173→                    <div class="project-actions">
+  1174→                        <a href="#" class="btn-project">View Screenshots</a>
+  1175→                        <a href="#" class="btn-project">Coming Soon</a>
+  1176→                    </div>
+  1177→                </div>
+  1178→            </article>
+  1179→
+  1180→            <!-- Other Projects Section Header -->
+  1181→            <div style="margin-top: 4rem; padding-top: 3rem; border-top: 2px solid var(--border-color);">
+  1182→                <h3 style="font-size: 2rem; font-weight: 700; color: var(--accent-secondary); margin-bottom: 0.5rem;">
+  1183→                    🏥 Other Projects
+  1184→                </h3>
+  1185→                <p style="color: var(--text-secondary); margin-bottom: 2rem;">
+  1186→                    Software engineering and backend development projects
+  1187→                </p>
+  1188→            </div>
+  1189→
+  1190→            <!-- Project 3: Healthcare Software (Other Projects) -->
+  1191→            <article class="project-card">
+  1192→                <div class="project-content" style="padding-top: 3rem;">
+  1193→                    <div class="project-header">
+  1194→                        <div>
+  1195→                            <h3 class="project-title">🏥 Orion Backend — Healthcare Software</h3>
+  1196→                            <span class="project-category">SOFTWARE ENGINEERING</span>
+  1197→                        </div>
+  1198→                    </div>
+  1199→                    <p class="project-description">
+  1200→                        Engineering coursework project focused on healthcare backend software development. Built robust data 
+  1201→                        management systems for medical applications, implementing secure database architecture and RESTful API 
+  1202→                        endpoints for healthcare data handling.
+  1203→                    </p>
+  1204→                    <div class="project-tech-tags">
+  1205→                        <span class="tech-tag-small">Python</span>
+  1206→                        <span class="tech-tag-small">SQL</span>
+  1207→                        <span class="tech-tag-small">Backend Architecture</span>
+  1208→                        <span class="tech-tag-small">Database Design</span>
+  1209→                    </div>
+  1210→                    <div class="project-actions">
+  1211→                        <a href="https://github.com/AARAV-git/orion-backend" class="btn-project primary">View on GitHub</a>
+  1212→                        <a href="#" class="btn-project">Documentation</a>
+  1213→                    </div>
+  1214→                </div>
+  1215→            </article>
+  1216→
+  1217→        </div>
+  1218→    </section>
+  1219→
+  1220→    <!-- Research Section -->
+  1221→    <section id="research">
+  1222→        <div class="featured-header">
+  1223→            <span class="featured-icon">📄</span>
+  1224→            <div>
+  1225→                <div class="featured-label">Academic Research</div>
+  1226→                <h2 class="section-title" style="margin-bottom: 0.5rem;">Research Publication</h2>
+  1227→            </div>
+  1228→        </div>
+  1229→
+  1230→        <div class="research-paper">
+  1231→            <h3 class="paper-title">[Paper Title Placeholder]</h3>
+  1232→            
+  1233→            <div class="paper-abstract">
+  1234→                <strong style="color: var(--accent-primary); display: block; margin-bottom: 0.8rem;">Abstract:</strong>
+  1235→                [One-paragraph research abstract describing the paper's focus, methodology, findings, and contributions 
+  1236→                to the field. This section will be updated with actual research content once the paper is finalized 
+  1237→                and ready for publication. The abstract will provide readers with a comprehensive overview of the 
+  1238→                research objectives, approach, key findings, and significance of the work.]
+  1239→            </div>
+  1240→
+  1241→            <div class="paper-meta">
+  1242→                <div class="meta-item">
+  1243→                    <span class="meta-label">Publication Status:</span>
+  1244→                    <span class="meta-value">[Journal/Conference Name] — [Year]</span>
+  1245→                </div>
+  1246→                <div class="meta-item">
+  1247→                    <span class="meta-label">Research Topics:</span>
+  1248→                    <span class="meta-value">[Keywords]</span>
+  1249→                </div>
+  1250→            </div>
+  1251→
+  1252→            <div class="project-actions">
+  1253→                <a href="#" class="btn-project primary">📥 Download PDF</a>
+  1254→                <a href="#" class="btn-project">Read Online</a>
+  1255→                <a href="#" class="btn-project">Citation</a>
+  1256→            </div>
+  1257→        </div>
+  1258→    </section>
+  1259→
+  1260→    <!-- About Section -->
+  1261→    <section id="about">
+  1262→        <h2 class="section-title">About Me & Resume</h2>
+  1263→        <p class="section-subtitle">Skills, experience, and professional background</p>
+  1264→
+  1265→        <div class="about-grid">
+  1266→            <div class="about-bio">
+  1267→                <h3>👤 Who I Am</h3>
+  1268→                <p>
+  1269→                    I'm <strong style="color: var(--accent-primary);">Saurav Sharma</strong>, an aspiring game developer 
+  1270→                    passionate about creating immersive interactive experiences. With hands-on experience in both 
+  1271→                    <strong>Unity (1.5+ years)</strong> and <strong>Unreal Engine (7 months)</strong>, I specialize in 
+  1272→                    building polished gameplay systems that players love.
+  1273→                </p>
+  1274→                <p>
+  1275→                    I thrive in collaborative environments, working closely with designers and artists to bring creative 
+  1276→                    visions to life. As a hackathon participant, I'm accustomed to rapid prototyping and iterative 
+  1277→                    development under tight deadlines.
+  1278→                </p>
+  1279→                <p>
+  1280→                    My focus areas include <strong>player controllers</strong> with responsive movement, 
+  1281→                    <strong>intelligent enemy AI</strong> with complex behaviors, <strong>interactable UI systems</strong>, 
+  1282→                    and <strong>persistent save/load functionality</strong>.
+  1283→                </p>
+  1284→                
+  1285→                <div style="margin-top: 2rem; padding: 1.5rem; background: rgba(139, 92, 246, 0.1); border-left: 4px solid var(--accent-secondary); border-radius: 6px;">
+  1286→                    <strong style="color: var(--accent-secondary);">🎯 Currently Open To:</strong>
+  1287→                    <p style="margin-top: 0.5rem; color: var(--text-secondary); font-size: 0.95rem;">
+  1288→                        Game development opportunities, team collaborations, indie projects, and internship positions
+  1289→                    </p>
+  1290→                </div>
+  1291→            </div>
+  1292→
+  1293→            <div class="skills-section">
+  1294→                <h3>💼 Technical Skills</h3>
+  1295→                
+  1296→                <div class="skill-category">
+  1297→                    <h4>🎮 Game Development</h4>
+  1298→                    <ul class="skill-list">
+  1299→                        <li>Unity Engine (Advanced)</li>
+  1300→                        <li>Unreal Engine (Intermediate)</li>
+  1301→                        <li>C# Programming (Proficient)</li>
+  1302→                        <li>C/C++ (Intermediate)</li>
+  1303→                        <li>Game Physics & Collision Systems</li>
+  1304→                        <li>AI Behavior Trees & State Machines</li>
+  1305→                        <li>UI/UX Design for Games</li>
+  1306→                        <li>Version Control (Git)</li>
+  1307→                    </ul>
+  1308→                </div>
+  1309→
+  1310→                <div class="skill-category">
+  1311→                    <h4>💻 Software Engineering</h4>
+  1312→                    <ul class="skill-list">
+  1313→                        <li>Python (Proficient)</li>
+  1314→                        <li>SQL Databases</li>
+  1315→                        <li>Backend Development</li>
+  1316→                        <li>Software Architecture</li>
+  1317→                    </ul>
+  1318→                </div>
+  1319→
+  1320→                <div class="skill-category">
+  1321→                    <h4>🛠️ Tools & Workflow</h4>
+  1322→                    <ul class="skill-list">
+  1323→                        <li>Agile/Scrum Methodology</li>
+  1324→                        <li>Collaborative Team Development</li>
+  1325→                        <li>Rapid Prototyping</li>
+  1326→                        <li>Debugging & Optimization</li>
+  1327→                    </ul>
+  1328→                </div>
+  1329→            </div>
+  1330→        </div>
+  1331→
+  1332→        <div class="resume-download">
+  1333→            <h3>📥 Download Full Resume</h3>
+  1334→            <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">
+  1335→                Complete resume with detailed project descriptions, education history, achievements, and contact information
+  1336→            </p>
+  1337→            <a href="#" class="btn-primary">Download PDF Resume</a>
+  1338→        </div>
+  1339→    </section>
+  1340→
+  1341→    <!-- Contact Section -->
+  1342→    <section id="contact">
+  1343→        <h2 class="section-title">Get In Touch</h2>
+  1344→        <p class="section-subtitle">
+  1345→            Interested in collaborating on a game project, discussing opportunities, or just want to connect?
+  1346→        </p>
+  1347→
+  1348→        <div class="contact-grid">
+  1349→            <a href="https://github.com/SV-Gdev" class="contact-card" target="_blank">
+  1350→                <div class="contact-icon">💼</div>
+  1351→                <h3>GitHub</h3>
+  1352→                <p>Check out my code repositories, ongoing projects, and contributions</p>
+  1353→                <span class="contact-link">https://github.com/SV-Gdev</span>
+  1354→            </a>
+  1355→
+  1356→            <a href="https://www.linkedin.com/in/saurav-sharma-569097429" class="contact-card" target="_blank">
+  1357→                <div class="contact-icon">🔗</div>
+  1358→                <h3>LinkedIn</h3>
+  1359→                <p>Professional network, career updates, and recommendations</p>
+  1360→                <span class="contact-link">linkedin.com/in/saurav-sharma-569097429</span>
+  1361→            </a>
+  1362→
+  1363→            <div class="contact-card">
+  1364→                <div class="contact-icon">📧</div>
+  1365→                <h3>Email</h3>
+  1366→                <p>Direct contact for collaborations, job inquiries, and project discussions</p>
+  1367→                <span class="contact-link">[your.email@example.com]</span>
+  1368→            </div>
+  1369→        </div>
+  1370→
+  1371→        <div style="margin-top: 4rem; text-align: center; padding: 3rem; background: var(--bg-card); border-radius: 20px; border: 1px solid var(--border-color);">
+  1372→            <h3 style="font-size: 2rem; font-weight: 700; margin-bottom: 1rem; background: var(--accent-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+  1373→                Let's Build Something Amazing Together! ✨
+  1374→            </h3>
+  1375→            <p style="color: var(--text-secondary); font-size: 1.1rem; max-width: 700px; margin: 0 auto 2rem;">
+  1376→                Whether you're looking for a game developer for your team, want to discuss a project idea, 
+  1377→                or just want to chat about game development — don't hesitate to reach out.
+  1378→            </p>
+  1379→            <a href="mailto:[your.email@example.com]" class="btn-primary">Send Me a Message</a>
+  1380→        </div>
+  1381→    </section>
+  1382→
+  1383→    <!-- Footer -->
+  1384→    <footer>
+  1385→        <p>© 2024 Saurav Sharma | Game Developer Portfolio</p>
+  1386→        <p style="margin-top: 0.5rem; font-size: 0.85rem;">
+  1387→            Built with passion for game development • Unity • Unreal Engine
+  1388→        </p>
+  1389→    </footer>
+  1390→
+  1391→    <!-- Admin Panel Modal -->
+  1392→    <div class="admin-modal" id="adminModal">
+  1393→        <div class="admin-content">
+  1394→            <div class="admin-header">
+  1395→                <h2>🔒 Admin Dashboard</h2>
+  1396→                <button class="close-admin" onclick="closeAdminPanel()">&times;</button>
+  1397→            </div>
+  1398→
+  1399→            <!-- Login Form (shown when not authenticated) -->
+  1400→            <div class="admin-login-form" id="adminLoginForm">
+  1401→                <h3 style="text-align: center; margin-bottom: 0.5rem; color: var(--accent-primary);">Administrator Login</h3>
+  1402→                <p style="text-align: center; color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 2rem;">
+  1403→                    Secure access for site owner only
+  1404→                </p>
+  1405→                <div class="form-group">
+  1406→                    <label for="adminUsername">Username</label>
+  1407→                    <input type="text" id="adminUsername" placeholder="Enter admin username">
+  1408→                </div>
+  1409→                <div class="form-group">
+  1410→                    <label for="adminPassword">Password</label>
+  1411→                    <input type="password" id="adminPassword" placeholder="Enter admin password">
+  1412→                </div>
+  1413→                <button class="btn-primary" style="width: 100%;" onclick="adminLogin()">
+  1414→                    Login to Dashboard
+  1415→                </button>
+  1416→                <p id="loginError" style="color: #ff4444; text-align: center; margin-top: 1rem; display: none;">
+  1417→                    Invalid credentials. Please try again.
+  1418→                </p>
+  1419→            </div>
+  1420→
+  1421→            <!-- Admin Dashboard Content (shown after authentication) -->
+  1422→            <div id="adminDashboard" style="display: none;">
+  1423→                
+  1424→                <!-- Video Management Section -->
+  1425→                <div class="admin-section">
+  1426→                    <h3>🎥 Video Management</h3>
+  1427→                    
+  1428→                    <div style="margin-bottom: 2rem;">
+  1429→                        <h4 style="font-size: 1.1rem; margin-bottom: 1rem; color: var(--text-primary);">Upload New Video</h4>
+  1430→                        <div class="form-group">
+  1431→                            <label for="videoProject">Select Project</label>
+  1432→                            <select id="videoProject">
+  1433→                                <option value="">Choose a project...</option>
+  1434→                                <option value="shooter">Shooter Game (Flagship)</option>
+  1435→                                <option value="knuckle2">Knuckle2 (Group Project)</option>
+  1436→                                <option value="mario">Mario Recreation</option>
+  1437→                            </select>
+  1438→                        </div>
+  1439→                        <div class="upload-area" onclick="document.getElementById('videoFileInput').click()">
+  1440→                            <p style="font-size: 1.2rem; margin-bottom: 0.5rem;">📁 Click to upload video file</p>
+  1441→                            <p style="font-size: 0.9rem;">Supports MP4, WebM • Max 500MB</p>
+  1442→                            <input type="file" id="videoFileInput" accept="video/*" style="display: none;" onchange="handleVideoUpload(event)">
+  1443→                        </div>
+  1444→                        <div class="form-group">
+  1445→                            <label for="videoDescription">Video Description (displays below video on public page)</label>
+  1446→                            <textarea id="videoDescription" rows="3" placeholder="Enter description of this gameplay footage..."></textarea>
+  1447→                        </div>
+  1448→                        <div class="form-group">
+  1449→                            <label for="videoOrder">Display Order</label>
+  1450→                            <input type="number" id="videoOrder" placeholder="1" min="1">
+  1451→                        </div>
+  1452→                        <button class="btn-primary" onclick="uploadVideo()">Upload Video</button>
+  1453→                    </div>
+  1454→
+  1455→                    <div style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid var(--border-color);">
+  1456→                        <h4 style="font-size: 1.1rem; margin-bottom: 1rem; color: var(--text-primary);">Uploaded Videos</h4>
+  1457→                        <div style="background: rgba(0,0,0,0.3); padding: 2rem; border-radius: 8px; text-align: center; color: var(--text-secondary);">
+  1458→                            <p>No videos uploaded yet</p>
+  1459→                            <p style="font-size: 0.9rem; margin-top: 0.5rem;">Videos will appear here after upload</p>
+  1460→                        </div>
+  1461→                    </div>
+  1462→                </div>
+  1463→
+  1464→                <!-- Game Build Management Section -->
+  1465→                <div class="admin-section">
+  1466→                    <h3>🎮 Game Build Management</h3>
+  1467→                    
+  1468→                    <div style="margin-bottom: 2rem;">
+  1469→                        <h4 style="font-size: 1.1rem; margin-bottom: 1rem; color: var(--text-primary);">Upload Game Build</h4>
+  1470→                        <div class="form-group">
+  1471→                            <label for="buildProject">Select Project</label>
+  1472→                            <select id="buildProject">
+  1473→                                <option value="">Choose a project...</option>
+  1474→                                <option value="shooter">Shooter Game (Flagship)</option>
+  1475→                                <option value="knuckle2">Knuckle2 (Group Project)</option>
+  1476→                                <option value="mario">Mario Recreation</option>
+  1477→                            </select>
+  1478→                        </div>
+  1479→                        <div class="upload-area" onclick="document.getElementById('buildFileInput').click()">
+  1480→                            <p style="font-size: 1.2rem; margin-bottom: 0.5rem;">📦 Click to upload build folder (ZIP)</p>
+  1481→                            <p style="font-size: 0.9rem;">Unity WebGL build (with index.html) OR standalone executable (.exe)</p>
+  1482→                            <input type="file" id="buildFileInput" accept=".zip,.exe" style="display: none;" onchange="handleBuildUpload(event)">
+  1483→                        </div>
+  1484→                        <div class="form-group">
+  1485→                            <label for="buildVersion">Version Number</label>
+  1486→                            <input type="text" id="buildVersion" placeholder="e.g., v1.0.0, v1.1.0-beta">
+  1487→                        </div>
+  1488→                        <div class="form-group">
+  1489→                            <label for="buildType">Build Type</label>
+  1490→                            <select id="buildType">
+  1491→                                <option value="webgl">WebGL (Browser Playable via iframe)</option>
+  1492→                                <option value="standalone">Standalone (Downloadable ZIP/EXE)</option>
+  1493→                            </select>
+  1494→                        </div>
+  1495→                        <button class="btn-primary" onclick="uploadBuild()">Upload Build</button>
+  1496→                    </div>
+  1497→
+  1498→                    <div style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid var(--border-color);">
+  1499→                        <h4 style="font-size: 1.1rem; margin-bottom: 1rem; color: var(--text-primary);">Current Builds</h4>
+  1500→                        <div style="background: rgba(0,0,0,0.3); padding: 2rem; border-radius: 8px; text-align: center; color: var(--text-secondary);">
+  1501→                            <p>No builds uploaded yet</p>
+  1502→                            <p style="font-size: 0.9rem; margin-top: 0.5rem;">Upload a build to enable browser play or download</p>
+  1503→                        </div>
+  1504→                    </div>
+  1505→                </div>
+  1506→
+  1507→                <!-- Site Settings Section -->
+  1508→                <div class="admin-section">
+  1509→                    <h3>⚙️ Site Settings</h3>
+  1510→                    
+  1511→                    <div class="form-group">
+  1512→                        <label for="featuredProject">Featured Project</label>
+  1513→                        <select id="featuredProject">
+  1514→                            <option value="shooter" selected>Shooter Game</option>
+  1515→                            <option value="knuckle2">Knuckle2</option>
+  1516→                            <option value="mario">Mario Recreation</option>
+  1517→                        </select>
+  1518→                    </div>
+  1519→
+  1520→                    <div class="form-group">
+  1521→                        <label for="coverImageUpload">Project Cover Images</label>
+  1522→                        <div class="upload-area" onclick="document.getElementById('coverImageInput').click()" style="padding: 1.5rem;">
+  1523→                            <p style="font-size: 1rem;">🖼️ Upload cover image for selected project</p>
+  1524→                            <input type="file" id="coverImageInput" accept="image/*" style="display: none;">
+  1525→                        </div>
+  1526→                    </div>
+  1527→
+  1528→                    <button class="btn-primary" onclick="saveSettings()">Save Settings</button>
+  1529→                </div>
+  1530→
+  1531→                <div style="margin-top: 2rem; padding: 1.5rem; background: rgba(139, 92, 246, 0.1); border-radius: 8px; text-align: center;">
+  1532→                    <p style="color: var(--text-secondary); font-size: 0.9rem;">
+  1533→                        <strong style="color: var(--accent-secondary);">Note:</strong> All uploads are stored securely. 
+  1534→                        Visitors can only view content — never upload, edit, or delete.
+  1535→                    </p>
+  1536→                </div>
+  1537→
+  1538→            </div>
+  1539→        </div>
+  1540→    </div>
+  1541→
+  1542→    <script>
+  1543→        // Admin Panel Functions
+  1544→        let isAdminAuthenticated = false;
+  1545→
+  1546→        function openAdminPanel() {
+  1547→            document.getElementById('adminModal').classList.add('active');
+  1548→            document.body.style.overflow = 'hidden';
+  1549→            
+  1550→            if (!isAdminAuthenticated) {
+  1551→                document.getElementById('adminLoginForm').style.display = 'block';
+  1552→                document.getElementById('adminDashboard').style.display = 'none';
+  1553→            } else {
+  1554→                document.getElementById('adminLoginForm').style.display = 'none';
+  1555→                document.getElementById('adminDashboard').style.display = 'block';
+  1556→            }
+  1557→        }
+  1558→
+  1559→        function closeAdminPanel() {
+  1560→            document.getElementById('adminModal').classList.remove('active');
+  1561→            document.body.style.overflow = 'auto';
+  1562→        }
+  1563→
+  1564→        function adminLogin() {
+  1565→            const username = document.getElementById('adminUsername').value;
+  1566→            const password = document.getElementById('adminPassword').value;
+  1567→            
+  1568→            // Simple authentication (in production, use proper backend auth)
+  1569→            if (username === 'admin' && password === 'password') {
+  1570→                isAdminAuthenticated = true;
+  1571→                document.getElementById('adminLoginForm').style.display = 'none';
+  1572→                document.getElementById('adminDashboard').style.display = 'block';
+  1573→                document.getElementById('loginError').style.display = 'none';
+  1574→            } else {
+  1575→                document.getElementById('loginError').style.display = 'block';
+  1576→            }
+  1577→        }
+  1578→
+  1579→        function handleVideoUpload(event) {
+  1580→            const file = event.target.files[0];
+  1581→            if (file) {
+  1582→                // In production, upload to server
+  1583→                console.log('Video selected:', file.name);
+  1584→                alert('Video "' + file.name + '" selected for upload.\n\nIn production, this would upload to your server/storage.');
+  1585→            }
+  1586→        }
+  1587→
+  1588→        function handleBuildUpload(event) {
+  1589→            const file = event.target.files[0];
+  1590→            if (file) {
+  1591→                // In production, upload to server
+  1592→                console.log('Build selected:', file.name);
+  1593→                alert('Build file "' + file.name + '" selected for upload.\n\nIn production, this would:\n- Extract WebGL builds for iframe hosting\n- Store executables for download');
+  1594→            }
+  1595→        }
+  1596→
+  1597→        function uploadVideo() {
+  1598→            const project = document.getElementById('videoProject').value;
+  1599→            const description = document.getElementById('videoDescription').value;
+  1600→            
+  1601→            if (!project || !description) {
+  1602→                alert('Please select a project and enter a video description.');
+  1603→                return;
+  1604→            }
+  1605→            
+  1606→            alert('Video upload initiated!\n\nProject: ' + project + '\nDescription: ' + description + '\n\nIn production, this would upload the video file and associate it with the selected project.');
+  1607→        }
+  1608→
+  1609→        function uploadBuild() {
+  1610→            const project = document.getElementById('buildProject').value;
+  1611→            const version = document.getElementById('buildVersion').value;
+  1612→            const buildType = document.getElementById('buildType').value;
+  1613→            
+  1614→            if (!project || !version) {
+  1615→                alert('Please select a project and enter a version number.');
+  1616→                return;
+  1617→            }
+  1618→            
+  1619→            alert('Build upload initiated!\n\nProject: ' + project + '\nVersion: ' + version + '\nType: ' + buildType + '\n\nIn production, this would:\n- Host WebGL builds for browser play\n- Provide download links for executables');
+  1620→        }
+  1621→
+  1622→        function saveSettings() {
+  1623→            alert('Settings saved successfully!\n\nIn production, this would update site configuration.');
+  1624→        }
+  1625→
+  1626→        // Close modal on escape key
+  1627→        document.addEventListener('keydown', function(e) {
+  1628→            if (e.key === 'Escape') {
+  1629→                closeAdminPanel();
+  1630→            }
+  1631→        });
+  1632→
+  1633→        // Close modal when clicking outside
+  1634→        document.getElementById('adminModal').addEventListener('click', function(e) {
+  1635→            if (e.target === this) {
+  1636→                closeAdminPanel();
+  1637→            }
+  1638→        });
+  1639→
+  1640→        // Smooth scroll for navigation links
+  1641→        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  1642→            anchor.addEventListener('click', function (e) {
+  1643→                e.preventDefault();
+  1644→                const target = document.querySelector(this.getAttribute('href'));
+  1645→                if (target) {
+  1646→                    target.scrollIntoView({
+  1647→                        behavior: 'smooth',
+  1648→                        block: 'start'
+  1649→                    });
+  1650→                }
+  1651→            });
+  1652→        });
+  1653→    </script>
+  1654→
+  1655→</body>
+  1656→</html>

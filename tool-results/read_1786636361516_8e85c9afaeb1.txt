@@ -1,0 +1,656 @@
+  1001→
+  1002→    <!-- Featured Project -->
+  1003→    <section id="featured-project">
+  1004→        <div class="featured-header">
+  1005→            <span class="featured-icon">🎮</span>
+  1006→            <div>
+  1007→                <div class="featured-label">Flagship Project</div>
+  1008→                <h2 class="featured-title">Shooter Game — Third-Person Action Experience</h2>
+  1009→            </div>
+  1010→        </div>
+  1011→
+  1012→        <p class="featured-description">
+  1013→            A fully-featured third-person action shooter showcasing advanced game development skills. 
+  1014→            This project demonstrates expertise in enemy AI programming, inventory management systems, 
+  1015→            and persistent save/load functionality — all built from the ground up in Unity.
+  1016→        </p>
+  1017→
+  1018→        <div class="features-grid">
+  1019→            <div class="feature-item">
+  1020→                <strong>🎯 Intelligent Enemy AI</strong>
+  1021→                Pathfinding, combat behavior trees, and dynamic difficulty scaling
+  1022→            </div>
+  1023→            <div class="feature-item">
+  1024→                <strong>📦 Inventory System</strong>
+  1025→                Complete item management with stacking, usage, and persistence
+  1026→            </div>
+  1027→            <div class="feature-item">
+  1028→                <strong>💾 Save/Load System</strong>
+  1029→                Persistent player progress with JSON serialization
+  1030→            </div>
+  1031→            <div class="feature-item">
+  1032→                <strong>🔫 Combat Mechanics</strong>
+  1033→                Weapon switching, ammo management, and hit detection
+  1034→            </div>
+  1035→            <div class="feature-item">
+  1036→                <strong>🎥 Camera System</strong>
+  1037→                Smooth third-person camera with collision and zoom
+  1038→            </div>
+  1039→            <div class="feature-item">
+  1040→                <strong>🎮 Player Controller</strong>
+  1041→                Responsive movement, jumping, and interaction systems
+  1042→            </div>
+  1043→        </div>
+  1044→
+  1045→        <!-- Gameplay Videos Container (Admin can add multiple videos here) -->
+  1046→        <div class="video-container">
+  1047→            <h4 style="color: var(--accent-primary); margin-bottom: 1rem;">📺 Gameplay Showcase</h4>
+  1048→            <div style="background: rgba(0,0,0,0.5); padding: 4rem; border-radius: 8px; text-align: center; color: var(--text-secondary);">
+  1049→                <p style="font-size: 1.1rem; margin-bottom: 0.5rem;">🎬 Gameplay videos will appear here</p>
+  1050→                <p style="font-size: 0.9rem;">Upload videos via admin panel to showcase this project</p>
+  1051→            </div>
+  1052→            <div class="video-description">
+  1053→                <strong>Video Description:</strong> Admin-uploaded gameplay footage demonstrating core mechanics, 
+  1054→                enemy AI behavior, inventory system, and combat flow. Each video includes detailed captions 
+  1055→                explaining showcased features.
+  1056→            </div>
+  1057→        </div>
+  1058→
+  1059→        <!-- Game Build Player (WebGL embed or download fallback) -->
+  1060→        <div class="game-build-container">
+  1061→            <h4 style="color: var(--accent-primary); margin-bottom: 1rem;">🕹️ Play In Browser</h4>
+  1062→            <iframe class="build-player" src="about:blank" title="Game Build Player"></iframe>
+  1063→            <p style="color: var(--text-secondary); text-align: center; margin-top: 1rem; font-size: 0.9rem;">
+  1064→                WebGL build will load here • Upload build via admin panel
+  1065→            </p>
+  1066→        </div>
+  1067→
+  1068→        <div class="project-meta">
+  1069→            <div class="meta-item">
+  1070→                <span class="meta-label">Technology:</span>
+  1071→                <span class="meta-value">Unity • C#</span>
+  1072→            </div>
+  1073→            <div class="meta-item">
+  1074→                <span class="meta-label">Repository:</span>
+  1075→                <a href="https://github.com/mitthubadmash/Final-Assignment" class="meta-value" style="color: var(--accent-primary);">GitHub →</a>
+  1076→            </div>
+  1077→            <div class="meta-item">
+  1078→                <span class="meta-label">Category:</span>
+  1079→                <span class="meta-value">Action Shooter</span>
+  1080→            </div>
+  1081→        </div>
+  1082→
+  1083→        <div class="cta-buttons" style="margin-top: 2rem;">
+  1084→            <a href="#" class="btn-primary">▶ Play Demo</a>
+  1085→            <a href="https://github.com/mitthubadmash/Final-Assignment" class="btn-secondary">View Source Code</a>
+  1086→        </div>
+  1087→    </section>
+  1088→
+  1089→    <!-- Projects Section -->
+  1090→    <section id="projects">
+  1091→        <h2 class="section-title">Game Development Portfolio</h2>
+  1092→        <p class="section-subtitle">A collection of projects showcasing game development, teamwork, and technical skills</p>
+  1093→
+  1094→        <div class="projects-grid">
+  1095→
+  1096→            <!-- Project 1: Knuckle2 Group Project -->
+  1097→            <article class="project-card">
+  1098→                <div class="project-image-wrapper">
+  1099→                    <img src="https://qc4n.bigmodel.cn/9af01nKwI_cropped.png?UCloudPublicKey=TOKEN_3f4277c6-f8d6-41a9-968b-dbfa0994d483&Expires=1818168382&Signature=JVdLeCJ%2Fxq2S83vR8Q8ce%2B3SatE%3D" alt="Knuckle2 Action Adventure Game Screenshot">
+  1100→                    <div class="project-role-badge">My Role: UI Systems, Combat, Timeline Sequencing</div>
+  1101→                </div>
+  1102→                <div class="project-content">
+  1103→                    <div class="project-header">
+  1104→                        <div>
+  1105→                            <h3 class="project-title">🎯 Knuckle2 — Action/Adventure</h3>
+  1106→                            <span class="project-category">TEAM PROJECT</span>
+  1107→                        </div>
+  1108→                    </div>
+  1109→                    <p class="project-description">
+  1110→                        A team-built action-adventure game featuring cinematic cutscenes, branching dialogue system, 
+  1111→                        dynamic combat mechanics, full settings/resolution menu, main menu interface, timeline-based 
+  1112→                        cutscene sequencing, and an innovative Rock-Paper-Scissors mini-game system. Collaborated 
+  1113→                        closely with designers and artists in an agile development environment.
+  1114→                    </p>
+  1115→                    <div class="project-tech-tags">
+  1116→                        <span class="tech-tag-small">Unity</span>
+  1117→                        <span class="tech-tag-small">C#</span>
+  1118→                        <span class="tech-tag-small">Timeline Cinematics</span>
+  1119→                        <span class="tech-tag-small">UI Systems</span>
+  1120→                        <span class="tech-tag-small">Dialogue System</span>
+  1121→                    </div>
+  1122→                    
+  1123→                    <!-- Video container for this project -->
+  1124→                    <div class="video-container">
+  1125→                        <h4 style="color: var(--accent-primary); margin-bottom: 1rem; font-size: 1rem;">📺 Project Videos</h4>
+  1126→                        <div style="background: rgba(0,0,0,0.5); padding: 2rem; border-radius: 8px; text-align: center; color: var(--text-secondary);">
+  1127→                            <p>🎬 Upload gameplay videos via admin panel</p>
+  1128→                        </div>
+  1129→                    </div>
+  1130→
+  1131→                    <!-- Game build for this project -->
+  1132→                    <div class="game-build-container">
+  1133→                        <h4 style="color: var(--accent-primary); margin-bottom: 1rem; font-size: 1rem;">🕹️ Playable Build</h4>
+  1134→                        <div class="download-fallback">
+  1135→                            <p>Build not yet uploaded</p>
+  1136→                            <button class="btn-project primary">Notify When Available</button>
+  1137→                        </div>
+  1138→                    </div>
+  1139→
+  1140→                    <div class="project-actions">
+  1141→                        <a href="https://github.com/CCCDEADPOOLXD/Knuckle2" class="btn-project primary">View on GitHub</a>
+  1142→                        <a href="#" class="btn-project">Watch Videos</a>
+  1143→                        <a href="#" class="btn-project">Project Details</a>
+  1144→                    </div>
+  1145→                </div>
+  1146→            </article>
+  1147→
+  1148→            <!-- Project 2: Mario Recreation -->
+  1149→            <article class="project-card">
+  1150→                <div class="project-image-wrapper">
+  1151→                    <img src="https://qc4n.bigmodel.cn/015946HNU_cropped.png?UCloudPublicKey=TOKEN_3f4277c6-f8d6-41a9-968b-dbfa0994d483&Expires=1818168377&Signature=znT8muEBE6%2BJXHU556PckSqUSK4%3D" alt="Mario Recreation Platformer Game">
+  1152→                </div>
+  1153→                <div class="project-content">
+  1154→                    <div class="project-header">
+  1155→                        <div>
+  1156→                            <h3 class="project-title">🍄 Mario Recreation — Platformer</h3>
+  1157→                            <span class="project-category">LEARNING PROJECT</span>
+  1158→                        </div>
+  1159→                    </div>
+  1160→                    <p class="project-description">
+  1161→                        A faithful recreation of classic Mario-style platformer mechanics focusing on precise movement physics, 
+  1162→                        collision detection, tile-based level design, enemy interactions, and power-up systems. This learning 
+  1163→                        project demonstrates foundational game development principles and 2D physics implementation.
+  1164→                    </p>
+  1165→                    <div class="project-tech-tags">
+  1166→                        <span class="tech-tag-small">Unity</span>
+  1167→                        <span class="tech-tag-small">C#</span>
+  1168→                        <span class="tech-tag-small">2D Physics</span>
+  1169→                        <span class="tech-tag-small">Tile-Based Design</span>
+  1170→                        <span class="tech-tag-small">Pixel Art</span>
+  1171→                    </div>
+  1172→
+  1173→                    <div class="project-actions">
+  1174→                        <a href="#" class="btn-project">View Screenshots</a>
+  1175→                        <a href="#" class="btn-project">Coming Soon</a>
+  1176→                    </div>
+  1177→                </div>
+  1178→            </article>
+  1179→
+  1180→            <!-- Other Projects Section Header -->
+  1181→            <div style="margin-top: 4rem; padding-top: 3rem; border-top: 2px solid var(--border-color);">
+  1182→                <h3 style="font-size: 2rem; font-weight: 700; color: var(--accent-secondary); margin-bottom: 0.5rem;">
+  1183→                    🏥 Other Projects
+  1184→                </h3>
+  1185→                <p style="color: var(--text-secondary); margin-bottom: 2rem;">
+  1186→                    Software engineering and backend development projects
+  1187→                </p>
+  1188→            </div>
+  1189→
+  1190→            <!-- Project 3: Healthcare Software (Other Projects) -->
+  1191→            <article class="project-card">
+  1192→                <div class="project-content" style="padding-top: 3rem;">
+  1193→                    <div class="project-header">
+  1194→                        <div>
+  1195→                            <h3 class="project-title">🏥 Orion Backend — Healthcare Software</h3>
+  1196→                            <span class="project-category">SOFTWARE ENGINEERING</span>
+  1197→                        </div>
+  1198→                    </div>
+  1199→                    <p class="project-description">
+  1200→                        Engineering coursework project focused on healthcare backend software development. Built robust data 
+  1201→                        management systems for medical applications, implementing secure database architecture and RESTful API 
+  1202→                        endpoints for healthcare data handling.
+  1203→                    </p>
+  1204→                    <div class="project-tech-tags">
+  1205→                        <span class="tech-tag-small">Python</span>
+  1206→                        <span class="tech-tag-small">SQL</span>
+  1207→                        <span class="tech-tag-small">Backend Architecture</span>
+  1208→                        <span class="tech-tag-small">Database Design</span>
+  1209→                    </div>
+  1210→                    <div class="project-actions">
+  1211→                        <a href="https://github.com/AARAV-git/orion-backend" class="btn-project primary">View on GitHub</a>
+  1212→                        <a href="#" class="btn-project">Documentation</a>
+  1213→                    </div>
+  1214→                </div>
+  1215→            </article>
+  1216→
+  1217→        </div>
+  1218→    </section>
+  1219→
+  1220→    <!-- Research Section -->
+  1221→    <section id="research">
+  1222→        <div class="featured-header">
+  1223→            <span class="featured-icon">📄</span>
+  1224→            <div>
+  1225→                <div class="featured-label">Academic Research</div>
+  1226→                <h2 class="section-title" style="margin-bottom: 0.5rem;">Research Publication</h2>
+  1227→            </div>
+  1228→        </div>
+  1229→
+  1230→        <div class="research-paper">
+  1231→            <h3 class="paper-title">[Paper Title Placeholder]</h3>
+  1232→            
+  1233→            <div class="paper-abstract">
+  1234→                <strong style="color: var(--accent-primary); display: block; margin-bottom: 0.8rem;">Abstract:</strong>
+  1235→                [One-paragraph research abstract describing the paper's focus, methodology, findings, and contributions 
+  1236→                to the field. This section will be updated with actual research content once the paper is finalized 
+  1237→                and ready for publication. The abstract will provide readers with a comprehensive overview of the 
+  1238→                research objectives, approach, key findings, and significance of the work.]
+  1239→            </div>
+  1240→
+  1241→            <div class="paper-meta">
+  1242→                <div class="meta-item">
+  1243→                    <span class="meta-label">Publication Status:</span>
+  1244→                    <span class="meta-value">[Journal/Conference Name] — [Year]</span>
+  1245→                </div>
+  1246→                <div class="meta-item">
+  1247→                    <span class="meta-label">Research Topics:</span>
+  1248→                    <span class="meta-value">[Keywords]</span>
+  1249→                </div>
+  1250→            </div>
+  1251→
+  1252→            <div class="project-actions">
+  1253→                <a href="#" class="btn-project primary">📥 Download PDF</a>
+  1254→                <a href="#" class="btn-project">Read Online</a>
+  1255→                <a href="#" class="btn-project">Citation</a>
+  1256→            </div>
+  1257→        </div>
+  1258→    </section>
+  1259→
+  1260→    <!-- About Section -->
+  1261→    <section id="about">
+  1262→        <h2 class="section-title">About Me & Resume</h2>
+  1263→        <p class="section-subtitle">Skills, experience, and professional background</p>
+  1264→
+  1265→        <div class="about-grid">
+  1266→            <div class="about-bio">
+  1267→                <h3>👤 Who I Am</h3>
+  1268→                <p>
+  1269→                    I'm <strong style="color: var(--accent-primary);">Saurav Sharma</strong>, an aspiring game developer 
+  1270→                    passionate about creating immersive interactive experiences. With hands-on experience in both 
+  1271→                    <strong>Unity (1.5+ years)</strong> and <strong>Unreal Engine (7 months)</strong>, I specialize in 
+  1272→                    building polished gameplay systems that players love.
+  1273→                </p>
+  1274→                <p>
+  1275→                    I thrive in collaborative environments, working closely with designers and artists to bring creative 
+  1276→                    visions to life. As a hackathon participant, I'm accustomed to rapid prototyping and iterative 
+  1277→                    development under tight deadlines.
+  1278→                </p>
+  1279→                <p>
+  1280→                    My focus areas include <strong>player controllers</strong> with responsive movement, 
+  1281→                    <strong>intelligent enemy AI</strong> with complex behaviors, <strong>interactable UI systems</strong>, 
+  1282→                    and <strong>persistent save/load functionality</strong>.
+  1283→                </p>
+  1284→                
+  1285→                <div style="margin-top: 2rem; padding: 1.5rem; background: rgba(139, 92, 246, 0.1); border-left: 4px solid var(--accent-secondary); border-radius: 6px;">
+  1286→                    <strong style="color: var(--accent-secondary);">🎯 Currently Open To:</strong>
+  1287→                    <p style="margin-top: 0.5rem; color: var(--text-secondary); font-size: 0.95rem;">
+  1288→                        Game development opportunities, team collaborations, indie projects, and internship positions
+  1289→                    </p>
+  1290→                </div>
+  1291→            </div>
+  1292→
+  1293→            <div class="skills-section">
+  1294→                <h3>💼 Technical Skills</h3>
+  1295→                
+  1296→                <div class="skill-category">
+  1297→                    <h4>🎮 Game Development</h4>
+  1298→                    <ul class="skill-list">
+  1299→                        <li>Unity Engine (Advanced)</li>
+  1300→                        <li>Unreal Engine (Intermediate)</li>
+  1301→                        <li>C# Programming (Proficient)</li>
+  1302→                        <li>C/C++ (Intermediate)</li>
+  1303→                        <li>Game Physics & Collision Systems</li>
+  1304→                        <li>AI Behavior Trees & State Machines</li>
+  1305→                        <li>UI/UX Design for Games</li>
+  1306→                        <li>Version Control (Git)</li>
+  1307→                    </ul>
+  1308→                </div>
+  1309→
+  1310→                <div class="skill-category">
+  1311→                    <h4>💻 Software Engineering</h4>
+  1312→                    <ul class="skill-list">
+  1313→                        <li>Python (Proficient)</li>
+  1314→                        <li>SQL Databases</li>
+  1315→                        <li>Backend Development</li>
+  1316→                        <li>Software Architecture</li>
+  1317→                    </ul>
+  1318→                </div>
+  1319→
+  1320→                <div class="skill-category">
+  1321→                    <h4>🛠️ Tools & Workflow</h4>
+  1322→                    <ul class="skill-list">
+  1323→                        <li>Agile/Scrum Methodology</li>
+  1324→                        <li>Collaborative Team Development</li>
+  1325→                        <li>Rapid Prototyping</li>
+  1326→                        <li>Debugging & Optimization</li>
+  1327→                    </ul>
+  1328→                </div>
+  1329→            </div>
+  1330→        </div>
+  1331→
+  1332→        <div class="resume-download">
+  1333→            <h3>📥 Download Full Resume</h3>
+  1334→            <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">
+  1335→                Complete resume with detailed project descriptions, education history, achievements, and contact information
+  1336→            </p>
+  1337→            <a href="#" class="btn-primary">Download PDF Resume</a>
+  1338→        </div>
+  1339→    </section>
+  1340→
+  1341→    <!-- Contact Section -->
+  1342→    <section id="contact">
+  1343→        <h2 class="section-title">Get In Touch</h2>
+  1344→        <p class="section-subtitle">
+  1345→            Interested in collaborating on a game project, discussing opportunities, or just want to connect?
+  1346→        </p>
+  1347→
+  1348→        <div class="contact-grid">
+  1349→            <a href="https://github.com/SV-Gdev" class="contact-card" target="_blank">
+  1350→                <div class="contact-icon">💼</div>
+  1351→                <h3>GitHub</h3>
+  1352→                <p>Check out my code repositories, ongoing projects, and contributions</p>
+  1353→                <span class="contact-link">https://github.com/SV-Gdev</span>
+  1354→            </a>
+  1355→
+  1356→            <a href="https://www.linkedin.com/in/saurav-sharma-569097429" class="contact-card" target="_blank">
+  1357→                <div class="contact-icon">🔗</div>
+  1358→                <h3>LinkedIn</h3>
+  1359→                <p>Professional network, career updates, and recommendations</p>
+  1360→                <span class="contact-link">linkedin.com/in/saurav-sharma-569097429</span>
+  1361→            </a>
+  1362→
+  1363→            <div class="contact-card">
+  1364→                <div class="contact-icon">📧</div>
+  1365→                <h3>Email</h3>
+  1366→                <p>Direct contact for collaborations, job inquiries, and project discussions</p>
+  1367→                <span class="contact-link">[your.email@example.com]</span>
+  1368→            </div>
+  1369→        </div>
+  1370→
+  1371→        <div style="margin-top: 4rem; text-align: center; padding: 3rem; background: var(--bg-card); border-radius: 20px; border: 1px solid var(--border-color);">
+  1372→            <h3 style="font-size: 2rem; font-weight: 700; margin-bottom: 1rem; background: var(--accent-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+  1373→                Let's Build Something Amazing Together! ✨
+  1374→            </h3>
+  1375→            <p style="color: var(--text-secondary); font-size: 1.1rem; max-width: 700px; margin: 0 auto 2rem;">
+  1376→                Whether you're looking for a game developer for your team, want to discuss a project idea, 
+  1377→                or just want to chat about game development — don't hesitate to reach out.
+  1378→            </p>
+  1379→            <a href="mailto:[your.email@example.com]" class="btn-primary">Send Me a Message</a>
+  1380→        </div>
+  1381→    </section>
+  1382→
+  1383→    <!-- Footer -->
+  1384→    <footer>
+  1385→        <p>© 2024 Saurav Sharma | Game Developer Portfolio</p>
+  1386→        <p style="margin-top: 0.5rem; font-size: 0.85rem;">
+  1387→            Built with passion for game development • Unity • Unreal Engine
+  1388→        </p>
+  1389→    </footer>
+  1390→
+  1391→    <!-- Admin Panel Modal -->
+  1392→    <div class="admin-modal" id="adminModal">
+  1393→        <div class="admin-content">
+  1394→            <div class="admin-header">
+  1395→                <h2>🔒 Admin Dashboard</h2>
+  1396→                <button class="close-admin" onclick="closeAdminPanel()">&times;</button>
+  1397→            </div>
+  1398→
+  1399→            <!-- Login Form (shown when not authenticated) -->
+  1400→            <div class="admin-login-form" id="adminLoginForm">
+  1401→                <h3 style="text-align: center; margin-bottom: 0.5rem; color: var(--accent-primary);">Administrator Login</h3>
+  1402→                <p style="text-align: center; color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 2rem;">
+  1403→                    Secure access for site owner only
+  1404→                </p>
+  1405→                <div class="form-group">
+  1406→                    <label for="adminUsername">Username</label>
+  1407→                    <input type="text" id="adminUsername" placeholder="Enter admin username">
+  1408→                </div>
+  1409→                <div class="form-group">
+  1410→                    <label for="adminPassword">Password</label>
+  1411→                    <input type="password" id="adminPassword" placeholder="Enter admin password">
+  1412→                </div>
+  1413→                <button class="btn-primary" style="width: 100%;" onclick="adminLogin()">
+  1414→                    Login to Dashboard
+  1415→                </button>
+  1416→                <p id="loginError" style="color: #ff4444; text-align: center; margin-top: 1rem; display: none;">
+  1417→                    Invalid credentials. Please try again.
+  1418→                </p>
+  1419→            </div>
+  1420→
+  1421→            <!-- Admin Dashboard Content (shown after authentication) -->
+  1422→            <div id="adminDashboard" style="display: none;">
+  1423→                
+  1424→                <!-- Video Management Section -->
+  1425→                <div class="admin-section">
+  1426→                    <h3>🎥 Video Management</h3>
+  1427→                    
+  1428→                    <div style="margin-bottom: 2rem;">
+  1429→                        <h4 style="font-size: 1.1rem; margin-bottom: 1rem; color: var(--text-primary);">Upload New Video</h4>
+  1430→                        <div class="form-group">
+  1431→                            <label for="videoProject">Select Project</label>
+  1432→                            <select id="videoProject">
+  1433→                                <option value="">Choose a project...</option>
+  1434→                                <option value="shooter">Shooter Game (Flagship)</option>
+  1435→                                <option value="knuckle2">Knuckle2 (Group Project)</option>
+  1436→                                <option value="mario">Mario Recreation</option>
+  1437→                            </select>
+  1438→                        </div>
+  1439→                        <div class="upload-area" onclick="document.getElementById('videoFileInput').click()">
+  1440→                            <p style="font-size: 1.2rem; margin-bottom: 0.5rem;">📁 Click to upload video file</p>
+  1441→                            <p style="font-size: 0.9rem;">Supports MP4, WebM • Max 500MB</p>
+  1442→                            <input type="file" id="videoFileInput" accept="video/*" style="display: none;" onchange="handleVideoUpload(event)">
+  1443→                        </div>
+  1444→                        <div class="form-group">
+  1445→                            <label for="videoDescription">Video Description (displays below video on public page)</label>
+  1446→                            <textarea id="videoDescription" rows="3" placeholder="Enter description of this gameplay footage..."></textarea>
+  1447→                        </div>
+  1448→                        <div class="form-group">
+  1449→                            <label for="videoOrder">Display Order</label>
+  1450→                            <input type="number" id="videoOrder" placeholder="1" min="1">
+  1451→                        </div>
+  1452→                        <button class="btn-primary" onclick="uploadVideo()">Upload Video</button>
+  1453→                    </div>
+  1454→
+  1455→                    <div style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid var(--border-color);">
+  1456→                        <h4 style="font-size: 1.1rem; margin-bottom: 1rem; color: var(--text-primary);">Uploaded Videos</h4>
+  1457→                        <div style="background: rgba(0,0,0,0.3); padding: 2rem; border-radius: 8px; text-align: center; color: var(--text-secondary);">
+  1458→                            <p>No videos uploaded yet</p>
+  1459→                            <p style="font-size: 0.9rem; margin-top: 0.5rem;">Videos will appear here after upload</p>
+  1460→                        </div>
+  1461→                    </div>
+  1462→                </div>
+  1463→
+  1464→                <!-- Game Build Management Section -->
+  1465→                <div class="admin-section">
+  1466→                    <h3>🎮 Game Build Management</h3>
+  1467→                    
+  1468→                    <div style="margin-bottom: 2rem;">
+  1469→                        <h4 style="font-size: 1.1rem; margin-bottom: 1rem; color: var(--text-primary);">Upload Game Build</h4>
+  1470→                        <div class="form-group">
+  1471→                            <label for="buildProject">Select Project</label>
+  1472→                            <select id="buildProject">
+  1473→                                <option value="">Choose a project...</option>
+  1474→                                <option value="shooter">Shooter Game (Flagship)</option>
+  1475→                                <option value="knuckle2">Knuckle2 (Group Project)</option>
+  1476→                                <option value="mario">Mario Recreation</option>
+  1477→                            </select>
+  1478→                        </div>
+  1479→                        <div class="upload-area" onclick="document.getElementById('buildFileInput').click()">
+  1480→                            <p style="font-size: 1.2rem; margin-bottom: 0.5rem;">📦 Click to upload build folder (ZIP)</p>
+  1481→                            <p style="font-size: 0.9rem;">Unity WebGL build (with index.html) OR standalone executable (.exe)</p>
+  1482→                            <input type="file" id="buildFileInput" accept=".zip,.exe" style="display: none;" onchange="handleBuildUpload(event)">
+  1483→                        </div>
+  1484→                        <div class="form-group">
+  1485→                            <label for="buildVersion">Version Number</label>
+  1486→                            <input type="text" id="buildVersion" placeholder="e.g., v1.0.0, v1.1.0-beta">
+  1487→                        </div>
+  1488→                        <div class="form-group">
+  1489→                            <label for="buildType">Build Type</label>
+  1490→                            <select id="buildType">
+  1491→                                <option value="webgl">WebGL (Browser Playable via iframe)</option>
+  1492→                                <option value="standalone">Standalone (Downloadable ZIP/EXE)</option>
+  1493→                            </select>
+  1494→                        </div>
+  1495→                        <button class="btn-primary" onclick="uploadBuild()">Upload Build</button>
+  1496→                    </div>
+  1497→
+  1498→                    <div style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid var(--border-color);">
+  1499→                        <h4 style="font-size: 1.1rem; margin-bottom: 1rem; color: var(--text-primary);">Current Builds</h4>
+  1500→                        <div style="background: rgba(0,0,0,0.3); padding: 2rem; border-radius: 8px; text-align: center; color: var(--text-secondary);">
+  1501→                            <p>No builds uploaded yet</p>
+  1502→                            <p style="font-size: 0.9rem; margin-top: 0.5rem;">Upload a build to enable browser play or download</p>
+  1503→                        </div>
+  1504→                    </div>
+  1505→                </div>
+  1506→
+  1507→                <!-- Site Settings Section -->
+  1508→                <div class="admin-section">
+  1509→                    <h3>⚙️ Site Settings</h3>
+  1510→                    
+  1511→                    <div class="form-group">
+  1512→                        <label for="featuredProject">Featured Project</label>
+  1513→                        <select id="featuredProject">
+  1514→                            <option value="shooter" selected>Shooter Game</option>
+  1515→                            <option value="knuckle2">Knuckle2</option>
+  1516→                            <option value="mario">Mario Recreation</option>
+  1517→                        </select>
+  1518→                    </div>
+  1519→
+  1520→                    <div class="form-group">
+  1521→                        <label for="coverImageUpload">Project Cover Images</label>
+  1522→                        <div class="upload-area" onclick="document.getElementById('coverImageInput').click()" style="padding: 1.5rem;">
+  1523→                            <p style="font-size: 1rem;">🖼️ Upload cover image for selected project</p>
+  1524→                            <input type="file" id="coverImageInput" accept="image/*" style="display: none;">
+  1525→                        </div>
+  1526→                    </div>
+  1527→
+  1528→                    <button class="btn-primary" onclick="saveSettings()">Save Settings</button>
+  1529→                </div>
+  1530→
+  1531→                <div style="margin-top: 2rem; padding: 1.5rem; background: rgba(139, 92, 246, 0.1); border-radius: 8px; text-align: center;">
+  1532→                    <p style="color: var(--text-secondary); font-size: 0.9rem;">
+  1533→                        <strong style="color: var(--accent-secondary);">Note:</strong> All uploads are stored securely. 
+  1534→                        Visitors can only view content — never upload, edit, or delete.
+  1535→                    </p>
+  1536→                </div>
+  1537→
+  1538→            </div>
+  1539→        </div>
+  1540→    </div>
+  1541→
+  1542→    <script>
+  1543→        // Admin Panel Functions
+  1544→        let isAdminAuthenticated = false;
+  1545→
+  1546→        function openAdminPanel() {
+  1547→            document.getElementById('adminModal').classList.add('active');
+  1548→            document.body.style.overflow = 'hidden';
+  1549→            
+  1550→            if (!isAdminAuthenticated) {
+  1551→                document.getElementById('adminLoginForm').style.display = 'block';
+  1552→                document.getElementById('adminDashboard').style.display = 'none';
+  1553→            } else {
+  1554→                document.getElementById('adminLoginForm').style.display = 'none';
+  1555→                document.getElementById('adminDashboard').style.display = 'block';
+  1556→            }
+  1557→        }
+  1558→
+  1559→        function closeAdminPanel() {
+  1560→            document.getElementById('adminModal').classList.remove('active');
+  1561→            document.body.style.overflow = 'auto';
+  1562→        }
+  1563→
+  1564→        function adminLogin() {
+  1565→            const username = document.getElementById('adminUsername').value;
+  1566→            const password = document.getElementById('adminPassword').value;
+  1567→            
+  1568→            // Simple authentication (in production, use proper backend auth)
+  1569→            if (username === 'admin' && password === 'password') {
+  1570→                isAdminAuthenticated = true;
+  1571→                document.getElementById('adminLoginForm').style.display = 'none';
+  1572→                document.getElementById('adminDashboard').style.display = 'block';
+  1573→                document.getElementById('loginError').style.display = 'none';
+  1574→            } else {
+  1575→                document.getElementById('loginError').style.display = 'block';
+  1576→            }
+  1577→        }
+  1578→
+  1579→        function handleVideoUpload(event) {
+  1580→            const file = event.target.files[0];
+  1581→            if (file) {
+  1582→                // In production, upload to server
+  1583→                console.log('Video selected:', file.name);
+  1584→                alert('Video "' + file.name + '" selected for upload.\n\nIn production, this would upload to your server/storage.');
+  1585→            }
+  1586→        }
+  1587→
+  1588→        function handleBuildUpload(event) {
+  1589→            const file = event.target.files[0];
+  1590→            if (file) {
+  1591→                // In production, upload to server
+  1592→                console.log('Build selected:', file.name);
+  1593→                alert('Build file "' + file.name + '" selected for upload.\n\nIn production, this would:\n- Extract WebGL builds for iframe hosting\n- Store executables for download');
+  1594→            }
+  1595→        }
+  1596→
+  1597→        function uploadVideo() {
+  1598→            const project = document.getElementById('videoProject').value;
+  1599→            const description = document.getElementById('videoDescription').value;
+  1600→            
+  1601→            if (!project || !description) {
+  1602→                alert('Please select a project and enter a video description.');
+  1603→                return;
+  1604→            }
+  1605→            
+  1606→            alert('Video upload initiated!\n\nProject: ' + project + '\nDescription: ' + description + '\n\nIn production, this would upload the video file and associate it with the selected project.');
+  1607→        }
+  1608→
+  1609→        function uploadBuild() {
+  1610→            const project = document.getElementById('buildProject').value;
+  1611→            const version = document.getElementById('buildVersion').value;
+  1612→            const buildType = document.getElementById('buildType').value;
+  1613→            
+  1614→            if (!project || !version) {
+  1615→                alert('Please select a project and enter a version number.');
+  1616→                return;
+  1617→            }
+  1618→            
+  1619→            alert('Build upload initiated!\n\nProject: ' + project + '\nVersion: ' + version + '\nType: ' + buildType + '\n\nIn production, this would:\n- Host WebGL builds for browser play\n- Provide download links for executables');
+  1620→        }
+  1621→
+  1622→        function saveSettings() {
+  1623→            alert('Settings saved successfully!\n\nIn production, this would update site configuration.');
+  1624→        }
+  1625→
+  1626→        // Close modal on escape key
+  1627→        document.addEventListener('keydown', function(e) {
+  1628→            if (e.key === 'Escape') {
+  1629→                closeAdminPanel();
+  1630→            }
+  1631→        });
+  1632→
+  1633→        // Close modal when clicking outside
+  1634→        document.getElementById('adminModal').addEventListener('click', function(e) {
+  1635→            if (e.target === this) {
+  1636→                closeAdminPanel();
+  1637→            }
+  1638→        });
+  1639→
+  1640→        // Smooth scroll for navigation links
+  1641→        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  1642→            anchor.addEventListener('click', function (e) {
+  1643→                e.preventDefault();
+  1644→                const target = document.querySelector(this.getAttribute('href'));
+  1645→                if (target) {
+  1646→                    target.scrollIntoView({
+  1647→                        behavior: 'smooth',
+  1648→                        block: 'start'
+  1649→                    });
+  1650→                }
+  1651→            });
+  1652→        });
+  1653→    </script>
+  1654→
+  1655→</body>
+  1656→</html>
