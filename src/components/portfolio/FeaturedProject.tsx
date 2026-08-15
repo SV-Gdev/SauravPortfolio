@@ -2,6 +2,7 @@
 
 import { featuredFeatures, featuredProjectMeta, projects } from '@/data/portfolio-data';
 import { useProjectStore } from '@/hooks/useProjectStore';
+import Card3DEffect from '@/components/portfolio/Card3DEffect';
 
 export default function FeaturedProject() {
   const { getProjectImage } = useProjectStore();
@@ -11,7 +12,7 @@ export default function FeaturedProject() {
   return (
     <section
       id="featured-project"
-      className="bg-[var(--bg-secondary)] rounded-3xl py-16 px-8 sm:px-12 my-16 max-w-[1200px] mx-auto shadow-[var(--shadow-card)] border border-[var(--border-color)]"
+      className="bg-[var(--bg-secondary)] rounded-3xl py-16 px-8 sm:px-12 my-16 max-w-[1200px] mx-auto shadow-[var(--shadow-card)] border border-[var(--border-color)] relative z-10"
     >
       <div className="flex items-center gap-4 mb-8">
         <span className="text-4xl">🎮</span>
@@ -32,17 +33,19 @@ export default function FeaturedProject() {
         up in Unity.
       </p>
 
-      {/* Editable Project Cover Image */}
-      <div className="mb-12 relative w-full h-[420px] sm:h-[480px] rounded-2xl overflow-hidden border-2 border-[var(--border-color)] bg-[var(--bg-card)] shadow-2xl group">
-        <img
-          src={coverImage}
-          alt="Shooter Game Cover"
-          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-        />
-        <div className="absolute top-4 left-4 px-4 py-1.5 bg-[rgba(0,0,0,0.7)] backdrop-blur-md border border-[var(--accent-primary)] rounded-full text-xs font-mono font-bold text-[var(--accent-primary)]">
-          🖼️ Editable Project Cover Image (JPG/PNG)
+      {/* Editable Project Cover Image with 3D Tilt Effect */}
+      <Card3DEffect intensity={8} className="mb-12">
+        <div className="relative w-full h-[420px] sm:h-[480px] rounded-2xl overflow-hidden border-2 border-[var(--border-color)] bg-[var(--bg-card)] shadow-2xl group">
+          <img
+            src={coverImage}
+            alt="Shooter Game Cover"
+            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+          />
+          <div className="absolute top-4 left-4 px-4 py-1.5 bg-[rgba(0,0,0,0.75)] backdrop-blur-md border border-[var(--accent-primary)] rounded-full text-xs font-mono font-bold text-[var(--accent-primary)] z-10">
+            ✨ Interactive 3D Cover Viewport
+          </div>
         </div>
-      </div>
+      </Card3DEffect>
 
       {/* Key Features Grid */}
       <div className="grid gap-6 mb-10" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))' }}>

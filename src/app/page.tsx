@@ -10,14 +10,16 @@ import AboutSection from '@/components/portfolio/AboutSection';
 import ContactSection from '@/components/portfolio/ContactSection';
 import Footer from '@/components/portfolio/Footer';
 import AdminModal from '@/components/portfolio/AdminModal';
+import ThreeBackground from '@/components/portfolio/ThreeBackground';
 
 export default function Home() {
   const [adminOpen, setAdminOpen] = useState(false);
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col relative bg-[var(--bg-primary)]">
+      <ThreeBackground />
       <Navbar onOpenAdmin={() => setAdminOpen(true)} />
-      <main className="flex-1">
+      <main className="flex-1 relative z-10">
         <Hero />
         <FeaturedProject />
         <ProjectsSection />
