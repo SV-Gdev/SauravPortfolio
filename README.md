@@ -1,34 +1,39 @@
 <div align="center">
 
-# 🎮 Saurav Sharma — Game Developer Portfolio
+# 🎮 Saurav Sharma — AAA Game Developer 3D Portfolio
 
 <img src="public/hero-preview.png" alt="Portfolio Preview" width="100%" style="border-radius: 12px; max-width: 800px;" />
 
 [![Deploy with Vercel](https://img.shields.io/badge/Deploy-Vercel-black?logo=vercel&logoColor=white)](https://saurav-portfolio-psi-green.vercel.app/)
+[![Three.js](https://img.shields.io/badge/Three.js-WebGL-00D4FF?logo=three.js&logoColor=white)](https://threejs.org/)
 [![Next.js](https://img.shields.io/badge/Next.js-16-black?logo=next.js&logoColor=white)](https://nextjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.9-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4-06B6D4?logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 **Aspiring game developer with 1.5+ years in Unity and 7 months in Unreal Engine.**  
-Building immersive experiences through interactable UI, intelligent AI, and polished gameplay systems.
+Building immersive experiences through interactable 3D WebGL viewports, intelligent AI, and polished gameplay systems.
 
-[🌐 Live Portfolio](https://saurav-portfolio-psi-green.vercel.app/) · [📧 Contact Me](mailto:saurav@example.com)
+[🌐 Live 3D Portfolio](https://saurav-portfolio-psi-green.vercel.app/) · [🎮 GitHub Repo](https://github.com/SV-Gdev/SauravPortfolio)
 
 </div>
 
 ---
 
-## ✨ Features
+## ✨ 3D Interactive & Key Features
 
 | Feature | Description |
 |---|---|
-| 🌐 **Live Vercel Deployment** | Accessible at [saurav-portfolio-psi-green.vercel.app](https://saurav-portfolio-psi-green.vercel.app/) |
+| 🌐 **Live Vercel Deployment** | Deployed live at [saurav-portfolio-psi-green.vercel.app](https://saurav-portfolio-psi-green.vercel.app/) |
+| 🔮 **Interactive 3D Asset Inspector** | 360° click-and-drag WebGL 3D Model Inspector (Cyber Core, Game Controller, Energy Shield, Drone Core, Cube Matrix) |
+| 💥 **Particle Shockwave Explosions** | Click 3D models to trigger interactive particle burst shockwaves with physics velocity |
+| 🔊 **Procedural Web Audio API Synth** | Real-time procedural Sci-Fi sound FX feedback for clicks, model switches, and shockwaves (Mute toggle included) |
+| 🎨 **Live Shader & Theme Customizer** | 5 Neon Color Palettes (Cyber Cyan, Neon Magenta, Matrix Green, Solar Gold, Deep Violet) + Metallic & Roughness sliders |
+| ✨ **Cursor Particle Trail & Cyber Wave** | Interactive 3D particle cursor stream and undulating cyber wave terrain across the entire background |
+| 🎴 **3D Parallax Tilt Cards** | Real-time perspective tilt (`rotateX`, `rotateY`) and dynamic specular glare light reflections on hover |
 | 🎮 **Game Projects Showcase** | Showcase of Unity & Unreal Engine projects with interactive cover imagery |
 | 🔒 **Owner Management Studio** | Password-protected admin studio for managing project builds & cover images |
-| 📱 **Fully Responsive** | Optimized for mobile, tablet, and desktop |
-| 🌙 **Dark Aesthetic** | Dynamic dark theme with neon cyan/purple accents |
-| ⚡ **Blazing Fast** | Built on Next.js 16 + React 19 for maximum performance |
+| ⚡ **Blazing Fast** | Powered by Next.js 16, React 19, and WebGL for smooth 60+ FPS performance |
 
 ---
 
@@ -38,10 +43,11 @@ Building immersive experiences through interactable UI, intelligent AI, and poli
 
 | Layer | Technologies |
 |---|---|
-| **Framework** | Next.js 16, React 19, TypeScript 5.9 |
-| **Styling** | Tailwind CSS 4, Framer Motion, Radix UI |
+| **3D & WebGL** | Three.js, WebGL, Web Audio API, Canvas |
+| **Framework** | Next.js 16 (App Router), React 19, TypeScript 5.9 |
+| **Styling** | Tailwind CSS 4, Framer Motion, Vanilla CSS Design Tokens |
 | **Database** | Prisma ORM, SQLite |
-| **State** | Zustand, TanStack Query |
+| **State Management** | Zustand, TanStack Query |
 | **Deployment** | Vercel |
 | **CI/CD** | GitHub Actions & Vercel Auto-Deploy |
 
@@ -54,7 +60,7 @@ Building immersive experiences through interactable UI, intelligent AI, and poli
 ### Prerequisites
 
 - **Node.js** `>= 20.x`
-- **npm** `>= 9.x` (or [Bun](https://bun.sh/))
+- **npm** `>= 9.x`
 
 ### 1. Clone the repository
 
@@ -98,13 +104,7 @@ npm run dev
 
 This project is deployed live on **Vercel**:
 
-👉 **Live Portfolio URL**: [https://saurav-portfolio-psi-green.vercel.app/](https://saurav-portfolio-psi-green.vercel.app/)
-
-### Deploying Your Own Instance
-
-1. Import the repository `SV-Gdev/SauravPortfolio` at [vercel.com/new](https://vercel.com/new).
-2. Configure Environment Variables (`DATABASE_URL`, `ADMIN_PASSWORD`).
-3. Click **Deploy**.
+👉 **Live 3D Portfolio URL**: [https://saurav-portfolio-psi-green.vercel.app/](https://saurav-portfolio-psi-green.vercel.app/)
 
 ---
 
@@ -116,6 +116,6 @@ This project is deployed live on **Vercel**:
 <div align="center">
 
 **Designed & built by Saurav Sharma 🎮**  
-*Unity · Unreal Engine · C# · C++ · 3D Modeling*
+*Unity · Unreal Engine · C# · C++ · 3D Modeling · Three.js*
 
 </div>
