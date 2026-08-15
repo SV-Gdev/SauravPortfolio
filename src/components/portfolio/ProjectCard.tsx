@@ -12,16 +12,24 @@ export default function ProjectCard({ project }: { project: Project }) {
     <Card3DEffect intensity={12}>
       <article className="bg-[var(--bg-card)] border border-[var(--border-color)] rounded-2xl overflow-hidden shadow-[var(--shadow-card)] hover:border-[var(--accent-primary)] hover:shadow-[var(--shadow-glow),var(--shadow-card)] h-full flex flex-col justify-between">
         {/* Media Header */}
-        <div className="relative w-full overflow-hidden bg-[var(--bg-secondary)]">
-          <span className="absolute top-4 left-4 px-4 py-1.5 bg-[rgba(139,92,246,0.9)] backdrop-blur-[10px] rounded-lg text-xs font-semibold text-white z-10 shadow-lg">
+        <div className="relative w-full overflow-hidden bg-[var(--bg-secondary)] border-b border-[var(--border-color)]">
+          <span className="absolute top-4 left-4 px-4 py-1.5 bg-[rgba(139,92,246,0.9)] backdrop-blur-[10px] rounded-lg text-xs font-semibold text-white z-20 shadow-lg">
             {project.roleBadge}
           </span>
 
-          <div className="h-[320px]">
+          <div className="relative w-full h-[280px] bg-[#080c14] flex items-center justify-center p-3 overflow-hidden">
+            {/* Ambient Blurred Background Image */}
+            <img
+              src={coverImage}
+              alt=""
+              aria-hidden="true"
+              className="absolute inset-0 w-full h-full object-cover opacity-30 blur-xl scale-110 pointer-events-none"
+            />
+            {/* Full Uncropped Main Image */}
             <img
               src={coverImage}
               alt={project.title}
-              className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+              className="relative z-10 max-w-full max-h-full w-auto h-auto object-contain transition-transform duration-500 hover:scale-105 rounded-lg drop-shadow-md"
               loading="lazy"
             />
           </div>
