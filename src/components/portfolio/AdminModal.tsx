@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
-import { useVideoStore } from '@/hooks/useVideoStore';
+import { useProjectStore } from '@/hooks/useProjectStore';
 
 const projectOptions = [
   { value: 'shooter', label: 'Shooter Game (Flagship)' },
@@ -17,16 +17,13 @@ export default function AdminModal({ isOpen, onClose }: { isOpen: boolean; onClo
   const [loginError, setLoginError] = useState(false);
   const modalRef = useRef<HTMLDivElement>(null);
 
-  // Video Form States
-  const [selectedProject, setSelectedProject] = useState('shooter');
-  const [videoTitle, setVideoTitle] = useState('');
-  const [videoDescription, setVideoDescription] = useState('');
-  const [displayOrder, setDisplayOrder] = useState('1');
-  const [selectedFile, setSelectedFile] = useState<File | null>(null);
-  const [isUploading, setIsUploading] = useState(false);
-  const [uploadMessage, setUploadMessage] = useState<{ type: 'success' | 'error'; text: string } | null>(null);
+  // Cover Image Upload State
+  const [selectedImageProject, setSelectedImageProject] = useState('shooter');
+  const [selectedImageFile, setSelectedImageFile] = useState<File | null>(null);
+  const [isImageUploading, setIsImageUploading] = useState(false);
+  const [imageMessage, setImageMessage] = useState<{ type: 'success' | 'error'; text: string } | null>(null);
 
-  const { videos, uploadVideoFile, deleteVideo } = useVideoStore();
+  const { updateProjectImage } = useProjectStore();
 
   useEffect(() => {
     if (isOpen) {
@@ -60,66 +57,49 @@ export default function AdminModal({ isOpen, onClose }: { isOpen: boolean; onClo
     }
   };
 
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleImageFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
-      if (!file.type.startsWith('video/')) {
-        setUploadMessage({ type: 'error', text: 'Please select a valid MP4 or video file (.mp4, .webm).' });
+      const validTypes = ['image/jpeg', 'image/png', 'image/jpg', 'image/webp'];
+      if (!validTypes.includes(file.type.toLowerCase()) && !file.name.match(/\.(jpg|jpeg|png|webp)$/i)) {
+        setImageMessage({ type: 'error', text: 'Please select a valid JPG or PNG image file (.jpg, .png).' });
         return;
       }
-      setSelectedFile(file);
-      if (!videoTitle) {
-        // Auto set title from file name
-        const cleanName = file.name.replace(/\.[^/.]+$/, '').replace(/[-_]/g, ' ');
-        setVideoTitle(cleanName);
-      }
-      setUploadMessage(null);
+      setSelectedImageFile(file);
+      setImageMessage(null);
     }
   };
 
-  const handleAddVideoSubmit = async (e: React.FormEvent) => {
+  const handleUpdateImageSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!selectedFile) {
-      setUploadMessage({ type: 'error', text: 'Please select an MP4 video file to upload.' });
+    if (!selectedImageFile) {
+      setImageMessage({ type: 'error', text: 'Please select a JPG or PNG image file.' });
       return;
     }
 
-    if (!videoDescription.trim()) {
-      setUploadMessage({ type: 'error', text: 'Please enter a description for the video.' });
-      return;
-    }
-
-    setIsUploading(true);
-    setUploadMessage(null);
+    setIsImageUploading(true);
+    setImageMessage(null);
 
     try {
-      await uploadVideoFile(selectedFile, {
-        projectId: selectedProject,
-        title: videoTitle.trim() || selectedFile.name,
-        description: videoDescription.trim(),
-        displayOrder: parseInt(displayOrder || '1', 10),
-      });
+      await updateProjectImage(selectedImageProject, selectedImageFile);
+      const projLabel = projectOptions.find((p) => p.value === selectedImageProject)?.label;
 
-      setUploadMessage({
+      setImageMessage({
         type: 'success',
-        text: `🎉 Video "${selectedFile.name}" and description added successfully!`,
+        text: `🖼️ Cover image for ${projLabel} updated successfully!`,
       });
 
-      // Reset form
-      setSelectedFile(null);
-      setVideoTitle('');
-      setVideoDescription('');
-      setDisplayOrder('1');
-      const fileInput = document.getElementById('videoFileInput') as HTMLInputElement;
+      setSelectedImageFile(null);
+      const fileInput = document.getElementById('projectImageFileInput') as HTMLInputElement;
       if (fileInput) fileInput.value = '';
     } catch (err: any) {
-      setUploadMessage({
+      setImageMessage({
         type: 'error',
-        text: err?.message || 'Failed to add video. Please try again.',
+        text: err?.message || 'Failed to update cover image.',
       });
     } finally {
-      setIsUploading(false);
+      setIsImageUploading(false);
     }
   };
 
@@ -144,7 +124,7 @@ export default function AdminModal({ isOpen, onClose }: { isOpen: boolean; onClo
         {/* Header */}
         <div className="flex justify-between items-center mb-8 pb-6 border-b-2 border-[var(--border-color)]">
           <h2 className="text-2xl font-extrabold text-[var(--accent-secondary)]">
-            🔒 Admin Dashboard — Video & Build Manager
+            🔒 Admin Dashboard — Cover Image & Build Manager
           </h2>
           <button
             onClick={onClose}
@@ -201,30 +181,29 @@ export default function AdminModal({ isOpen, onClose }: { isOpen: boolean; onClo
           </div>
         ) : (
           <>
-            {/* Video Management Section */}
+            {/* Cover Image Manager */}
             <div className="mb-12 p-8 bg-[var(--bg-card)] rounded-xl border border-[var(--border-color)]">
               <div className="flex items-center gap-3 mb-6">
-                <span className="text-3xl">🎥</span>
+                <span className="text-3xl">🖼️</span>
                 <div>
                   <h3 className="text-[1.5rem] font-bold text-[var(--accent-primary)]">
-                    Add & Manage MP4 Videos
+                    Project Cover Image Manager
                   </h3>
                   <p className="text-xs text-[var(--text-secondary)]">
-                    Upload MP4 gameplay footage, attach descriptions, and feature them on your site
+                    Upload high quality JPG/PNG cover images for your portfolio projects
                   </p>
                 </div>
               </div>
 
-              <form onSubmit={handleAddVideoSubmit} className="space-y-6">
-                {/* Select Project */}
+              <form onSubmit={handleUpdateImageSubmit} className="space-y-6">
                 <div>
-                  <label className="block mb-2 text-[var(--text-secondary)] font-medium text-[0.95rem]">
-                    Target Project *
+                  <label className="block mb-2 text-sm font-semibold text-[var(--text-primary)]">
+                    Select Project
                   </label>
                   <select
-                    value={selectedProject}
-                    onChange={(e) => setSelectedProject(e.target.value)}
-                    className="w-full px-5 py-3.5 bg-[var(--bg-primary)] border border-[var(--border-color)] rounded-lg text-[var(--text-primary)] text-base focus:outline-none focus:border-[var(--accent-primary)]"
+                    value={selectedImageProject}
+                    onChange={(e) => setSelectedImageProject(e.target.value)}
+                    className="w-full px-5 py-3.5 bg-[var(--bg-primary)] border border-[var(--border-color)] rounded-xl text-[var(--text-primary)] text-sm focus:outline-none focus:border-[var(--accent-primary)] font-medium"
                   >
                     {projectOptions.map((p) => (
                       <option key={p.value} value={p.value}>
@@ -234,196 +213,69 @@ export default function AdminModal({ isOpen, onClose }: { isOpen: boolean; onClo
                   </select>
                 </div>
 
-                {/* MP4 File Selector & Dropzone */}
                 <div>
-                  <label className="block mb-2 text-[var(--text-secondary)] font-medium text-[0.95rem]">
-                    MP4 Video File *
+                  <label className="block mb-2 text-sm font-semibold text-[var(--text-primary)]">
+                    Project Cover Image (JPG or PNG) *
                   </label>
                   <div
-                    className={`border-2 border-dashed rounded-xl py-8 px-6 text-center cursor-pointer transition-all duration-300 ${
-                      selectedFile
+                    className={`border-2 border-dashed rounded-2xl py-8 px-6 text-center cursor-pointer transition-all duration-300 ${
+                      selectedImageFile
                         ? 'border-[var(--accent-primary)] bg-[rgba(0,212,255,0.08)]'
                         : 'border-[var(--border-color)] hover:border-[var(--accent-primary)] hover:bg-[rgba(0,212,255,0.03)]'
                     }`}
-                    onClick={() => document.getElementById('videoFileInput')?.click()}
+                    onClick={() => document.getElementById('projectImageFileInput')?.click()}
                   >
-                    {selectedFile ? (
+                    {selectedImageFile ? (
                       <div className="space-y-2">
                         <p className="text-lg font-bold text-[var(--accent-primary)]">
-                          🎬 {selectedFile.name}
+                          🖼️ Selected Image: {selectedImageFile.name}
                         </p>
                         <p className="text-xs text-[var(--text-secondary)]">
-                          Size: {(selectedFile.size / (1024 * 1024)).toFixed(2)} MB • Type: {selectedFile.type || 'MP4 Video'}
+                          Size: {(selectedImageFile.size / 1024).toFixed(1)} KB • Format: {selectedImageFile.type || 'JPG/PNG'}
                         </p>
-                        <span className="inline-block px-3 py-1 bg-[rgba(0,212,255,0.2)] text-[var(--accent-primary)] text-xs rounded-full">
-                          Click to change file
-                        </span>
                       </div>
                     ) : (
                       <div>
-                        <p className="text-[1.2rem] text-[var(--text-secondary)] mb-2 font-semibold">
-                          📁 Click or drag MP4 video file here
+                        <p className="text-lg font-semibold text-[var(--text-primary)] mb-1">
+                          🖼️ Click or Drag JPG or PNG Image File Here
                         </p>
                         <p className="text-xs text-[var(--text-secondary)]">
-                          Supports MP4, WebM • Fast upload & local streaming
+                          Supports .jpg, .jpeg, .png, .webp • High resolution cover images
                         </p>
                       </div>
                     )}
                     <input
-                      id="videoFileInput"
+                      id="projectImageFileInput"
                       type="file"
-                      accept="video/mp4,video/webm,video/*"
+                      accept="image/jpeg,image/png,image/jpg,image/webp"
                       className="hidden"
-                      onChange={handleFileChange}
+                      onChange={handleImageFileChange}
                     />
                   </div>
                 </div>
 
-                {/* Video Title */}
-                <div>
-                  <label className="block mb-2 text-[var(--text-secondary)] font-medium text-[0.95rem]">
-                    Video Title
-                  </label>
-                  <input
-                    type="text"
-                    value={videoTitle}
-                    onChange={(e) => setVideoTitle(e.target.value)}
-                    placeholder="e.g., Enemy AI Behavior Tree & Pathfinding Showcase"
-                    className="w-full px-5 py-3.5 bg-[var(--bg-primary)] border border-[var(--border-color)] rounded-lg text-[var(--text-primary)] text-base focus:outline-none focus:border-[var(--accent-primary)]"
-                  />
-                </div>
-
-                {/* Video Description */}
-                <div>
-                  <label className="block mb-2 text-[var(--text-secondary)] font-medium text-[0.95rem]">
-                    Video Description (displays with player on public site) *
-                  </label>
-                  <textarea
-                    rows={4}
-                    value={videoDescription}
-                    onChange={(e) => setVideoDescription(e.target.value)}
-                    placeholder="Describe what happens in this MP4 gameplay video, features demonstrated, technical mechanics shown, timestamps, etc..."
-                    className="w-full px-5 py-3.5 bg-[var(--bg-primary)] border border-[var(--border-color)] rounded-lg text-[var(--text-primary)] text-base focus:outline-none focus:border-[var(--accent-primary)] resize-y"
-                  />
-                </div>
-
-                {/* Display Order */}
-                <div>
-                  <label className="block mb-2 text-[var(--text-secondary)] font-medium text-[0.95rem]">
-                    Display Order
-                  </label>
-                  <input
-                    type="number"
-                    value={displayOrder}
-                    onChange={(e) => setDisplayOrder(e.target.value)}
-                    min={1}
-                    className="w-full px-5 py-3.5 bg-[var(--bg-primary)] border border-[var(--border-color)] rounded-lg text-[var(--text-primary)] text-base focus:outline-none focus:border-[var(--accent-primary)]"
-                  />
-                </div>
-
-                {/* Feedback Banners */}
-                {uploadMessage && (
+                {imageMessage && (
                   <div
-                    className={`p-4 rounded-lg text-sm font-medium ${
-                      uploadMessage.type === 'success'
+                    className={`p-4 rounded-xl text-sm font-medium ${
+                      imageMessage.type === 'success'
                         ? 'bg-[rgba(16,185,129,0.15)] text-[#10b981] border border-[#10b981]'
                         : 'bg-[rgba(239,68,68,0.15)] text-[#ef4444] border border-[#ef4444]'
                     }`}
                   >
-                    {uploadMessage.text}
+                    {imageMessage.text}
                   </div>
                 )}
 
-                {/* Submit Button */}
                 <button
                   type="submit"
-                  disabled={isUploading}
-                  className={`w-full py-4 px-10 bg-gradient-to-r from-[var(--accent-primary)] to-[var(--accent-secondary)] text-white rounded-xl font-bold text-base transition-all duration-300 ${
-                    isUploading ? 'opacity-50 cursor-wait' : 'hover:-translate-y-0.5 hover:shadow-[0_4px_20px_rgba(0,212,255,0.4)] cursor-pointer'
+                  disabled={isImageUploading}
+                  className={`w-full py-4 px-10 bg-gradient-to-r from-[var(--accent-primary)] to-[var(--accent-secondary)] text-white rounded-xl font-bold text-base transition-all ${
+                    isImageUploading ? 'opacity-50 cursor-wait' : 'hover:-translate-y-0.5 cursor-pointer'
                   }`}
                 >
-                  {isUploading ? '⏳ Uploading Video & Description...' : '➕ Add Video with Description'}
+                  {isImageUploading ? '⏳ Updating Cover Image...' : '🖼️ Update Project Cover Image'}
                 </button>
               </form>
-
-              {/* Uploaded Videos List */}
-              <div className="mt-12 pt-8 border-t border-[var(--border-color)]">
-                <h4 className="text-[1.2rem] font-bold mb-6 text-[var(--text-primary)] flex items-center justify-between">
-                  <span>📹 Uploaded MP4 Videos ({videos.length})</span>
-                  <span className="text-xs text-[var(--text-secondary)] font-normal">
-                    Real-time synced
-                  </span>
-                </h4>
-
-                {videos.length === 0 ? (
-                  <div className="bg-[rgba(0,0,0,0.3)] p-8 rounded-lg text-center text-[var(--text-secondary)] border border-[var(--border-color)]">
-                    <p className="text-base font-semibold">No videos added yet</p>
-                    <p className="text-sm mt-1">
-                      Upload an MP4 file with description above to showcase gameplay videos!
-                    </p>
-                  </div>
-                ) : (
-                  <div className="space-y-6">
-                    {videos.map((vid) => (
-                      <div
-                        key={vid.id}
-                        className="bg-[var(--bg-primary)] p-6 rounded-xl border border-[var(--border-color)] flex flex-col md:flex-row gap-6 items-start justify-between"
-                      >
-                        {/* Video HTML5 Preview */}
-                        <div className="w-full md:w-64 rounded-lg overflow-hidden bg-black border border-[var(--border-color)]">
-                          <video
-                            src={vid.url}
-                            controls
-                            preload="metadata"
-                            className="w-full h-36 object-cover"
-                          />
-                        </div>
-
-                        {/* Metadata & Description */}
-                        <div className="flex-1 space-y-2">
-                          <div className="flex items-center gap-3 flex-wrap">
-                            <span className="px-3 py-1 bg-[rgba(0,212,255,0.15)] text-[var(--accent-primary)] font-mono text-xs rounded-md font-semibold">
-                              {projectOptions.find((p) => p.value === vid.projectId)?.label || vid.projectId}
-                            </span>
-                            <span className="text-xs text-[var(--text-secondary)]">
-                              Order: {vid.displayOrder}
-                            </span>
-                            {vid.fileSize && (
-                              <span className="text-xs text-[var(--text-secondary)]">
-                                {(vid.fileSize / (1024 * 1024)).toFixed(1)} MB
-                              </span>
-                            )}
-                          </div>
-
-                          <h5 className="text-lg font-bold text-[var(--text-primary)]">
-                            {vid.title}
-                          </h5>
-
-                          <div className="bg-[rgba(0,0,0,0.2)] p-3 rounded-lg border border-[rgba(255,255,255,0.05)]">
-                            <p className="text-sm text-[var(--text-secondary)] whitespace-pre-wrap leading-relaxed">
-                              {vid.description}
-                            </p>
-                          </div>
-                        </div>
-
-                        {/* Actions */}
-                        <div>
-                          <button
-                            onClick={() => {
-                              if (confirm(`Delete video "${vid.title}"?`)) {
-                                deleteVideo(vid.id);
-                              }
-                            }}
-                            className="px-4 py-2 bg-[rgba(239,68,68,0.2)] hover:bg-[rgba(239,68,68,0.4)] text-[#ef4444] border border-[#ef4444] rounded-lg text-xs font-semibold cursor-pointer transition-colors"
-                          >
-                            🗑️ Delete
-                          </button>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                )}
-              </div>
             </div>
 
             {/* Game Build Management */}
