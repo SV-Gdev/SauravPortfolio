@@ -35,22 +35,14 @@ export default function FeaturedProject() {
 
       {/* Editable Project Cover Image with 3D Tilt Effect */}
       <Card3DEffect intensity={8} className="mb-12">
-        <div className="relative w-full h-[360px] sm:h-[480px] rounded-2xl overflow-hidden border-2 border-[var(--border-color)] bg-[#080c14] flex items-center justify-center p-4 shadow-2xl group">
-          {/* Ambient Blurred Background Image */}
-          <img
-            src={coverImage}
-            alt=""
-            aria-hidden="true"
-            className="absolute inset-0 w-full h-full object-cover opacity-30 blur-2xl scale-110 pointer-events-none"
-          />
+        <div className="relative w-full aspect-[16/9] rounded-2xl overflow-hidden border-2 border-[var(--border-color)] bg-[var(--bg-card)] shadow-2xl group">
           <div className="absolute top-4 left-4 px-4 py-1.5 bg-[rgba(0,0,0,0.75)] backdrop-blur-md border border-[var(--accent-primary)] rounded-full text-xs font-mono font-bold text-[var(--accent-primary)] z-20">
             ✨ Interactive 3D Cover Viewport
           </div>
-          {/* Full Uncropped Main Image */}
           <img
             src={coverImage}
             alt="Shooter Game Cover"
-            className="relative z-10 max-w-full max-h-full w-auto h-auto object-contain transition-transform duration-700 group-hover:scale-105 rounded-xl drop-shadow-2xl"
+            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
           />
         </div>
       </Card3DEffect>
