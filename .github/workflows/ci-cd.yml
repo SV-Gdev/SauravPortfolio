@@ -122,11 +122,15 @@ jobs:
       - name: 🚀 Deploy to Netlify Production
         id: netlify-deploy
         run: |
+          if [ -z "$NETLIFY_AUTH_TOKEN" ] || [ -z "$NETLIFY_SITE_ID" ]; then
+            echo "❌ Error: NETLIFY_AUTH_TOKEN or NETLIFY_SITE_ID is not set in GitHub Secrets."
+            echo "Please configure NETLIFY_AUTH_TOKEN and NETLIFY_SITE_ID under GitHub Repository Settings -> Secrets and variables -> Actions."
+            exit 1
+          fi
           netlify deploy \
             --prod \
-            --dir=.next \
-            --site=${{ secrets.NETLIFY_SITE_ID }} \
-            --auth=${{ secrets.NETLIFY_AUTH_TOKEN }} \
+            --site="$NETLIFY_SITE_ID" \
+            --auth="$NETLIFY_AUTH_TOKEN" \
             --message="Deploy from GitHub Actions — ${{ github.sha }}"
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
