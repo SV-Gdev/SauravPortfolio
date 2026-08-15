@@ -54,7 +54,6 @@ export function useVideoStore() {
   }, []);
 
   useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect
     loadVideos();
   }, [loadVideos]);
 
