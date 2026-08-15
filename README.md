@@ -4,7 +4,7 @@
 
 <img src="public/hero-preview.png" alt="Portfolio Preview" width="100%" style="border-radius: 12px; max-width: 800px;" />
 
-[![Deploy with Vercel](https://img.shields.io/badge/Deploy-Vercel-black?logo=vercel&logoColor=white)](https://saurav-portfolio-rb179vuoz-anima19.vercel.app/)
+[![Deploy with Vercel](https://img.shields.io/badge/Deploy-Vercel-black?logo=vercel&logoColor=white)](https://saurav-portfolio-psi-green.vercel.app/)
 [![Next.js](https://img.shields.io/badge/Next.js-16-black?logo=next.js&logoColor=white)](https://nextjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.9-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4-06B6D4?logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
@@ -13,7 +13,7 @@
 **Aspiring game developer with 1.5+ years in Unity and 7 months in Unreal Engine.**  
 Building immersive experiences through interactable UI, intelligent AI, and polished gameplay systems.
 
-[🌐 Live Portfolio](https://saurav-portfolio-rb179vuoz-anima19.vercel.app/) · [📁 Google Drive Gameplay Storage](https://drive.google.com/drive/folders/1FvEtW6gsmQtGIw7mAMD5ShEiSraZ0pUO?usp=sharing) · [📧 Contact Me](mailto:saurav@example.com)
+[🌐 Live Portfolio](https://saurav-portfolio-psi-green.vercel.app/) · [📧 Contact Me](mailto:saurav@example.com)
 
 </div>
 
@@ -23,23 +23,12 @@ Building immersive experiences through interactable UI, intelligent AI, and poli
 
 | Feature | Description |
 |---|---|
-| 🌐 **Live Vercel Deployment** | Accessible at [saurav-portfolio-rb179vuoz-anima19.vercel.app](https://saurav-portfolio-rb179vuoz-anima19.vercel.app/) |
-| 🎬 **Google Drive Video Showcase** | All gameplay videos linked & stored in [Google Drive Folder](https://drive.google.com/drive/folders/1FvEtW6gsmQtGIw7mAMD5ShEiSraZ0pUO?usp=sharing) |
-| 🎮 **Game Projects Showcase** | Filterable gallery of Unity & Unreal Engine projects with live video demos |
-| 🔒 **Owner Management Studio** | Password-protected media studio for managing video clips & project covers |
+| 🌐 **Live Vercel Deployment** | Accessible at [saurav-portfolio-psi-green.vercel.app](https://saurav-portfolio-psi-green.vercel.app/) |
+| 🎮 **Game Projects Showcase** | Showcase of Unity & Unreal Engine projects with interactive cover imagery |
+| 🔒 **Owner Management Studio** | Password-protected admin studio for managing project builds & cover images |
 | 📱 **Fully Responsive** | Optimized for mobile, tablet, and desktop |
 | 🌙 **Dark Aesthetic** | Dynamic dark theme with neon cyan/purple accents |
 | ⚡ **Blazing Fast** | Built on Next.js 16 + React 19 for maximum performance |
-
----
-
-## ☁️ Media & Video Storage
-
-All portfolio gameplay clips and demonstration videos are hosted and backed up in Google Drive:
-
-📁 **Google Drive Folder**: [View Gameplay Videos Folder](https://drive.google.com/drive/folders/1FvEtW6gsmQtGIw7mAMD5ShEiSraZ0pUO?usp=sharing)
-
-Visitors can view embedded gameplay directly on the portfolio site, while the owner management studio seamlessly syncs video records.
 
 ---
 
@@ -53,7 +42,6 @@ Visitors can view embedded gameplay directly on the portfolio site, while the ow
 | **Styling** | Tailwind CSS 4, Framer Motion, Radix UI |
 | **Database** | Prisma ORM, SQLite |
 | **State** | Zustand, TanStack Query |
-| **Storage** | Google Drive Cloud Storage & Direct MP4 Streams |
 | **Deployment** | Vercel |
 | **CI/CD** | GitHub Actions & Vercel Auto-Deploy |
 
@@ -88,7 +76,6 @@ Create a `.env` file in the root directory:
 ```env
 DATABASE_URL="file:./dev.db"
 ADMIN_PASSWORD="admin"
-NEXT_PUBLIC_GOOGLE_DRIVE_FOLDER_ID="1FvEtW6gsmQtGIw7mAMD5ShEiSraZ0pUO"
 ```
 
 ### 4. Initialize the database
@@ -111,20 +98,20 @@ npm run dev
 
 This project is deployed live on **Vercel**:
 
-👉 **Live Portfolio URL**: [https://saurav-portfolio-rb179vuoz-anima19.vercel.app/](https://saurav-portfolio-rb179vuoz-anima19.vercel.app/)
+👉 **Live Portfolio URL**: [https://saurav-portfolio-psi-green.vercel.app/](https://saurav-portfolio-psi-green.vercel.app/)
 
 ### Deploying Your Own Instance
 
 1. Import the repository `SV-Gdev/SauravPortfolio` at [vercel.com/new](https://vercel.com/new).
-2. Configure Environment Variables (`DATABASE_URL`, `ADMIN_PASSWORD`, `NEXT_PUBLIC_GOOGLE_DRIVE_FOLDER_ID`).
+2. Configure Environment Variables (`DATABASE_URL`, `ADMIN_PASSWORD`).
 3. Click **Deploy**.
 
 ---
 
 ## 🤝 Contact & Socials
 
-- **Live Site**: [saurav-portfolio-rb179vuoz-anima19.vercel.app](https://saurav-portfolio-rb179vuoz-anima19.vercel.app/)
-- **Gameplay Drive Storage**: [Google Drive Folder](https://drive.google.com/drive/folders/1FvEtW6gsmQtGIw7mAMD5ShEiSraZ0pUO?usp=sharing)
+- **Live Site**: [saurav-portfolio-psi-green.vercel.app](https://saurav-portfolio-psi-green.vercel.app/)
+- **GitHub**: [https://github.com/SV-Gdev](https://github.com/SV-Gdev)
 
 <div align="center">
 
