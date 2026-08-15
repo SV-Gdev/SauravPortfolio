@@ -53,7 +53,7 @@ export const projects: Project[] = [
     description:
       "Collaborative fighting game developed as part of a team project. Focused on implementing responsive combat mechanics, character animations, and multiplayer interaction systems within a shared codebase.",
     techTags: ["Unity", "C#", "Team Collaboration", "Animation System"],
-    image: "/images/download.png",
+    image: "/images/knuckle2.png",
     roleBadge: "Team Member",
     githubUrl: "https://github.com/SV-Gdev",
   },
@@ -64,7 +64,7 @@ export const projects: Project[] = [
     description:
       "A faithful recreation of classic Mario gameplay mechanics built as a learning exercise. Implemented precise platforming physics, level design principles, and enemy behavior patterns from scratch.",
     techTags: ["Unity", "C#", "2D Physics", "Level Design"],
-    image: "/images/download.jpg",
+    image: "/images/mario-recreation.png",
     roleBadge: "Solo Developer",
   },
   {

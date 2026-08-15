@@ -2,8 +2,6 @@
 
 # 🎮 Saurav Sharma — AAA Game Developer 3D Portfolio
 
-<img src="public/hero-preview.png" alt="Portfolio Preview" width="100%" style="border-radius: 12px; max-width: 800px;" />
-
 [![Deploy with Vercel](https://img.shields.io/badge/Deploy-Vercel-black?logo=vercel&logoColor=white)](https://saurav-portfolio-psi-green.vercel.app/)
 [![Three.js](https://img.shields.io/badge/Three.js-WebGL-00D4FF?logo=three.js&logoColor=white)](https://threejs.org/)
 [![Next.js](https://img.shields.io/badge/Next.js-16-black?logo=next.js&logoColor=white)](https://nextjs.org/)
@@ -14,9 +12,19 @@
 **Aspiring game developer with 1.5+ years in Unity and 7 months in Unreal Engine.**  
 Building immersive experiences through interactable 3D WebGL viewports, intelligent AI, and polished gameplay systems.
 
-[🌐 Live 3D Portfolio](https://saurav-portfolio-psi-green.vercel.app/) · [🎮 GitHub Repo](https://github.com/SV-Gdev/SauravPortfolio)
+### 🌐 [Live 3D Portfolio → saurav-portfolio-psi-green.vercel.app](https://saurav-portfolio-psi-green.vercel.app/)
 
 </div>
+
+---
+
+## 🎮 Game Project Screenshots
+
+| Knuckle2 — Fighting Game | Mario Recreation — Platformer |
+|:---:|:---:|
+| ![Knuckle2](public/images/knuckle2.png) | ![Mario Recreation](public/images/mario-recreation.png) |
+| Team Project · Unity · C# | Solo Project · Unity · 2D Physics |
+
 
 ---
 
