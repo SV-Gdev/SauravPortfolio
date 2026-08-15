@@ -1,10 +1,17 @@
-import { featuredFeatures, featuredProjectMeta } from '@/data/portfolio-data';
+'use client';
+
+import { featuredFeatures, featuredProjectMeta, projects } from '@/data/portfolio-data';
+import { useProjectStore } from '@/hooks/useProjectStore';
 
 export default function FeaturedProject() {
+  const { getProjectImage } = useProjectStore();
+  const shooterProject = projects.find((p) => p.id === 'shooter') || projects[0];
+  const coverImage = getProjectImage(shooterProject);
+
   return (
     <section
       id="featured-project"
-      className="bg-[var(--bg-secondary)] rounded-3xl py-20 px-12 my-16 max-w-[1200px] mx-auto shadow-[var(--shadow-card)] border border-[var(--border-color)]"
+      className="bg-[var(--bg-secondary)] rounded-3xl py-16 px-8 sm:px-12 my-16 max-w-[1200px] mx-auto shadow-[var(--shadow-card)] border border-[var(--border-color)]"
     >
       <div className="flex items-center gap-4 mb-8">
         <span className="text-4xl">🎮</span>
@@ -12,7 +19,7 @@ export default function FeaturedProject() {
           <div className="text-[0.9rem] text-[var(--accent-primary)] font-semibold uppercase tracking-widest">
             Flagship Project
           </div>
-          <h2 className="text-[2.8rem] font-extrabold leading-tight bg-gradient-to-br from-[var(--accent-primary)] to-[var(--accent-secondary)] bg-clip-text text-transparent">
+          <h2 className="text-[2.5rem] sm:text-[2.8rem] font-extrabold leading-tight bg-gradient-to-br from-[var(--accent-primary)] to-[var(--accent-secondary)] bg-clip-text text-transparent">
             Shooter Game — Third-Person Action Experience
           </h2>
         </div>
@@ -25,6 +32,19 @@ export default function FeaturedProject() {
         up in Unity.
       </p>
 
+      {/* Editable Project Cover Image */}
+      <div className="mb-12 relative w-full h-[420px] sm:h-[480px] rounded-2xl overflow-hidden border-2 border-[var(--border-color)] bg-[var(--bg-card)] shadow-2xl group">
+        <img
+          src={coverImage}
+          alt="Shooter Game Cover"
+          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+        />
+        <div className="absolute top-4 left-4 px-4 py-1.5 bg-[rgba(0,0,0,0.7)] backdrop-blur-md border border-[var(--accent-primary)] rounded-full text-xs font-mono font-bold text-[var(--accent-primary)]">
+          🖼️ Editable Project Cover Image (JPG/PNG)
+        </div>
+      </div>
+
+      {/* Key Features Grid */}
       <div className="grid gap-6 mb-10" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))' }}>
         {featuredFeatures.map((f) => (
           <div

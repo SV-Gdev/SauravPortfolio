@@ -4,6 +4,8 @@ import { useState } from 'react';
 import Navbar from '@/components/portfolio/Navbar';
 import Hero from '@/components/portfolio/Hero';
 import FeaturedProject from '@/components/portfolio/FeaturedProject';
+import VideoShowcaseSection from '@/components/portfolio/VideoShowcaseSection';
+import VideoAdderSection from '@/components/portfolio/VideoAdderSection';
 import ProjectsSection from '@/components/portfolio/ProjectsSection';
 import ResearchSection from '@/components/portfolio/ResearchSection';
 import AboutSection from '@/components/portfolio/AboutSection';
@@ -20,6 +22,8 @@ export default function Home() {
       <main className="flex-1">
         <Hero />
         <FeaturedProject />
+        <VideoShowcaseSection />
+        <VideoAdderSection />
         <ProjectsSection />
         <ResearchSection />
         <AboutSection />

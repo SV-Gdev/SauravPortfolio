@@ -1,11 +1,13 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
+import { useVideoStore } from '@/hooks/useVideoStore';
 
 const projectOptions = [
   { value: 'shooter', label: 'Shooter Game (Flagship)' },
   { value: 'knuckle2', label: 'Knuckle2 (Group Project)' },
   { value: 'mario', label: 'Mario Recreation' },
+  { value: 'orion', label: 'Orion Healthcare Backend' },
 ];
 
 export default function AdminModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
@@ -14,6 +16,17 @@ export default function AdminModal({ isOpen, onClose }: { isOpen: boolean; onClo
   const [password, setPassword] = useState('');
   const [loginError, setLoginError] = useState(false);
   const modalRef = useRef<HTMLDivElement>(null);
+
+  // Video Form States
+  const [selectedProject, setSelectedProject] = useState('shooter');
+  const [videoTitle, setVideoTitle] = useState('');
+  const [videoDescription, setVideoDescription] = useState('');
+  const [displayOrder, setDisplayOrder] = useState('1');
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [isUploading, setIsUploading] = useState(false);
+  const [uploadMessage, setUploadMessage] = useState<{ type: 'success' | 'error'; text: string } | null>(null);
+
+  const { videos, uploadVideoFile, deleteVideo } = useVideoStore();
 
   useEffect(() => {
     if (isOpen) {
@@ -47,22 +60,74 @@ export default function AdminModal({ isOpen, onClose }: { isOpen: boolean; onClo
     }
   };
 
-  const handleVideoUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
-      console.log('Video selected:', file.name);
-      alert(
-        `Video "${file.name}" selected for upload.\n\nIn production, this would upload to your server/storage.`
-      );
+      if (!file.type.startsWith('video/')) {
+        setUploadMessage({ type: 'error', text: 'Please select a valid MP4 or video file (.mp4, .webm).' });
+        return;
+      }
+      setSelectedFile(file);
+      if (!videoTitle) {
+        // Auto set title from file name
+        const cleanName = file.name.replace(/\.[^/.]+$/, '').replace(/[-_]/g, ' ');
+        setVideoTitle(cleanName);
+      }
+      setUploadMessage(null);
+    }
+  };
+
+  const handleAddVideoSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (!selectedFile) {
+      setUploadMessage({ type: 'error', text: 'Please select an MP4 video file to upload.' });
+      return;
+    }
+
+    if (!videoDescription.trim()) {
+      setUploadMessage({ type: 'error', text: 'Please enter a description for the video.' });
+      return;
+    }
+
+    setIsUploading(true);
+    setUploadMessage(null);
+
+    try {
+      await uploadVideoFile(selectedFile, {
+        projectId: selectedProject,
+        title: videoTitle.trim() || selectedFile.name,
+        description: videoDescription.trim(),
+        displayOrder: parseInt(displayOrder || '1', 10),
+      });
+
+      setUploadMessage({
+        type: 'success',
+        text: `🎉 Video "${selectedFile.name}" and description added successfully!`,
+      });
+
+      // Reset form
+      setSelectedFile(null);
+      setVideoTitle('');
+      setVideoDescription('');
+      setDisplayOrder('1');
+      const fileInput = document.getElementById('videoFileInput') as HTMLInputElement;
+      if (fileInput) fileInput.value = '';
+    } catch (err: any) {
+      setUploadMessage({
+        type: 'error',
+        text: err?.message || 'Failed to add video. Please try again.',
+      });
+    } finally {
+      setIsUploading(false);
     }
   };
 
   const handleBuildUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
-      console.log('Build selected:', file.name);
       alert(
-        `Build file "${file.name}" selected for upload.\n\nIn production, this would:\n- Extract WebGL builds for iframe hosting\n- Store executables for download`
+        `Build file "${file.name}" selected for upload.\n\nIn production, this would extract WebGL builds for browser play.`
       );
     }
   };
@@ -75,15 +140,15 @@ export default function AdminModal({ isOpen, onClose }: { isOpen: boolean; onClo
       onClick={handleBackdropClick}
       className="fixed inset-0 z-[9999] bg-[rgba(0,0,0,0.9)] backdrop-blur-[10px] overflow-y-auto"
     >
-      <div className="max-w-[1000px] my-12 mx-auto p-12 bg-[var(--bg-secondary)] rounded-[20px] border border-[var(--border-color)]">
+      <div className="max-w-[1000px] my-12 mx-auto p-8 sm:p-12 bg-[var(--bg-secondary)] rounded-[20px] border border-[var(--border-color)] text-[var(--text-primary)]">
         {/* Header */}
-        <div className="flex justify-between items-center mb-8 pb-8 border-b-2 border-[var(--border-color)]">
+        <div className="flex justify-between items-center mb-8 pb-6 border-b-2 border-[var(--border-color)]">
           <h2 className="text-2xl font-extrabold text-[var(--accent-secondary)]">
-            🔒 Admin Dashboard
+            🔒 Admin Dashboard — Video & Build Manager
           </h2>
           <button
             onClick={onClose}
-            className="bg-transparent border-none text-[var(--text-secondary)] text-2xl cursor-pointer transition-colors duration-300 hover:text-[var(--text-primary)]"
+            className="bg-transparent border-none text-[var(--text-secondary)] text-3xl cursor-pointer transition-colors duration-300 hover:text-[var(--text-primary)] leading-none"
           >
             &times;
           </button>
@@ -91,10 +156,12 @@ export default function AdminModal({ isOpen, onClose }: { isOpen: boolean; onClo
 
         {/* Login Form */}
         {!isAuthenticated ? (
-          <div className="max-w-[450px] my-12 mx-auto p-12 bg-[var(--bg-card)] rounded-2xl border border-[var(--border-color)]">
-            <h3 className="text-center mb-2 text-[var(--accent-primary)]">Administrator Login</h3>
+          <div className="max-w-[450px] my-12 mx-auto p-8 sm:p-12 bg-[var(--bg-card)] rounded-2xl border border-[var(--border-color)]">
+            <h3 className="text-center mb-2 text-xl font-bold text-[var(--accent-primary)]">
+              Administrator Login
+            </h3>
             <p className="text-center text-[var(--text-secondary)] text-sm mb-8">
-              Secure access for site owner only
+              Default login: username <code className="text-[var(--accent-primary)]">admin</code> / password <code className="text-[var(--accent-primary)]">password</code>
             </p>
             <div className="mb-6">
               <label className="block mb-2 text-[var(--text-secondary)] font-medium text-[0.95rem]">
@@ -105,7 +172,7 @@ export default function AdminModal({ isOpen, onClose }: { isOpen: boolean; onClo
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 placeholder="Enter admin username"
-                className="w-full px-5 py-3.5 bg-[var(--bg-primary)] border border-[var(--border-color)] rounded-lg text-[var(--text-primary)] text-base transition-colors duration-300 focus:outline-none focus:border-[var(--accent-primary)]"
+                className="w-full px-5 py-3.5 bg-[var(--bg-primary)] border border-[var(--border-color)] rounded-lg text-[var(--text-primary)] text-base focus:outline-none focus:border-[var(--accent-primary)]"
               />
             </div>
             <div className="mb-6">
@@ -117,36 +184,48 @@ export default function AdminModal({ isOpen, onClose }: { isOpen: boolean; onClo
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Enter admin password"
-                className="w-full px-5 py-3.5 bg-[var(--bg-primary)] border border-[var(--border-color)] rounded-lg text-[var(--text-primary)] text-base transition-colors duration-300 focus:outline-none focus:border-[var(--accent-primary)]"
+                className="w-full px-5 py-3.5 bg-[var(--bg-primary)] border border-[var(--border-color)] rounded-lg text-[var(--text-primary)] text-base focus:outline-none focus:border-[var(--accent-primary)]"
               />
             </div>
             <button
               onClick={handleLogin}
-              className="w-full px-10 py-4 bg-gradient-to-r from-[var(--accent-primary)] to-[var(--accent-secondary)] text-white rounded-xl font-semibold text-base transition-all duration-300 border-none cursor-pointer hover:-translate-y-0.5 hover:shadow-[0_4px_20px_rgba(0,212,255,0.4)]"
+              className="w-full px-10 py-4 bg-gradient-to-r from-[var(--accent-primary)] to-[var(--accent-secondary)] text-white rounded-xl font-semibold text-base transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_4px_20px_rgba(0,212,255,0.4)] cursor-pointer"
             >
               Login to Dashboard
             </button>
             {loginError && (
-              <p className="text-[#ff4444] text-center mt-4">
-                Invalid credentials. Please try again.
+              <p className="text-[#ff4444] text-center mt-4 text-sm font-medium">
+                Invalid credentials. Use admin / password
               </p>
             )}
           </div>
         ) : (
           <>
-            {/* Video Management */}
+            {/* Video Management Section */}
             <div className="mb-12 p-8 bg-[var(--bg-card)] rounded-xl border border-[var(--border-color)]">
-              <h3 className="text-[1.5rem] font-bold mb-6 text-[var(--accent-primary)]">
-                🎥 Video Management
-              </h3>
-              <div className="mb-8">
-                <h4 className="text-[1.1rem] mb-4 text-[var(--text-primary)]">Upload New Video</h4>
-                <div className="mb-6">
+              <div className="flex items-center gap-3 mb-6">
+                <span className="text-3xl">🎥</span>
+                <div>
+                  <h3 className="text-[1.5rem] font-bold text-[var(--accent-primary)]">
+                    Add & Manage MP4 Videos
+                  </h3>
+                  <p className="text-xs text-[var(--text-secondary)]">
+                    Upload MP4 gameplay footage, attach descriptions, and feature them on your site
+                  </p>
+                </div>
+              </div>
+
+              <form onSubmit={handleAddVideoSubmit} className="space-y-6">
+                {/* Select Project */}
+                <div>
                   <label className="block mb-2 text-[var(--text-secondary)] font-medium text-[0.95rem]">
-                    Select Project
+                    Target Project *
                   </label>
-                  <select className="w-full px-5 py-3.5 bg-[var(--bg-primary)] border border-[var(--border-color)] rounded-lg text-[var(--text-primary)] text-base transition-colors duration-300 focus:outline-none focus:border-[var(--accent-primary)]">
-                    <option value="">Choose a project...</option>
+                  <select
+                    value={selectedProject}
+                    onChange={(e) => setSelectedProject(e.target.value)}
+                    className="w-full px-5 py-3.5 bg-[var(--bg-primary)] border border-[var(--border-color)] rounded-lg text-[var(--text-primary)] text-base focus:outline-none focus:border-[var(--accent-primary)]"
+                  >
                     {projectOptions.map((p) => (
                       <option key={p.value} value={p.value}>
                         {p.label}
@@ -154,54 +233,196 @@ export default function AdminModal({ isOpen, onClose }: { isOpen: boolean; onClo
                     ))}
                   </select>
                 </div>
-                <div
-                  className="border-2 border-dashed border-[var(--border-color)] rounded-xl py-12 text-center cursor-pointer transition-all duration-300 mb-6 hover:border-[var(--accent-primary)] hover:bg-[rgba(0,212,255,0.03)]"
-                  onClick={() => document.getElementById('videoFileInput')?.click()}
-                >
-                  <p className="text-[1.2rem] text-[var(--text-secondary)] mb-2">📁 Click to upload video file</p>
-                  <p className="text-sm text-[var(--text-secondary)]">Supports MP4, WebM • Max 500MB</p>
+
+                {/* MP4 File Selector & Dropzone */}
+                <div>
+                  <label className="block mb-2 text-[var(--text-secondary)] font-medium text-[0.95rem]">
+                    MP4 Video File *
+                  </label>
+                  <div
+                    className={`border-2 border-dashed rounded-xl py-8 px-6 text-center cursor-pointer transition-all duration-300 ${
+                      selectedFile
+                        ? 'border-[var(--accent-primary)] bg-[rgba(0,212,255,0.08)]'
+                        : 'border-[var(--border-color)] hover:border-[var(--accent-primary)] hover:bg-[rgba(0,212,255,0.03)]'
+                    }`}
+                    onClick={() => document.getElementById('videoFileInput')?.click()}
+                  >
+                    {selectedFile ? (
+                      <div className="space-y-2">
+                        <p className="text-lg font-bold text-[var(--accent-primary)]">
+                          🎬 {selectedFile.name}
+                        </p>
+                        <p className="text-xs text-[var(--text-secondary)]">
+                          Size: {(selectedFile.size / (1024 * 1024)).toFixed(2)} MB • Type: {selectedFile.type || 'MP4 Video'}
+                        </p>
+                        <span className="inline-block px-3 py-1 bg-[rgba(0,212,255,0.2)] text-[var(--accent-primary)] text-xs rounded-full">
+                          Click to change file
+                        </span>
+                      </div>
+                    ) : (
+                      <div>
+                        <p className="text-[1.2rem] text-[var(--text-secondary)] mb-2 font-semibold">
+                          📁 Click or drag MP4 video file here
+                        </p>
+                        <p className="text-xs text-[var(--text-secondary)]">
+                          Supports MP4, WebM • Fast upload & local streaming
+                        </p>
+                      </div>
+                    )}
+                    <input
+                      id="videoFileInput"
+                      type="file"
+                      accept="video/mp4,video/webm,video/*"
+                      className="hidden"
+                      onChange={handleFileChange}
+                    />
+                  </div>
+                </div>
+
+                {/* Video Title */}
+                <div>
+                  <label className="block mb-2 text-[var(--text-secondary)] font-medium text-[0.95rem]">
+                    Video Title
+                  </label>
                   <input
-                    id="videoFileInput"
-                    type="file"
-                    accept="video/*"
-                    className="hidden"
-                    onChange={handleVideoUpload}
+                    type="text"
+                    value={videoTitle}
+                    onChange={(e) => setVideoTitle(e.target.value)}
+                    placeholder="e.g., Enemy AI Behavior Tree & Pathfinding Showcase"
+                    className="w-full px-5 py-3.5 bg-[var(--bg-primary)] border border-[var(--border-color)] rounded-lg text-[var(--text-primary)] text-base focus:outline-none focus:border-[var(--accent-primary)]"
                   />
                 </div>
-                <div className="mb-6">
+
+                {/* Video Description */}
+                <div>
                   <label className="block mb-2 text-[var(--text-secondary)] font-medium text-[0.95rem]">
-                    Video Description (displays below video on public page)
+                    Video Description (displays with player on public site) *
                   </label>
                   <textarea
-                    rows={3}
-                    placeholder="Enter description of this gameplay footage..."
-                    className="w-full px-5 py-3.5 bg-[var(--bg-primary)] border border-[var(--border-color)] rounded-lg text-[var(--text-primary)] text-base transition-colors duration-300 focus:outline-none focus:border-[var(--accent-primary)] resize-y"
+                    rows={4}
+                    value={videoDescription}
+                    onChange={(e) => setVideoDescription(e.target.value)}
+                    placeholder="Describe what happens in this MP4 gameplay video, features demonstrated, technical mechanics shown, timestamps, etc..."
+                    className="w-full px-5 py-3.5 bg-[var(--bg-primary)] border border-[var(--border-color)] rounded-lg text-[var(--text-primary)] text-base focus:outline-none focus:border-[var(--accent-primary)] resize-y"
                   />
                 </div>
-                <div className="mb-6">
+
+                {/* Display Order */}
+                <div>
                   <label className="block mb-2 text-[var(--text-secondary)] font-medium text-[0.95rem]">
                     Display Order
                   </label>
                   <input
                     type="number"
-                    placeholder="1"
+                    value={displayOrder}
+                    onChange={(e) => setDisplayOrder(e.target.value)}
                     min={1}
-                    className="w-full px-5 py-3.5 bg-[var(--bg-primary)] border border-[var(--border-color)] rounded-lg text-[var(--text-primary)] text-base transition-colors duration-300 focus:outline-none focus:border-[var(--accent-primary)]"
+                    className="w-full px-5 py-3.5 bg-[var(--bg-primary)] border border-[var(--border-color)] rounded-lg text-[var(--text-primary)] text-base focus:outline-none focus:border-[var(--accent-primary)]"
                   />
                 </div>
+
+                {/* Feedback Banners */}
+                {uploadMessage && (
+                  <div
+                    className={`p-4 rounded-lg text-sm font-medium ${
+                      uploadMessage.type === 'success'
+                        ? 'bg-[rgba(16,185,129,0.15)] text-[#10b981] border border-[#10b981]'
+                        : 'bg-[rgba(239,68,68,0.15)] text-[#ef4444] border border-[#ef4444]'
+                    }`}
+                  >
+                    {uploadMessage.text}
+                  </div>
+                )}
+
+                {/* Submit Button */}
                 <button
-                  onClick={() => alert('Video upload initiated!\n\nIn production, this would upload the video file.')}
-                  className="px-10 py-4 bg-gradient-to-r from-[var(--accent-primary)] to-[var(--accent-secondary)] text-white rounded-xl font-semibold text-base transition-all duration-300 border-none cursor-pointer hover:-translate-y-0.5 hover:shadow-[0_4px_20px_rgba(0,212,255,0.4)]"
+                  type="submit"
+                  disabled={isUploading}
+                  className={`w-full py-4 px-10 bg-gradient-to-r from-[var(--accent-primary)] to-[var(--accent-secondary)] text-white rounded-xl font-bold text-base transition-all duration-300 ${
+                    isUploading ? 'opacity-50 cursor-wait' : 'hover:-translate-y-0.5 hover:shadow-[0_4px_20px_rgba(0,212,255,0.4)] cursor-pointer'
+                  }`}
                 >
-                  Upload Video
+                  {isUploading ? '⏳ Uploading Video & Description...' : '➕ Add Video with Description'}
                 </button>
-              </div>
-              <div className="mt-8 pt-8 border-t border-[var(--border-color)]">
-                <h4 className="text-[1.1rem] mb-4 text-[var(--text-primary)]">Uploaded Videos</h4>
-                <div className="bg-[rgba(0,0,0,0.3)] p-8 rounded-lg text-center text-[var(--text-secondary)]">
-                  <p>No videos uploaded yet</p>
-                  <p className="text-sm mt-2">Videos will appear here after upload</p>
-                </div>
+              </form>
+
+              {/* Uploaded Videos List */}
+              <div className="mt-12 pt-8 border-t border-[var(--border-color)]">
+                <h4 className="text-[1.2rem] font-bold mb-6 text-[var(--text-primary)] flex items-center justify-between">
+                  <span>📹 Uploaded MP4 Videos ({videos.length})</span>
+                  <span className="text-xs text-[var(--text-secondary)] font-normal">
+                    Real-time synced
+                  </span>
+                </h4>
+
+                {videos.length === 0 ? (
+                  <div className="bg-[rgba(0,0,0,0.3)] p-8 rounded-lg text-center text-[var(--text-secondary)] border border-[var(--border-color)]">
+                    <p className="text-base font-semibold">No videos added yet</p>
+                    <p className="text-sm mt-1">
+                      Upload an MP4 file with description above to showcase gameplay videos!
+                    </p>
+                  </div>
+                ) : (
+                  <div className="space-y-6">
+                    {videos.map((vid) => (
+                      <div
+                        key={vid.id}
+                        className="bg-[var(--bg-primary)] p-6 rounded-xl border border-[var(--border-color)] flex flex-col md:flex-row gap-6 items-start justify-between"
+                      >
+                        {/* Video HTML5 Preview */}
+                        <div className="w-full md:w-64 rounded-lg overflow-hidden bg-black border border-[var(--border-color)]">
+                          <video
+                            src={vid.url}
+                            controls
+                            preload="metadata"
+                            className="w-full h-36 object-cover"
+                          />
+                        </div>
+
+                        {/* Metadata & Description */}
+                        <div className="flex-1 space-y-2">
+                          <div className="flex items-center gap-3 flex-wrap">
+                            <span className="px-3 py-1 bg-[rgba(0,212,255,0.15)] text-[var(--accent-primary)] font-mono text-xs rounded-md font-semibold">
+                              {projectOptions.find((p) => p.value === vid.projectId)?.label || vid.projectId}
+                            </span>
+                            <span className="text-xs text-[var(--text-secondary)]">
+                              Order: {vid.displayOrder}
+                            </span>
+                            {vid.fileSize && (
+                              <span className="text-xs text-[var(--text-secondary)]">
+                                {(vid.fileSize / (1024 * 1024)).toFixed(1)} MB
+                              </span>
+                            )}
+                          </div>
+
+                          <h5 className="text-lg font-bold text-[var(--text-primary)]">
+                            {vid.title}
+                          </h5>
+
+                          <div className="bg-[rgba(0,0,0,0.2)] p-3 rounded-lg border border-[rgba(255,255,255,0.05)]">
+                            <p className="text-sm text-[var(--text-secondary)] whitespace-pre-wrap leading-relaxed">
+                              {vid.description}
+                            </p>
+                          </div>
+                        </div>
+
+                        {/* Actions */}
+                        <div>
+                          <button
+                            onClick={() => {
+                              if (confirm(`Delete video "${vid.title}"?`)) {
+                                deleteVideo(vid.id);
+                              }
+                            }}
+                            className="px-4 py-2 bg-[rgba(239,68,68,0.2)] hover:bg-[rgba(239,68,68,0.4)] text-[#ef4444] border border-[#ef4444] rounded-lg text-xs font-semibold cursor-pointer transition-colors"
+                          >
+                            🗑️ Delete
+                          </button>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
               </div>
             </div>
 
@@ -210,119 +431,33 @@ export default function AdminModal({ isOpen, onClose }: { isOpen: boolean; onClo
               <h3 className="text-[1.5rem] font-bold mb-6 text-[var(--accent-primary)]">
                 🎮 Game Build Management
               </h3>
-              <div className="mb-8">
-                <h4 className="text-[1.1rem] mb-4 text-[var(--text-primary)]">Upload Game Build</h4>
-                <div className="mb-6">
-                  <label className="block mb-2 text-[var(--text-secondary)] font-medium text-[0.95rem]">
-                    Select Project
-                  </label>
-                  <select className="w-full px-5 py-3.5 bg-[var(--bg-primary)] border border-[var(--border-color)] rounded-lg text-[var(--text-primary)] text-base transition-colors duration-300 focus:outline-none focus:border-[var(--accent-primary)]">
-                    <option value="">Choose a project...</option>
-                    {projectOptions.map((p) => (
-                      <option key={p.value} value={p.value}>
-                        {p.label}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-                <div
-                  className="border-2 border-dashed border-[var(--border-color)] rounded-xl py-12 text-center cursor-pointer transition-all duration-300 mb-6 hover:border-[var(--accent-primary)] hover:bg-[rgba(0,212,255,0.03)]"
-                  onClick={() => document.getElementById('buildFileInput')?.click()}
-                >
-                  <p className="text-[1.2rem] text-[var(--text-secondary)] mb-2">
-                    📦 Click to upload build folder (ZIP)
-                  </p>
-                  <p className="text-sm text-[var(--text-secondary)]">
-                    Unity WebGL build (with index.html) OR standalone executable (.exe)
-                  </p>
-                  <input
-                    id="buildFileInput"
-                    type="file"
-                    accept=".zip,.exe"
-                    className="hidden"
-                    onChange={handleBuildUpload}
-                  />
-                </div>
-                <div className="mb-6">
-                  <label className="block mb-2 text-[var(--text-secondary)] font-medium text-[0.95rem]">
-                    Version Number
-                  </label>
-                  <input
-                    type="text"
-                    placeholder="e.g., v1.0.0, v1.1.0-beta"
-                    className="w-full px-5 py-3.5 bg-[var(--bg-primary)] border border-[var(--border-color)] rounded-lg text-[var(--text-primary)] text-base transition-colors duration-300 focus:outline-none focus:border-[var(--accent-primary)]"
-                  />
-                </div>
-                <div className="mb-6">
-                  <label className="block mb-2 text-[var(--text-secondary)] font-medium text-[0.95rem]">
-                    Build Type
-                  </label>
-                  <select className="w-full px-5 py-3.5 bg-[var(--bg-primary)] border border-[var(--border-color)] rounded-lg text-[var(--text-primary)] text-base transition-colors duration-300 focus:outline-none focus:border-[var(--accent-primary)]">
-                    <option value="webgl">WebGL (Browser Playable via iframe)</option>
-                    <option value="standalone">Standalone (Downloadable ZIP/EXE)</option>
-                  </select>
-                </div>
-                <button
-                  onClick={() => alert('Build upload initiated!\n\nIn production, this would host WebGL builds or provide download links.')}
-                  className="px-10 py-4 bg-gradient-to-r from-[var(--accent-primary)] to-[var(--accent-secondary)] text-white rounded-xl font-semibold text-base transition-all duration-300 border-none cursor-pointer hover:-translate-y-0.5 hover:shadow-[0_4px_20px_rgba(0,212,255,0.4)]"
-                >
-                  Upload Build
-                </button>
-              </div>
-              <div className="mt-8 pt-8 border-t border-[var(--border-color)]">
-                <h4 className="text-[1.1rem] mb-4 text-[var(--text-primary)]">Current Builds</h4>
-                <div className="bg-[rgba(0,0,0,0.3)] p-8 rounded-lg text-center text-[var(--text-secondary)]">
-                  <p>No builds uploaded yet</p>
-                  <p className="text-sm mt-2">Upload a build to enable browser play or download</p>
-                </div>
-              </div>
-            </div>
-
-            {/* Site Settings */}
-            <div className="p-8 bg-[var(--bg-card)] rounded-xl border border-[var(--border-color)]">
-              <h3 className="text-[1.5rem] font-bold mb-6 text-[var(--accent-primary)]">⚙️ Site Settings</h3>
               <div className="mb-6">
                 <label className="block mb-2 text-[var(--text-secondary)] font-medium text-[0.95rem]">
-                  Featured Project
+                  Select Project
                 </label>
-                <select className="w-full px-5 py-3.5 bg-[var(--bg-primary)] border border-[var(--border-color)] rounded-lg text-[var(--text-primary)] text-base transition-colors duration-300 focus:outline-none focus:border-[var(--accent-primary)]">
-                  <option value="shooter">Shooter Game</option>
-                  <option value="knuckle2">Knuckle2</option>
-                  <option value="mario">Mario Recreation</option>
+                <select className="w-full px-5 py-3.5 bg-[var(--bg-primary)] border border-[var(--border-color)] rounded-lg text-[var(--text-primary)] text-base focus:outline-none focus:border-[var(--accent-primary)]">
+                  {projectOptions.map((p) => (
+                    <option key={p.value} value={p.value}>
+                      {p.label}
+                    </option>
+                  ))}
                 </select>
               </div>
-              <div className="mb-6">
-                <label className="block mb-2 text-[var(--text-secondary)] font-medium text-[0.95rem]">
-                  Project Cover Images
-                </label>
-                <div
-                  className="border-2 border-dashed border-[var(--border-color)] rounded-xl py-6 text-center cursor-pointer transition-all duration-300 hover:border-[var(--accent-primary)] hover:bg-[rgba(0,212,255,0.03)]"
-                  onClick={() => document.getElementById('coverImageInput')?.click()}
-                >
-                  <p className="text-base text-[var(--text-secondary)]">
-                    🖼️ Upload cover image for selected project
-                  </p>
-                  <input
-                    id="coverImageInput"
-                    type="file"
-                    accept="image/*"
-                    className="hidden"
-                  />
-                </div>
-              </div>
-              <button
-                onClick={() => alert('Settings saved successfully!')}
-                className="px-10 py-4 bg-gradient-to-r from-[var(--accent-primary)] to-[var(--accent-secondary)] text-white rounded-xl font-semibold text-base transition-all duration-300 border-none cursor-pointer hover:-translate-y-0.5 hover:shadow-[0_4px_20px_rgba(0,212,255,0.4)]"
+              <div
+                className="border-2 border-dashed border-[var(--border-color)] rounded-xl py-8 text-center cursor-pointer transition-all duration-300 mb-6 hover:border-[var(--accent-primary)] hover:bg-[rgba(0,212,255,0.03)]"
+                onClick={() => document.getElementById('buildFileInput')?.click()}
               >
-                Save Settings
-              </button>
-            </div>
-
-            <div className="mt-8 p-6 bg-[rgba(139,92,246,0.1)] rounded-lg text-center">
-              <p className="text-[var(--text-secondary)] text-sm">
-                <strong className="text-[var(--accent-secondary)]">Note:</strong> All uploads are
-                stored securely. Visitors can only view content — never upload, edit, or delete.
-              </p>
+                <p className="text-[1.2rem] text-[var(--text-secondary)] mb-2">
+                  📦 Click to upload build folder (ZIP/EXE)
+                </p>
+                <input
+                  id="buildFileInput"
+                  type="file"
+                  accept=".zip,.exe"
+                  className="hidden"
+                  onChange={handleBuildUpload}
+                />
+              </div>
             </div>
           </>
         )}
