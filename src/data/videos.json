@@ -1,13 +1,1 @@
-[
-  {
-    "id": "vid_1786640132903_50kto",
-    "projectId": "shooter",
-    "title": "EnemyAI",
-    "description": "in this i've used unreal to showcase two types of chasing one is patrol and the other is freeroam the freeRoam one is directly using AI move to the player using the CustomEvent as for the Patrol one it's going through sprine and following it once it hears sounds it'll first investigate if it sees the player then it'll chase otherwise it'll go back to its patrol state i've made this using AI behavioural tree",
-    "url": "/uploads/videos/1786640132881_Assignment18.mp4",
-    "fileName": "Assignment18.mp4",
-    "fileSize": 29322975,
-    "displayOrder": 1,
-    "createdAt": "2026-08-13T16:55:32.903Z"
-  }
-]
+[]

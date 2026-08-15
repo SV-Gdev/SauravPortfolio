@@ -32,26 +32,7 @@ export default function VideoShowcaseSection() {
   }
 
   if (videos.length === 0) {
-    return (
-      <section
-        id="video-showcase"
-        className="max-w-[1200px] mx-auto my-16 px-8 sm:px-12 py-12 bg-[var(--bg-secondary)] rounded-3xl border border-[var(--border-color)] text-center text-[var(--text-primary)]"
-      >
-        <span className="text-4xl mb-4 block">🎬</span>
-        <h2 className="text-3xl font-extrabold mb-3">Gameplay Video Showcase</h2>
-        <p className="text-[var(--text-secondary)] max-w-xl mx-auto mb-6">
-          No gameplay videos uploaded yet. Use the Owner Management Studio below to upload MP4 clips or link Google Drive videos!
-        </p>
-        <a
-          href={DRIVE_FOLDER_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 px-6 py-3 bg-[rgba(0,212,255,0.1)] text-[var(--accent-primary)] border border-[var(--accent-primary)] rounded-xl font-bold text-sm hover:bg-[var(--accent-primary)] hover:text-white transition-all"
-        >
-          ☁️ Open Google Drive Video Cloud Storage
-        </a>
-      </section>
-    );
+    return null;
   }
 
   const currentVideo = selectedVideo || videos[0];

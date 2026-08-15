@@ -29,7 +29,7 @@ export function useVideoStore() {
       const res = await fetch('/api/videos');
       if (res.ok) {
         const data = await res.json();
-        if (Array.isArray(data.videos) && data.videos.length > 0) {
+        if (Array.isArray(data.videos)) {
           setVideos(data.videos);
           localStorage.setItem(STORAGE_KEY, JSON.stringify(data.videos));
           loadedFromApi = true;
