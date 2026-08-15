@@ -12,6 +12,7 @@ export function useProjectStore() {
     try {
       const stored = localStorage.getItem(PROJECT_IMAGE_STORAGE_KEY);
       if (stored) {
+        // eslint-disable-next-line react-hooks/set-state-in-effect
         setProjectImages(JSON.parse(stored));
       }
     } catch (e) {

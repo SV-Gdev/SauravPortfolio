@@ -1,20 +1,14 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useVideoStore, VideoItem } from '@/hooks/useVideoStore';
 
 const DRIVE_FOLDER_URL =
   'https://drive.google.com/drive/folders/1FvEtW6gsmQtGIw7mAMD5ShEiSraZ0pUO?usp=sharing';
 
 export default function VideoShowcaseSection() {
-  const { videos, isLoading } = useVideoStore();
+  const { videos, loading: isLoading } = useVideoStore();
   const [selectedVideo, setSelectedVideo] = useState<VideoItem | null>(null);
-
-  useEffect(() => {
-    if (videos.length > 0 && !selectedVideo) {
-      setSelectedVideo(videos[0]);
-    }
-  }, [videos, selectedVideo]);
 
   // Helper to detect if a URL is a Google Drive URL or embed
   const getEmbedUrl = (url: string) => {
