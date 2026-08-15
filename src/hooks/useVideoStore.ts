@@ -159,6 +159,7 @@ export function useVideoStore() {
     videos,
     loading,
     uploadVideoFile,
+    addVideo: addVideoRecord,
     addVideoRecord,
     deleteVideo,
     getVideosByProject,

@@ -42,7 +42,7 @@ export default function VideoAdderSection() {
   const [isImageUploading, setIsImageUploading] = useState(false);
   const [imageMessage, setImageMessage] = useState<{ type: 'success' | 'error'; text: string } | null>(null);
 
-  const { uploadVideoFile, addVideo } = useVideoStore();
+  const { uploadVideoFile, addVideoRecord } = useVideoStore();
   const { updateProjectImage } = useProjectStore();
 
   const handleUnlockSubmit = (e: React.FormEvent) => {
@@ -117,13 +117,15 @@ export default function VideoAdderSection() {
         });
       } else {
         // Direct Google Drive Link
-        await addVideo({
+        await addVideoRecord({
+          id: `vid_${Date.now()}_${Math.random().toString(36).substring(2, 7)}`,
           projectId: selectedVideoProject,
           title: videoTitle.trim() || 'Google Drive Video',
           description: videoDescription.trim(),
           url: driveUrlInput.trim(),
           fileName: 'Google Drive Video',
           displayOrder: 1,
+          createdAt: new Date().toISOString(),
         });
       }
 
