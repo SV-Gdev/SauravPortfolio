@@ -74,7 +74,7 @@ export const projects: Project[] = [
     description:
       "Engineering coursework project focused on healthcare backend software development. Built robust data management systems for medical applications, implementing secure database architecture and RESTful API endpoints for healthcare data handling.",
     techTags: ["Python", "SQL", "Backend Architecture", "Database Design"],
-    image: "/images/download.png",
+    image: "/images/orion-health.png",
     roleBadge: "Backend Developer",
     githubUrl: "https://github.com/AARAV-git/orion-backend",
     docsUrl: "#",
