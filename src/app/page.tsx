@@ -5,6 +5,7 @@ import Navbar from '@/components/portfolio/Navbar';
 import Hero from '@/components/portfolio/Hero';
 import FeaturedProject from '@/components/portfolio/FeaturedProject';
 import ProjectsSection from '@/components/portfolio/ProjectsSection';
+import GameplayVideosSection from '@/components/portfolio/GameplayVideosSection';
 import ResearchSection from '@/components/portfolio/ResearchSection';
 import AboutSection from '@/components/portfolio/AboutSection';
 import ContactSection from '@/components/portfolio/ContactSection';
@@ -23,6 +24,7 @@ export default function Home() {
         <Hero />
         <FeaturedProject />
         <ProjectsSection />
+        <GameplayVideosSection />
         <ResearchSection />
         <AboutSection />
         <ContactSection />

@@ -160,6 +160,7 @@ export const navLinks = [
   { label: "Home", href: "#home" },
   { label: "Featured", href: "#featured-project" },
   { label: "Projects", href: "#projects" },
+  { label: "Videos", href: "#videos" },
   { label: "Research", href: "#research" },
   { label: "About", href: "#about" },
   { label: "Contact", href: "#contact" },
