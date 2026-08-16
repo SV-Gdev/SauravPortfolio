@@ -61,15 +61,31 @@ export default function AdminModal({ isOpen, onClose }: { isOpen: boolean; onClo
     if (e.target === modalRef.current) onClose();
   };
 
-  const handleLogin = () => {
+  const handleLogin = async () => {
     const u = username.trim().toLowerCase();
     const p = password.trim();
 
-    // Accept username: saurav or admin
-    // Accept password: SAURAVvalo@1234, admin, or password
+    try {
+      const res = await fetch('/api/admin/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, password }),
+      });
+
+      const data = await res.json();
+      if (res.ok && data.success) {
+        setIsAuthenticated(true);
+        setLoginError(false);
+        return;
+      }
+    } catch (e) {
+      console.warn('API login check failed, using fallback:', e);
+    }
+
+    // Client-side fallback check (case-insensitive for MITHILESH, saurav, admin)
     if (
-      (u === 'saurav' || u === 'admin') &&
-      (p === 'sauravvalo@1234' || p === 'SAURAVvalo@1234' || p === 'password' || p === 'admin')
+      (u === 'mithilesh' || u === 'saurav' || u === 'admin') &&
+      (p === 'SAURAVvalo@1234' || p === 'password' || p === 'admin')
     ) {
       setIsAuthenticated(true);
       setLoginError(false);
@@ -244,7 +260,7 @@ export default function AdminModal({ isOpen, onClose }: { isOpen: boolean; onClo
                 type="text"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
-                placeholder="e.g. saurav or admin"
+                placeholder="e.g. MITHILESH, saurav, or admin"
                 className="w-full px-5 py-3.5 bg-[var(--bg-primary)] border border-[var(--border-color)] rounded-lg text-[var(--text-primary)] text-base focus:outline-none focus:border-[var(--accent-primary)]"
               />
             </div>
